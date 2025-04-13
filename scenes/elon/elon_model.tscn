@@ -1,0 +1,170 @@
+[gd_scene load_steps=27 format=3 uid="uid://bg2ah1m0ryp2v"]
+
+[ext_resource type="PackedScene" uid="uid://dinhmkbikrbs7" path="res://assets/elon/elon_musk_throw.glb" id="1_bqbl2"]
+[ext_resource type="AnimationLibrary" uid="uid://co5681wybi5dl" path="res://assets/elon/animations/elon_animations.res" id="2_ky3at"]
+[ext_resource type="PackedScene" uid="uid://cxgiq6bp1fde0" path="res://scenes/flashlight/Flashlight.tscn" id="3_prbqp"]
+[ext_resource type="PackedScene" uid="uid://cxl60mo1c2en2" path="res://scenes/chainsaw/chainsaw.tscn" id="3_xuoxp"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8wyoi"]
+animation = &"elon_animations/chainsaw_run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_elk1u"]
+animation = &"elon_animations/crouch_idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jcgps"]
+animation = &"elon_animations/crouch_walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x7odq"]
+animation = &"elon_animations/jump"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_n0slc"]
+animation = &"elon_animations/standard_run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6dqby"]
+animation = &"elon_animations/walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ky3at"]
+animation = &"elon_animations/crouch_walk_back"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xuoxp"]
+animation = &"elon_animations/walk_back"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nfalm"]
+animation = &"elon_animations/idle"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_s0yww"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_prbqp"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_rhkyi"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_s0yww"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_elk1u"]
+
+[sub_resource type="Curve" id="Curve_ky3at"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_xuoxp"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_ky3at"]
+fadein_time = 0.2
+fadein_curve = SubResource("Curve_ky3at")
+fadeout_time = 0.2
+fadeout_curve = SubResource("Curve_xuoxp")
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_ky3at"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_ky3at"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_eshpv"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_jcgps"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_q5km5"]
+graph_offset = Vector2(-749.598, -79.6876)
+"nodes/Anim Chainsaw Run/node" = SubResource("AnimationNodeAnimation_8wyoi")
+"nodes/Anim Chainsaw Run/position" = Vector2(-420, 300)
+"nodes/Anim Crouch Idle/node" = SubResource("AnimationNodeAnimation_elk1u")
+"nodes/Anim Crouch Idle/position" = Vector2(-900, 100)
+"nodes/Anim Crouch Walk/node" = SubResource("AnimationNodeAnimation_jcgps")
+"nodes/Anim Crouch Walk/position" = Vector2(-680, 300)
+"nodes/Anim Jump/node" = SubResource("AnimationNodeAnimation_x7odq")
+"nodes/Anim Jump/position" = Vector2(-140, 120)
+"nodes/Anim Standard Run/node" = SubResource("AnimationNodeAnimation_n0slc")
+"nodes/Anim Standard Run/position" = Vector2(-420, 120)
+"nodes/Anim Walk/node" = SubResource("AnimationNodeAnimation_6dqby")
+"nodes/Anim Walk/position" = Vector2(-140, 300)
+"nodes/Animation Crouch Walk Back/node" = SubResource("AnimationNodeAnimation_ky3at")
+"nodes/Animation Crouch Walk Back/position" = Vector2(80, 300)
+"nodes/Animation Walk Back/node" = SubResource("AnimationNodeAnimation_xuoxp")
+"nodes/Animation Walk Back/position" = Vector2(80, 120)
+nodes/Idle/node = SubResource("AnimationNodeAnimation_nfalm")
+nodes/Idle/position = Vector2(-440, -60)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_s0yww")
+nodes/TimeScale/position = Vector2(-620, 80)
+nodes/chainsaw_run/node = SubResource("AnimationNodeBlend2_prbqp")
+nodes/chainsaw_run/position = Vector2(260, -140)
+nodes/crouch_idle/node = SubResource("AnimationNodeBlend2_rhkyi")
+nodes/crouch_idle/position = Vector2(-160, -140)
+nodes/crouch_walk/node = SubResource("AnimationNodeBlend2_s0yww")
+nodes/crouch_walk/position = Vector2(120, -140)
+nodes/crouch_walk_back/node = SubResource("AnimationNodeBlend2_elk1u")
+nodes/crouch_walk_back/position = Vector2(680, -140)
+nodes/jump/node = SubResource("AnimationNodeOneShot_ky3at")
+nodes/jump/position = Vector2(880, -20)
+nodes/jump_speed/node = SubResource("AnimationNodeTimeScale_ky3at")
+nodes/jump_speed/position = Vector2(360, 120)
+nodes/output/position = Vector2(1020, 20)
+nodes/run/node = SubResource("AnimationNodeBlend2_ky3at")
+nodes/run/position = Vector2(-20, -140)
+nodes/walk/node = SubResource("AnimationNodeBlend2_eshpv")
+nodes/walk/position = Vector2(400, -140)
+nodes/walk_back/node = SubResource("AnimationNodeBlend2_jcgps")
+nodes/walk_back/position = Vector2(540, -140)
+node_connections = [&"TimeScale", 0, &"Anim Crouch Idle", &"chainsaw_run", 0, &"crouch_walk", &"chainsaw_run", 1, &"Anim Chainsaw Run", &"crouch_idle", 0, &"Idle", &"crouch_idle", 1, &"TimeScale", &"crouch_walk", 0, &"run", &"crouch_walk", 1, &"Anim Crouch Walk", &"crouch_walk_back", 0, &"walk_back", &"crouch_walk_back", 1, &"Animation Crouch Walk Back", &"jump", 0, &"crouch_walk_back", &"jump", 1, &"jump_speed", &"jump_speed", 0, &"Anim Jump", &"output", 0, &"jump", &"run", 0, &"crouch_idle", &"run", 1, &"Anim Standard Run", &"walk", 0, &"chainsaw_run", &"walk", 1, &"Anim Walk", &"walk_back", 0, &"walk", &"walk_back", 1, &"Animation Walk Back"]
+
+[node name="Elon Model" instance=ExtResource("1_bqbl2")]
+
+[node name="Sketchfab_model" parent="." index="0"]
+transform = Transform3D(0.01, 0, 0, 0, -4.37114e-10, 0.01, 0, -0.01, -4.37114e-10, 0.185, 0.595, -0.145)
+
+[node name="Skeleton3D" parent="Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4" index="0"]
+bones/1/position = Vector3(0.0514012, 0.561932, 0.170593)
+bones/1/rotation = Quaternion(-0.348498, -0.561865, -0.286014, 0.69358)
+bones/2/rotation = Quaternion(0.765501, 0.00591448, -0.0109431, 0.643314)
+bones/3/rotation = Quaternion(0.125063, -0.00946441, -0.0187229, 0.991927)
+bones/4/rotation = Quaternion(0.125181, -0.00422456, -0.0196617, 0.99193)
+bones/5/rotation = Quaternion(-0.779917, 0.109221, 0.0344736, 0.615314)
+bones/6/rotation = Quaternion(-0.244775, 0.247605, 0.433039, 0.831417)
+bones/8/rotation = Quaternion(-0.643471, -0.343601, 0.57235, -0.374564)
+bones/9/rotation = Quaternion(-0.0551744, -0.480895, 0.067243, 0.872453)
+bones/10/rotation = Quaternion(0.0480203, 1.0106e-05, 0.490064, 0.870363)
+bones/12/rotation = Quaternion(0.631684, -0.366179, 0.54265, 0.415234)
+bones/13/rotation = Quaternion(0.391134, -0.345139, -0.021804, 0.852888)
+bones/14/rotation = Quaternion(0.0346717, -0.000184518, -0.374699, 0.926498)
+bones/16/rotation = Quaternion(-0.00530796, -0.230545, -0.909467, 0.345962)
+bones/17/rotation = Quaternion(-0.723639, -0.0552006, 0.0635602, 0.685025)
+bones/18/rotation = Quaternion(0.513534, -0.179855, -0.0467262, 0.837706)
+bones/19/rotation = Quaternion(0.300067, -0.0701536, 0.0166828, 0.951189)
+bones/21/rotation = Quaternion(-0.146285, -0.0853861, -0.966491, -0.192886)
+bones/22/rotation = Quaternion(-0.833204, -0.0533143, 0.0771551, 0.544955)
+bones/23/rotation = Quaternion(0.777564, 0.197226, 0.109616, 0.586924)
+bones/24/rotation = Quaternion(0.330564, 0.0699427, -0.0138896, 0.941086)
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D" index="11"]
+transform = Transform3D(-0.285087, 0.840929, 0.459961, -0.590624, -0.532067, 0.606686, 0.754909, -0.0987058, 0.648358, 1.85707, 12.4023, -28.4986)
+bone_name = "mixamorig_RightHand_00"
+bone_idx = 15
+
+[node name="Flashlight" parent="Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D" index="0" instance=ExtResource("3_prbqp")]
+transform = Transform3D(-6.53275, -2.84052, -3.32178, -3.13417, 7.20809, 0, 3.04627, 1.32456, -7.12357, 5.61964, 1.71001, 0.92852)
+
+[node name="Chainsaw" parent="Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D" index="1" instance=ExtResource("3_xuoxp")]
+transform = Transform3D(12.7064, 16.6696, -3.78983, 14.4785, -7.98319, 13.4288, 9.08906, -10.5869, -16.0933, -21.5935, -6.78769, 61.8683)
+visible = false
+
+[node name="AnimationPlayer" parent="." index="1"]
+libraries = {
+&"elon_animations": ExtResource("2_ky3at")
+}
+autoplay = "elon_animations/idle"
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+tree_root = SubResource("AnimationNodeBlendTree_q5km5")
+anim_player = NodePath("../AnimationPlayer")
+parameters/TimeScale/scale = 0.6
+parameters/chainsaw_run/blend_amount = 0.0
+parameters/crouch_idle/blend_amount = 1.0
+parameters/crouch_walk/blend_amount = false
+parameters/crouch_walk_back/blend_amount = 0
+parameters/jump/active = false
+parameters/jump/internal_active = false
+parameters/jump/request = 0
+parameters/jump_speed/scale = 1.15
+parameters/run/blend_amount = 0.0
+parameters/walk/blend_amount = 0.0
+parameters/walk_back/blend_amount = 0

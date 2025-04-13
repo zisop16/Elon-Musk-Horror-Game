@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3 uid="uid://do2828y10u0ct"]
+
+[ext_resource type="Script" uid="uid://cgxpjs0jsu731" path="res://scripts/game.gd" id="1_7r040"]
+[ext_resource type="PackedScene" uid="uid://tkllvr4o5did" path="res://scenes/elon/player.tscn" id="2_y4wvy"]
+
+[sub_resource type="Environment" id="Environment_y4wvy"]
+background_energy_multiplier = 0.3
+tonemap_mode = 3
+tonemap_exposure = 2.87
+tonemap_white = 3.71
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.1245
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y4wvy"]
+size = Vector3(8.53162, 5.46442, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7r040"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7r040"]
+size = Vector3(37.9223, 0.328125, 35.7188)
+
+[sub_resource type="BoxMesh" id="BoxMesh_y4wvy"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_7r040")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_y4wvy")
+
+[node name="Player" parent="." instance=ExtResource("2_y4wvy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.11, -0.215, -1.455)
+
+[node name="Wall" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.68699, 2.46303, 3.04299)
+shape = SubResource("BoxShape3D_y4wvy")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall"]
+transform = Transform3D(8.53162, 0, 0, 0, 5.46442, 0, 0, 0, 1, 1.68699, 2.46303, 3.04299)
+mesh = SubResource("BoxMesh_7r040")
+
+[node name="Ground" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1878, -0.727689, -3.33834)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.2941, 0.355245, 3.34201)
+shape = SubResource("BoxShape3D_7r040")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+transform = Transform3D(37.9223, 0, 0, 0, 0.328125, 0, 0, 0, 35.7188, -11.2941, 0.355245, 3.34201)
+mesh = SubResource("BoxMesh_y4wvy")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.473013, -0.84554, -0.247629, 0.697686, 0.18783, 0.691342, -0.538046, -0.499781, 0.678768, 0, 0, 0)
+visible = false
+shadow_enabled = true

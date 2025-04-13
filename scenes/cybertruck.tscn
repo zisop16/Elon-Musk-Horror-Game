@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://babtwlincfli4"]
+
+[ext_resource type="PackedScene" uid="uid://but5oxmn35fmb" path="res://assets/teslacyberv3.0.blend" id="1_40yi2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p2nec"]
+size = Vector3(3.64766, 1.81409, 9.74281)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_27fed"]
+size = Vector3(3.42776, 1.84247, 4.42295)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5xjxb"]
+size = Vector3(3.43262, 1.4062, 5.8883)
+
+[node name="cybertruck" type="RigidBody3D"]
+
+[node name="teslacyberv3_0" parent="." instance=ExtResource("1_40yi2")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+
+[node name="Rectangle1" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.38, -0.075)
+shape = SubResource("BoxShape3D_p2nec")
+
+[node name="Rectangle2" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, 0.380423, -0.123607, 0, 0.123607, 0.380423, 0, 0.689, 0.931)
+shape = SubResource("BoxShape3D_27fed")
+
+[node name="Rectangle3" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, 0.39639, 0.0536221, 0, -0.0536221, 0.39639, 0, 0.871854, -0.89979)
+shape = SubResource("BoxShape3D_5xjxb")

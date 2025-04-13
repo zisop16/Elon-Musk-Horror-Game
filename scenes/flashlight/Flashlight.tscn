@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cxgiq6bp1fde0"]
+
+[ext_resource type="Script" uid="uid://skl8sc51x30q" path="res://scripts/flashlight.gd" id="1_2rhmn"]
+[ext_resource type="PackedScene" uid="uid://das2jaw3oc1ur" path="res://scenes/flashlight/model.tscn" id="1_hca0g"]
+[ext_resource type="Texture2D" uid="uid://0jqcwih6qlik" path="res://assets/flashlight/flashlight_cookie.jpg" id="4_2rpsh"]
+
+[node name="Flashlight" type="Node3D"]
+script = ExtResource("1_2rhmn")
+
+[node name="Model" parent="." instance=ExtResource("1_hca0g")]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.219, 0.9, 0)
+light_color = Color(1, 1, 0.854902, 1)
+light_energy = 5.148
+light_volumetric_fog_energy = 10.938
+light_projector = ExtResource("4_2rpsh")
+shadow_enabled = true
+distance_fade_begin = 0.0
+spot_range = 15.0
+spot_attenuation = 1.37
+spot_angle = 25.0
+spot_angle_attenuation = 1.74108
