@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cmm4evdnd85x6"]
+
+[ext_resource type="Texture2D" uid="uid://7iykd62wjptj" path="res://assets/kamala/textures/Kamala Harris Running_AvatarLeftCornea_Color_512.jpg" id="1_bon1r"]
+
+[resource]
+resource_name = "AvatarLeftCorneamat"
+cull_mode = 2
+albedo_texture = ExtResource("1_bon1r")
+metallic = 1.0
+roughness = 0.552786
+emission = Color(0, 0.447059, 0.988235, 1)
+emission_energy_multiplier = 50.0

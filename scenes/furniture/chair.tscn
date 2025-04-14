@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://gp20bq1ixoii"]
+
+[ext_resource type="PackedScene" uid="uid://dvjw1eounqu7w" path="res://assets/furniture/source/chair.glb" id="1_a4hm4"]
+
+[node name="Chair" type="Node3D"]
+
+[node name="Model" parent="." instance=ExtResource("1_a4hm4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, 0, 0.66)

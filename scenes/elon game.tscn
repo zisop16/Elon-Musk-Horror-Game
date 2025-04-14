@@ -1,20 +1,28 @@
-[gd_scene load_steps=8 format=3 uid="uid://do2828y10u0ct"]
+[gd_scene load_steps=10 format=3 uid="uid://do2828y10u0ct"]
 
 [ext_resource type="Script" uid="uid://cgxpjs0jsu731" path="res://scripts/game.gd" id="1_7r040"]
 [ext_resource type="PackedScene" uid="uid://tkllvr4o5did" path="res://scenes/elon/player.tscn" id="2_y4wvy"]
+[ext_resource type="PackedScene" uid="uid://dl0rxcornsfl5" path="res://scenes/kamala/kamala.tscn" id="3_7r040"]
 
 [sub_resource type="Environment" id="Environment_y4wvy"]
-background_energy_multiplier = 0.3
-tonemap_mode = 3
-tonemap_exposure = 2.87
-tonemap_white = 3.71
+background_mode = 1
+background_energy_multiplier = 0.0
+glow_strength = 0.45
+glow_blend_mode = 0
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.1245
+volumetric_fog_density = 0.3332
+volumetric_fog_albedo = Color(0.9, 0.903333, 1, 1)
+volumetric_fog_emission = Color(1, 1, 1, 1)
+volumetric_fog_emission_energy = 0.0
+adjustment_brightness = 0.6
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y4wvy"]
-size = Vector3(8.53162, 5.46442, 1)
+size = Vector3(8.53162, 5.46442, 1.75964)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7r040"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_7r040"]
+material = SubResource("StandardMaterial3D_7r040")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7r040"]
 size = Vector3(37.9223, 0.328125, 35.7188)
@@ -28,16 +36,29 @@ script = ExtResource("1_7r040")
 environment = SubResource("Environment_y4wvy")
 
 [node name="Player" parent="." instance=ExtResource("2_y4wvy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.11, -0.215, -1.455)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.10293, -0.0402164, -2.0849)
+
+[node name="Wall2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.37398, 2.34583, 6.84562)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall2"]
+visible = false
+shape = SubResource("BoxShape3D_y4wvy")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall2"]
+transform = Transform3D(8.53162, 0, 0, 0, 5.46442, 0, 0, 0, 1.75964, 0, 0, 0)
+mesh = SubResource("BoxMesh_7r040")
+skeleton = NodePath("../../Wall2")
 
 [node name="Wall" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.68699, 2.46303, 3.42281)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Wall"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.68699, 2.46303, 3.04299)
+visible = false
 shape = SubResource("BoxShape3D_y4wvy")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Wall"]
-transform = Transform3D(8.53162, 0, 0, 0, 5.46442, 0, 0, 0, 1, 1.68699, 2.46303, 3.04299)
+transform = Transform3D(8.53162, 0, 0, 0, 5.46442, 0, 0, 0, 1.75964, 0, 0, 0)
 mesh = SubResource("BoxMesh_7r040")
 
 [node name="Ground" type="StaticBody3D" parent="."]
@@ -52,6 +73,12 @@ transform = Transform3D(37.9223, 0, 0, 0, 0.328125, 0, 0, 0, 35.7188, -11.2941, 
 mesh = SubResource("BoxMesh_y4wvy")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.473013, -0.84554, -0.247629, 0.697686, 0.18783, 0.691342, -0.538046, -0.499781, 0.678768, 0, 0, 0)
-visible = false
+transform = Transform3D(0.320805, 0.506527, -0.800322, 0.577287, 0.565321, 0.589196, 0.750882, -0.651032, -0.111054, 0, 6.6802, 9.93699)
+light_color = Color(0.72, 0.878667, 1, 1)
+light_energy = 0.03
+light_volumetric_fog_energy = 0.0
+light_specular = 4.59
 shadow_enabled = true
+
+[node name="Kamala" parent="." instance=ExtResource("3_7r040")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.118303, 0.086436, -0.651774)

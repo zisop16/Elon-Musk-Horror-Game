@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://b7xsqcns4m5j0"]
+
+[ext_resource type="Texture2D" uid="uid://bxqdk4g51h0y8" path="res://assets/kamala/textures/Kamala Harris Running_AvatarEyes_Color_512.jpg" id="1_agq08"]
+
+[resource]
+resource_name = "AvatarRightEyeballmat"
+cull_mode = 2
+albedo_texture = ExtResource("1_agq08")
+metallic = 1.0
+roughness = 0.552786

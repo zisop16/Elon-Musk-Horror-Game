@@ -65,7 +65,7 @@ fadeout_curve = SubResource("Curve_xuoxp")
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_jcgps"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_q5km5"]
-graph_offset = Vector2(-749.598, -79.6876)
+graph_offset = Vector2(10.832, -107.972)
 "nodes/Anim Chainsaw Run/node" = SubResource("AnimationNodeAnimation_8wyoi")
 "nodes/Anim Chainsaw Run/position" = Vector2(-420, 300)
 "nodes/Anim Crouch Idle/node" = SubResource("AnimationNodeAnimation_elk1u")
@@ -110,33 +110,33 @@ node_connections = [&"TimeScale", 0, &"Anim Crouch Idle", &"chainsaw_run", 0, &"
 [node name="Elon Model" instance=ExtResource("1_bqbl2")]
 
 [node name="Sketchfab_model" parent="." index="0"]
-transform = Transform3D(0.01, 0, 0, 0, -4.37114e-10, 0.01, 0, -0.01, -4.37114e-10, 0.185, 0.595, -0.145)
+transform = Transform3D(0.01, 0, 0, 0, -4.37114e-10, 0.01, 0, -0.01, -4.37114e-10, 0, 1, 0)
 
 [node name="Skeleton3D" parent="Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4" index="0"]
-bones/1/position = Vector3(0.0514012, 0.561932, 0.170593)
-bones/1/rotation = Quaternion(-0.348498, -0.561865, -0.286014, 0.69358)
-bones/2/rotation = Quaternion(0.765501, 0.00591448, -0.0109431, 0.643314)
-bones/3/rotation = Quaternion(0.125063, -0.00946441, -0.0187229, 0.991927)
-bones/4/rotation = Quaternion(0.125181, -0.00422456, -0.0196617, 0.99193)
-bones/5/rotation = Quaternion(-0.779917, 0.109221, 0.0344736, 0.615314)
-bones/6/rotation = Quaternion(-0.244775, 0.247605, 0.433039, 0.831417)
-bones/8/rotation = Quaternion(-0.643471, -0.343601, 0.57235, -0.374564)
-bones/9/rotation = Quaternion(-0.0551744, -0.480895, 0.067243, 0.872453)
-bones/10/rotation = Quaternion(0.0480203, 1.0106e-05, 0.490064, 0.870363)
-bones/12/rotation = Quaternion(0.631684, -0.366179, 0.54265, 0.415234)
-bones/13/rotation = Quaternion(0.391134, -0.345139, -0.021804, 0.852888)
-bones/14/rotation = Quaternion(0.0346717, -0.000184518, -0.374699, 0.926498)
-bones/16/rotation = Quaternion(-0.00530796, -0.230545, -0.909467, 0.345962)
-bones/17/rotation = Quaternion(-0.723639, -0.0552006, 0.0635602, 0.685025)
-bones/18/rotation = Quaternion(0.513534, -0.179855, -0.0467262, 0.837706)
-bones/19/rotation = Quaternion(0.300067, -0.0701536, 0.0166828, 0.951189)
-bones/21/rotation = Quaternion(-0.146285, -0.0853861, -0.966491, -0.192886)
-bones/22/rotation = Quaternion(-0.833204, -0.0533143, 0.0771551, 0.544955)
-bones/23/rotation = Quaternion(0.777564, 0.197226, 0.109616, 0.586924)
-bones/24/rotation = Quaternion(0.330564, 0.0699427, -0.0138896, 0.941086)
+bones/1/position = Vector3(-0.0124977, 0.995987, -0.00672913)
+bones/1/rotation = Quaternion(-0.722291, 0.0259402, 0.00960283, 0.691036)
+bones/2/rotation = Quaternion(0.684503, -0.00224331, 0.000652712, 0.729006)
+bones/3/rotation = Quaternion(0.013833, -0.0167407, 0.00111061, 0.999764)
+bones/4/rotation = Quaternion(0.0137261, -0.0166975, 0.00150546, 0.999765)
+bones/5/rotation = Quaternion(-0.664065, 0.00676227, 0.00289737, 0.747638)
+bones/6/rotation = Quaternion(0.0811948, -0.0420505, -0.0174734, 0.995658)
+bones/8/rotation = Quaternion(-0.527328, -0.458048, 0.583095, -0.41487)
+bones/9/rotation = Quaternion(0.549708, 0.174365, 0.0315336, 0.816348)
+bones/10/rotation = Quaternion(0.0281572, 0.0693293, 0.287355, 0.954897)
+bones/12/rotation = Quaternion(0.585359, -0.42114, 0.541966, 0.431588)
+bones/13/rotation = Quaternion(0.531469, -0.150751, -0.0468136, 0.83224)
+bones/14/rotation = Quaternion(0.0272611, -0.0712227, -0.294614, 0.952568)
+bones/16/rotation = Quaternion(-0.00535737, 0.656302, -0.752463, 0.0551282)
+bones/17/rotation = Quaternion(-0.206472, -0.0656074, 0.0245452, 0.975942)
+bones/18/rotation = Quaternion(0.598611, -0.0715796, -0.0221663, 0.797528)
+bones/19/rotation = Quaternion(0.270144, -0.0694138, 0.0194558, 0.960117)
+bones/21/rotation = Quaternion(0.0626774, 0.664382, -0.737668, -0.102533)
+bones/22/rotation = Quaternion(-0.176665, 0.0472283, -0.0210652, 0.982912)
+bones/23/rotation = Quaternion(0.581506, 0.0732009, 0.0250381, 0.809855)
+bones/24/rotation = Quaternion(0.27029, 0.0704824, -0.0189955, 0.960008)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D" index="11"]
-transform = Transform3D(-0.285087, 0.840929, 0.459961, -0.590624, -0.532067, 0.606686, 0.754909, -0.0987058, 0.648358, 1.85707, 12.4023, -28.4986)
+transform = Transform3D(0.476067, 0.114313, 0.871948, 0.44895, -0.884166, -0.129204, 0.756177, 0.452971, -0.472243, -21.7944, 0.127394, 6.30569)
 bone_name = "mixamorig_RightHand_00"
 bone_idx = 15
 
@@ -158,7 +158,7 @@ tree_root = SubResource("AnimationNodeBlendTree_q5km5")
 anim_player = NodePath("../AnimationPlayer")
 parameters/TimeScale/scale = 0.6
 parameters/chainsaw_run/blend_amount = 0.0
-parameters/crouch_idle/blend_amount = 1.0
+parameters/crouch_idle/blend_amount = 0.0
 parameters/crouch_walk/blend_amount = false
 parameters/crouch_walk_back/blend_amount = 0
 parameters/jump/active = false

@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://tkllvr4o5did"]
+[gd_scene load_steps=9 format=3 uid="uid://tkllvr4o5did"]
 
 [ext_resource type="Script" uid="uid://dwrikpmcsfiqv" path="res://scripts/player.gd" id="1_hvogv"]
 [ext_resource type="PackedScene" uid="uid://bg2ah1m0ryp2v" path="res://scenes/elon/elon_model.tscn" id="2_p3gux"]
 [ext_resource type="Script" uid="uid://dnqc0fylmytqi" path="res://scripts/camera_spring.gd" id="3_p3gux"]
 [ext_resource type="Script" uid="uid://c3qjwfyfbhg25" path="res://scripts/camera.gd" id="4_7nqbs"]
+[ext_resource type="PackedScene" uid="uid://dlo226k12agvr" path="res://scenes/sfx/FootstepPlayer.tscn" id="5_tcv2l"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p3gux"]
 radius = 0.271223
@@ -14,44 +15,41 @@ radius = 0.271223
 height = 1.37375
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_7nqbs"]
-radius = 0.3
+radius = 0.001
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("flashlight", "chainsaw")]
 collision_layer = 2
-collision_mask = 5
+collision_mask = 7
 script = ExtResource("1_hvogv")
 flashlight = NodePath("Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D/Flashlight")
 chainsaw = NodePath("Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D/Chainsaw")
 
 [node name="Elon Model" parent="." instance=ExtResource("2_p3gux")]
 
-[node name="Sketchfab_model" parent="Elon Model" index="0"]
-transform = Transform3D(0.01, 0, 0, 0, -4.37114e-10, 0.01, 0, -0.01, -4.37114e-10, 0.159932, 0.817466, -0.157534)
-
 [node name="Skeleton3D" parent="Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4" index="0"]
-bones/1/position = Vector3(0.0031875, 0.803497, 0.0270996)
-bones/1/rotation = Quaternion(-0.370806, -0.381645, -0.378426, 0.757393)
-bones/2/rotation = Quaternion(0.772891, -0.0152936, 0.0911659, 0.627769)
-bones/3/rotation = Quaternion(-0.0376556, -0.00311516, 0.0350264, 0.998672)
-bones/4/rotation = Quaternion(0.0145224, 0.00132914, 0.0367445, 0.999218)
-bones/5/rotation = Quaternion(-0.759019, 0.0747462, 0.0494167, 0.644873)
-bones/6/rotation = Quaternion(-0.0547521, 0.143038, 0.401761, 0.902846)
-bones/8/rotation = Quaternion(-0.637259, -0.393721, 0.504445, -0.429443)
-bones/9/rotation = Quaternion(0.151863, -0.478941, 0.0868892, 0.860235)
-bones/10/rotation = Quaternion(0.0385596, 1.06045e-05, 0.393514, 0.91851)
-bones/12/rotation = Quaternion(0.530953, -0.501062, 0.604826, 0.318137)
-bones/13/rotation = Quaternion(0.185147, -0.473481, -0.111765, 0.853842)
-bones/14/rotation = Quaternion(0.0314761, -0.000187157, -0.340167, 0.939838)
-bones/16/rotation = Quaternion(0.187345, 0.163389, -0.911199, 0.328515)
-bones/17/rotation = Quaternion(-0.171884, -0.048411, 0.0272035, 0.983551)
-bones/18/rotation = Quaternion(0.23471, -0.312717, 0.0159315, 0.920253)
-bones/21/rotation = Quaternion(0.169005, 0.234802, -0.9567, -0.0320916)
-bones/22/rotation = Quaternion(-0.615535, 0.0343573, -0.0432534, 0.786171)
-bones/23/rotation = Quaternion(0.716832, 0.218797, 0.029074, 0.661389)
-bones/24/rotation = Quaternion(0.301232, 0.0692778, -0.0166267, 0.950886)
+bones/1/position = Vector3(-0.0451328, 0.994419, -0.00650787)
+bones/1/rotation = Quaternion(-0.726036, 0.00826637, 0.00362608, 0.687598)
+bones/2/rotation = Quaternion(0.683974, -0.00683901, 0.000748512, 0.729474)
+bones/3/rotation = Quaternion(0.0120315, -0.0207573, 0.00445066, 0.999702)
+bones/4/rotation = Quaternion(0.0119874, -0.0206602, 0.00478644, 0.999703)
+bones/5/rotation = Quaternion(-0.663175, 0.0156285, -0.0018064, 0.748299)
+bones/6/rotation = Quaternion(0.0685966, -0.027419, -0.0152792, 0.997151)
+bones/8/rotation = Quaternion(-0.535519, -0.450644, 0.586227, -0.408016)
+bones/9/rotation = Quaternion(0.550319, 0.16819, 0.0287631, 0.817333)
+bones/10/rotation = Quaternion(0.027718, 0.068248, 0.282872, 0.956325)
+bones/12/rotation = Quaternion(0.584718, -0.422878, 0.540437, 0.432675)
+bones/13/rotation = Quaternion(0.528461, -0.15971, -0.0503536, 0.832277)
+bones/14/rotation = Quaternion(0.0270562, -0.0706887, -0.292399, 0.953296)
+bones/16/rotation = Quaternion(-0.00779683, 0.665467, -0.743047, 0.0705261)
+bones/17/rotation = Quaternion(-0.192998, -0.075097, 0.030341, 0.97785)
+bones/18/rotation = Quaternion(0.588426, -0.0754391, -0.0453873, 0.803743)
+bones/21/rotation = Quaternion(0.0542438, 0.661416, -0.743488, -0.0825322)
+bones/22/rotation = Quaternion(-0.199005, 0.046325, -0.0179935, 0.978737)
+bones/23/rotation = Quaternion(0.595919, 0.0707754, 0.0122778, 0.799825)
+bones/24/rotation = Quaternion(0.271192, 0.0692914, -0.0192081, 0.959836)
 
 [node name="BoneAttachment3D" parent="Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D" index="11"]
-transform = Transform3D(-0.108558, 0.376071, 0.92021, -0.435626, -0.850063, 0.296012, 0.893558, -0.368733, 0.256107, -8.02224, 8.90857, -36.2321)
+transform = Transform3D(0.435973, 0.12111, 0.891773, 0.466545, -0.87777, -0.108878, 0.769586, 0.46352, -0.439188, -22.0281, -0.655045, 4.963)
 
 [node name="AnimationTree" parent="Elon Model" index="2"]
 parameters/TimeScale/scale = 1.0
@@ -91,5 +89,7 @@ visible = false
 [node name="Crouched Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.22, 0)
 visible = false
+
+[node name="FootstepPlayer" parent="." instance=ExtResource("5_tcv2l")]
 
 [editable path="Elon Model"]

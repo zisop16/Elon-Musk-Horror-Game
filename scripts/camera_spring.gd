@@ -6,12 +6,6 @@ extends Node3D
 @export var max_length = 2.5
 @export var min_length = 1
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	# Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	pass
-
 var target_position: Vector3
 func _physics_process(delta: float) -> void:
 	var LERP_SPEED = 8

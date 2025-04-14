@@ -120,3 +120,7 @@ Flashlight={
 [physics]
 
 3d/default_gravity_vector=Vector3(0, -2, 0)
+
+[rendering]
+
+lights_and_shadows/size/viewport_height=700

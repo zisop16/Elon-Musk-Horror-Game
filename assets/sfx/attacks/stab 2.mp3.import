@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ccg6fjtb0y4bh"
+path="res://.godot/imported/stab 2.mp3-268a8202e74f066b41cf99d345b2a009.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/attacks/stab 2.mp3"
+dest_files=["res://.godot/imported/stab 2.mp3-268a8202e74f066b41cf99d345b2a009.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,155 @@
+[gd_scene load_steps=15 format=3 uid="uid://dl0vs8df7ch1v"]
+
+[ext_resource type="PackedScene" uid="uid://ibip7ms77moh" path="res://assets/kamala/Kamala Harris Running.glb" id="1_r80qo"]
+[ext_resource type="AnimationLibrary" uid="uid://dbjotjm10f0ip" path="res://scenes/kamala/animations/kamala_anims.res" id="4_wjrl4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uld78"]
+albedo_color = Color(0.45, 0.798333, 1, 1)
+emission_enabled = true
+emission = Color(0, 0.833333, 1, 1)
+emission_energy_multiplier = 50.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_6gd48"]
+material = SubResource("StandardMaterial3D_uld78")
+radius = 0.741
+height = 0.62
+is_hemisphere = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uld78"]
+animation = &"kamala_anims/idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6gd48"]
+animation = &"kamala_anims/run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r80qo"]
+animation = &"kamala_anims/stab"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kwepi"]
+animation = &"kamala_anims/stumble"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qgvki"]
+animation = &"kamala_anims/walk"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_wjrl4"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_qb7qb"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_fdqoe"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_ehoeb"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_uld78"]
+graph_offset = Vector2(-474.923, -189.404)
+"nodes/Animation Idle/node" = SubResource("AnimationNodeAnimation_uld78")
+"nodes/Animation Idle/position" = Vector2(-780, 20)
+"nodes/Animation Run/node" = SubResource("AnimationNodeAnimation_6gd48")
+"nodes/Animation Run/position" = Vector2(-380, 20)
+"nodes/Animation Stab/node" = SubResource("AnimationNodeAnimation_r80qo")
+"nodes/Animation Stab/position" = Vector2(-260, 200)
+"nodes/Animation Stumble/node" = SubResource("AnimationNodeAnimation_kwepi")
+"nodes/Animation Stumble/position" = Vector2(-480, 200)
+"nodes/Animation Walk/node" = SubResource("AnimationNodeAnimation_qgvki")
+"nodes/Animation Walk/position" = Vector2(-580, 20)
+nodes/Run/node = SubResource("AnimationNodeBlend2_wjrl4")
+nodes/Run/position = Vector2(-220, -240)
+nodes/Stab/node = SubResource("AnimationNodeOneShot_qb7qb")
+nodes/Stab/position = Vector2(220, 0)
+nodes/Stumble/node = SubResource("AnimationNodeOneShot_fdqoe")
+nodes/Stumble/position = Vector2(80, 0)
+nodes/Walk/node = SubResource("AnimationNodeBlend2_ehoeb")
+nodes/Walk/position = Vector2(-360, -240)
+nodes/output/position = Vector2(380, 20)
+node_connections = [&"Run", 0, &"Walk", &"Run", 1, &"Animation Run", &"Stab", 0, &"Stumble", &"Stab", 1, &"Animation Stab", &"Stumble", 0, &"Run", &"Stumble", 1, &"Animation Stumble", &"Walk", 0, &"Animation Idle", &"Walk", 1, &"Animation Walk", &"output", 0, &"Stab"]
+
+[node name="Model" instance=ExtResource("1_r80qo")]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
+
+[node name="Armature" parent="." index="0"]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/0/position = Vector3(-0.0049497, 0.98497, 0.0388039)
+bones/0/rotation = Quaternion(0.0605521, -0.0325313, -0.00889895, 0.997595)
+bones/1/rotation = Quaternion(0.00541338, 0.0258015, 0.0344763, 0.999058)
+bones/2/rotation = Quaternion(0.0616251, 0.0143002, 0.0068266, 0.997974)
+bones/3/rotation = Quaternion(0.0745048, 0.0142319, 0.00646858, 0.997098)
+bones/4/rotation = Quaternion(0.0446105, -0.000973284, -0.025945, 0.998667)
+bones/5/rotation = Quaternion(-0.112795, -0.0545946, 0.009479, 0.992072)
+bones/7/rotation = Quaternion(-0.597533, -0.488543, 0.53016, -0.351013)
+bones/8/rotation = Quaternion(0.514485, -0.110186, 0.139165, 0.838926)
+bones/9/rotation = Quaternion(-5.31145e-08, -7.40402e-08, 0.258639, 0.965974)
+bones/10/rotation = Quaternion(-0.00163008, 0.240713, 0.0454184, 0.969532)
+bones/11/rotation = Quaternion(0.201765, -0.0886231, 0.285349, 0.932745)
+bones/12/rotation = Quaternion(-0.0520896, -0.0252754, -0.219594, 0.973872)
+bones/13/rotation = Quaternion(-0.189727, -0.0303206, -0.19789, 0.96121)
+bones/15/rotation = Quaternion(0.347243, -0.00663186, -0.0550815, 0.936133)
+bones/16/rotation = Quaternion(0.532388, -7.73929e-07, -0.0545575, 0.844741)
+bones/17/rotation = Quaternion(0.339773, -5.22821e-07, -0.0348189, 0.939863)
+bones/19/rotation = Quaternion(0.248053, -0.00457054, -0.0455062, 0.967666)
+bones/20/rotation = Quaternion(0.536496, -8.09319e-07, -0.0549784, 0.84211)
+bones/21/rotation = Quaternion(0.264919, -3.80795e-07, -0.0271481, 0.963888)
+bones/23/rotation = Quaternion(0.31787, -0.00602065, -0.0522708, 0.946673)
+bones/24/rotation = Quaternion(0.531337, -7.58096e-07, -0.0544497, 0.845409)
+bones/25/rotation = Quaternion(0.395031, -6.01896e-07, -0.0404815, 0.917775)
+bones/27/rotation = Quaternion(0.375135, -0.00721275, -0.0577304, 0.925143)
+bones/28/rotation = Quaternion(0.424101, -6.35046e-07, -0.0434605, 0.904572)
+bones/29/rotation = Quaternion(0.392221, -6.32339e-07, -0.0401937, 0.918993)
+bones/31/rotation = Quaternion(0.61015, -0.496014, 0.440657, 0.433023)
+bones/32/rotation = Quaternion(0.511576, 0.0156737, -0.168671, 0.842374)
+bones/33/rotation = Quaternion(-3.38478e-08, 2.28174e-08, -0.259973, 0.965616)
+bones/34/rotation = Quaternion(0.0504319, -0.124765, -0.0840043, 0.987337)
+bones/35/rotation = Quaternion(0.197989, 0.121008, -0.205154, 0.950826)
+bones/36/rotation = Quaternion(-0.0638362, 0.029709, 0.244804, 0.967013)
+bones/37/rotation = Quaternion(-0.168664, 0.0158738, 0.137112, 0.975962)
+bones/39/rotation = Quaternion(0.193904, 0.000447739, 0.0150531, 0.980905)
+bones/40/rotation = Quaternion(0.432354, 5.21541e-08, 0.0352232, 0.901016)
+bones/41/rotation = Quaternion(0.375871, 2.07219e-08, 0.0306217, 0.926166)
+bones/43/rotation = Quaternion(0.292161, 0.00541885, 0.0429641, 0.955388)
+bones/44/rotation = Quaternion(0.429098, -3.79514e-08, 0.0349579, 0.902581)
+bones/45/rotation = Quaternion(0.458612, 1.36206e-08, 0.0373624, 0.887851)
+bones/47/rotation = Quaternion(0.362109, 0.000233226, 0.0650559, 0.929863)
+bones/48/rotation = Quaternion(0.425984, -7.45058e-09, 0.0347044, 0.904065)
+bones/49/rotation = Quaternion(0.455287, -1.74623e-08, 0.0370916, 0.889572)
+bones/51/rotation = Quaternion(0.419799, 0.0141808, 0.0709712, 0.904727)
+bones/52/rotation = Quaternion(0.422337, -1.97906e-08, 0.0344072, 0.905786)
+bones/53/rotation = Quaternion(0.451994, -4.34229e-08, 0.0368233, 0.891261)
+bones/55/rotation = Quaternion(0.104716, 0.32208, 0.932645, -0.124389)
+bones/56/rotation = Quaternion(-0.474892, -0.0867621, 0.023397, 0.875444)
+bones/57/rotation = Quaternion(0.295854, -0.0625578, -0.0662986, 0.950874)
+bones/58/rotation = Quaternion(0.585566, -0.0037982, -0.00270945, 0.810612)
+bones/60/rotation = Quaternion(-0.0373961, 0.243184, 0.968194, -0.0454201)
+bones/61/rotation = Quaternion(-0.339798, 0.0858784, -0.0333692, 0.935975)
+bones/62/rotation = Quaternion(0.58171, -0.0049573, -0.00568377, 0.813361)
+bones/63/rotation = Quaternion(0.310063, -2.14831e-05, -5.38827e-06, 0.950716)
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="10"]
+transform = Transform3D(0.997874, -0.0383086, -0.0527372, 0.0232072, 0.964854, -0.261758, 0.0609113, 0.259978, 0.963691, -0.0301127, 1.51391, 0.204462)
+bone_name = "mixamorig_Head"
+bone_idx = 5
+
+[node name="LeftEyeGlow" type="MeshInstance3D" parent="Armature/Skeleton3D/BoneAttachment3D" index="0"]
+transform = Transform3D(0.00148037, 0.00308089, -0.0196296, -0.0129149, 0.000181447, -0.00227681, -0.000112218, 0.0197604, 0.0030814, 0.0272034, 0.0944669, 0.118028)
+mesh = SubResource("SphereMesh_6gd48")
+skeleton = NodePath("../RightEyeGlow")
+
+[node name="RightEyeGlow" type="MeshInstance3D" parent="Armature/Skeleton3D/BoneAttachment3D" index="1"]
+transform = Transform3D(-4.75722e-05, -0.00603314, 0.0190682, 0.0129215, -0.00211255, -0.000592107, 0.00142528, 0.0189509, 0.00600445, -0.0272768, 0.0947628, 0.117869)
+mesh = SubResource("SphereMesh_6gd48")
+
+[node name="AnimationPlayer" parent="." index="1"]
+libraries = {
+&"kamala_anims": ExtResource("4_wjrl4")
+}
+autoplay = "kamala_anims/idle"
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+tree_root = SubResource("AnimationNodeBlendTree_uld78")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Run/blend_amount = 0.0
+parameters/Stab/active = false
+parameters/Stab/internal_active = false
+parameters/Stab/request = 0
+parameters/Stumble/active = false
+parameters/Stumble/internal_active = false
+parameters/Stumble/request = 0
+parameters/Walk/blend_amount = 0.0

@@ -8,6 +8,7 @@ extends CharacterBody3D
 @onready var anim_player: AnimationPlayer = model.get_node("AnimationPlayer")
 @onready var standing_head: Vector3 = $"Standing Head".position
 @onready var crouched_head: Vector3 = $"Crouched Head".position
+@onready var footsteps: PolyAudioPlayer = $FootstepPlayer
 
 @export var flashlight: Item
 @export var chainsaw: Item
@@ -56,8 +57,8 @@ func handle_items():
 
 func update_tree():
 	for key in anim_amounts.keys():
-		var modified = "parameters/%s/blend_amount" % key
-		anim_tree[modified] = anim_amounts[key]
+		var blend_name = "parameters/%s/blend_amount" % key
+		anim_tree[blend_name] = anim_amounts[key]
 
 var jumping := false
 var time_of_jump: float = 0
@@ -92,12 +93,15 @@ func _physics_process(delta: float) -> void:
 	var move_speed: float
 	if crouching:
 		move_speed = CROUCH_SPEED
+		footsteps.speed_scale = .6
 		stand(false)
 	else:
 		if running:
 			move_speed = RUN_SPEED
+			footsteps.speed_scale = 1.4
 		else:
 			move_speed = SPEED
+			footsteps.speed_scale = 1
 		stand(true)
 
 
@@ -109,6 +113,8 @@ func _physics_process(delta: float) -> void:
 	var rotation_target := camera_pivot.rotation.y + PI
 	
 	if direction:
+		if is_on_floor():
+			footsteps.play_sound_effect("grass")
 		if standing:
 			if direction.z < 0:
 				anim_state = "walk_back"

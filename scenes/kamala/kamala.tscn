@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://dl0rxcornsfl5"]
+
+[ext_resource type="Script" uid="uid://b2ap6cr7vjd8e" path="res://scripts/kamala.gd" id="1_u5lcr"]
+[ext_resource type="PackedScene" uid="uid://dl0vs8df7ch1v" path="res://scenes/kamala/kamala_model.tscn" id="1_w1ewx"]
+[ext_resource type="PackedScene" uid="uid://dlo226k12agvr" path="res://scenes/sfx/FootstepPlayer.tscn" id="3_fvsgf"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_w1ewx"]
+radius = 0.294653
+height = 1.64795
+
+[node name="Kamala" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 7
+script = ExtResource("1_u5lcr")
+
+[node name="Model" parent="." instance=ExtResource("1_w1ewx")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.831321, 0.0945011)
+visible = false
+shape = SubResource("CapsuleShape3D_w1ewx")
+
+[node name="FootstepPlayer" parent="." instance=ExtResource("3_fvsgf")]
