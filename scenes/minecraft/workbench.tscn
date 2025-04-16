@@ -1,0 +1,81 @@
+[gd_scene load_steps=8 format=4 uid="uid://c3hsmnwdm1jpv"]
+
+[ext_resource type="Texture2D" uid="uid://de7ggvd5y168n" path="res://assets/minecraft/workbench/minecraft_workbench_0.png" id="1_n3q8y"]
+[ext_resource type="Material" uid="uid://gj08p6qpbjr5" path="res://assets/minecraft/workbench/Crafting_Table.tres" id="2_hc8hf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mm8yq"]
+resource_name = "Crafting_Table"
+cull_mode = 2
+albedo_texture = ExtResource("1_n3q8y")
+emission_enabled = true
+emission_texture = ExtResource("1_n3q8y")
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_mm8yq"]
+_surfaces = [{
+"aabb": AABB(0, -1, 0, 1, 1, 1),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAgABAAMAAAAEAAEABAADAAEAAAACAAUAAgADAAUAAAAGAAQABAAGAAMAAAAHAAYABwADAAYAAAAFAAcABwAFAAMA"),
+"name": "Crafting_Table",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAAAAAAAAAP////8AAAAAAAD//wAA////////AAAAAP//AAAAAP//AAD//wAA/////wAAAAD//wAAAAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ofco8"]
+resource_name = "Sketchfab_Scene_Object_0"
+_surfaces = [{
+"aabb": AABB(0, -1, 0, 1, 1, 1),
+"attribute_data": PackedByteArray("PxY/9z8SP/s/Fj/7PxI/9z8Sv/s/Fr//PxK//z8Wv/s/Fj/3PxI/+z8WP/s/Ej/3vw0/978RP/u/ET/3vw0/+7/Bv/u/xb//v8W/+7/Bv/+/DT/3vxE/+78RP/e/DT/7"),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
+"material": ExtResource("2_hc8hf"),
+"name": "Crafting_Table",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AAAAAAAAqioAAP////+qKgAAAAD//6oqAAD//wAAqioAAAAAAAD///////8AAP//AAD//wAA/////wAAAAD//wAA//8AAAAA////////AAAAAP////8AAP////8AAAAA//8AAAAAqir///////+qKv////8AAKoq//8AAP//qioAAAAA///+f/////////5///8AAP///n8AAP/////+fwAAAAAAAP8///8AAP///z///wAAAAD/PwAAAAD///8/VFWqqlRVqqpUVaqqVFWqqv///3////9/////f////3//f/+//3//v/9//7//f/+/qiqqKqoqqiqqKqoqqiqqKv9/////f////3////9///8AAP9/AAD/fwAA/38AAP9/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_mm8yq")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_teyag"]
+resource_name = "Sketchfab_Scene_Object_0"
+_surfaces = [{
+"aabb": AABB(0, -1, 0, 1, 1, 1),
+"attribute_data": PackedByteArray("PxY/9z8SP/s/Fj/7PxI/9z8Sv/s/Fr//PxK//z8Wv/s/Fj/3PxI/+z8WP/s/Ej/3vw0/978RP/u/ET/3vw0/+7/Bv/u/xb//v8W/+7/Bv/+/DT/3vxE/+78RP/e/DT/7"),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
+"material": SubResource("StandardMaterial3D_mm8yq"),
+"name": "Crafting_Table",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AAAAAAAAqioAAP////+qKgAAAAD//6oqAAD//wAAqioAAAAAAAD///////8AAP//AAD//wAA/////wAAAAD//wAA//8AAAAA////////AAAAAP////8AAP////8AAAAA//8AAAAAqir///////+qKv////8AAKoq//8AAP//qioAAAAA///+f/////////5///8AAP///n8AAP/////+fwAAAAAAAP8///8AAP///z///wAAAAD/PwAAAAD///8/VFWqqlRVqqpUVaqqVFWqqv///3////9/////f////3//f/+//3//v/9//7//f/+/qiqqKqoqqiqqKqoqqiqqKv9/////f////3////9///8AAP9/AAD/fwAA/38AAP9/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_ofco8")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4ij56"]
+
+[node name="Workbench" type="StaticBody3D"]
+
+[node name="Sketchfab_model" type="Node3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 4.44089e-16, 2, 0, -2, 4.44089e-16, -1, 0, -1)
+
+[node name="Mineways2Skfb_obj_minecraft_cleaner_materialmerger_gles" type="Node3D" parent="Sketchfab_model"]
+
+[node name="Object_2" type="MeshInstance3D" parent="Sketchfab_model/Mineways2Skfb_obj_minecraft_cleaner_materialmerger_gles"]
+mesh = SubResource("ArrayMesh_teyag")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("2_hc8hf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1, 0)
+visible = false
+shape = SubResource("BoxShape3D_4ij56")

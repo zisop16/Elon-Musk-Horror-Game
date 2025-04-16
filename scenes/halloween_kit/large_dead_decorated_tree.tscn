@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjsb3guv608vj"]
+
+[ext_resource type="PackedScene" uid="uid://11mfp23m0vkn" path="res://assets/KayKit_HalloweenBits_1.0_FREE/fbx/tree_dead_large_decorated.fbx" id="1_b516n"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_7j4db"]
+height = 4.51807
+radius = 0.230469
+
+[node name="Large Dead Decorated Tree" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.24851, 0)
+shape = SubResource("CylinderShape3D_7j4db")
+
+[node name="tree_dead_large_decorated" parent="." instance=ExtResource("1_b516n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)

@@ -1,0 +1,264 @@
+[gd_scene load_steps=54 format=3 uid="uid://dvh3j1ymr60v2"]
+
+[ext_resource type="PackedScene" uid="uid://tkllvr4o5did" path="res://scenes/elon/player.tscn" id="1_sq6bu"]
+[ext_resource type="Texture2D" uid="uid://cishbrj38kdq5" path="res://assets/terrain_textures/gravel/albedo.png" id="2_0cso3"]
+[ext_resource type="PackedScene" uid="uid://bkqniaq8a6xs" path="res://assets/KayKit_HalloweenBits_1.0_FREE/fbx/candle.fbx" id="2_6k6j1"]
+[ext_resource type="Texture2D" uid="uid://og23q550wdn5" path="res://assets/terrain_textures/sand/albedo.png" id="2_be0no"]
+[ext_resource type="Texture2D" uid="uid://ctqyrab16u1tb" path="res://assets/terrain_textures/gravel/normal.png" id="3_2klcf"]
+[ext_resource type="Texture2D" uid="uid://cv3ufq25fg5fv" path="res://assets/terrain_textures/sand/normal.png" id="3_blm8a"]
+[ext_resource type="Texture2D" uid="uid://bxs8i142ktpoo" path="res://assets/terrain_textures/twig_grass/albedo.png" id="4_2klcf"]
+[ext_resource type="Texture2D" uid="uid://cxigmkg4ewjxw" path="res://assets/terrain_textures/twig_grass/normal.png" id="5_2lpho"]
+[ext_resource type="Texture2D" uid="uid://bcnoh8rim36oo" path="res://assets/terrain_textures/rock/albedo.png" id="8_mlgqr"]
+[ext_resource type="Texture2D" uid="uid://do7xniqqvwb5l" path="res://assets/terrain_textures/moss_dirt/albedo.png" id="9_m335s"]
+[ext_resource type="Texture2D" uid="uid://xu77rvu3c34u" path="res://assets/terrain_textures/rock/normal.png" id="9_wslke"]
+[ext_resource type="Texture2D" uid="uid://dt58wws0wwksb" path="res://assets/terrain_textures/moss_dirt/normal.png" id="10_sq6bu"]
+[ext_resource type="Texture2D" uid="uid://cu4kx63vdl177" path="res://assets/terrain_textures/pave_stones/albedo.png" id="13_4b7dj"]
+[ext_resource type="Texture2D" uid="uid://cw5iytagdjevf" path="res://assets/terrain_textures/pave_stones/normal.png" id="14_2cfcp"]
+[ext_resource type="Texture2D" uid="uid://beqktoe2ies7x" path="res://assets/terrain_textures/rocky_grass/albedo.png" id="15_y2ir2"]
+[ext_resource type="Texture2D" uid="uid://bdttn7kvf0ern" path="res://assets/terrain_textures/rocky_grass/normal.png" id="16_5u2yt"]
+[ext_resource type="Texture2D" uid="uid://dpu1sbmra62nd" path="res://assets/terrain_textures/concrete/albedo.png" id="17_30iet"]
+[ext_resource type="Texture2D" uid="uid://7x6wo1j1qi2g" path="res://assets/terrain_textures/concrete/normal.png" id="18_mkblt"]
+[ext_resource type="PackedScene" uid="uid://c3hsmnwdm1jpv" path="res://scenes/minecraft/workbench.tscn" id="19_4o3w1"]
+[ext_resource type="PackedScene" uid="uid://bu323aaduohvb" path="res://scenes/halloween_kit/arch.tscn" id="20_2cfcp"]
+[ext_resource type="PackedScene" uid="uid://ca1yi23jy70pv" path="res://scenes/halloween_kit/grave_a.tscn" id="21_6ek7f"]
+[ext_resource type="PackedScene" uid="uid://utewf8gmpdml" path="res://scenes/halloween_kit/grave_b.tscn" id="22_4qxv8"]
+[ext_resource type="PackedScene" uid="uid://cjsb3guv608vj" path="res://scenes/halloween_kit/large_dead_decorated_tree.tscn" id="23_fq663"]
+[ext_resource type="PackedScene" uid="uid://d2jk1x0iucbu6" path="res://scenes/halloween_kit/large_orange_pine.tscn" id="24_mniao"]
+[ext_resource type="PackedScene" uid="uid://dscf5vk6y583j" path="res://scenes/halloween_kit/large_dead_tree.tscn" id="25_yfm5w"]
+[ext_resource type="PackedScene" uid="uid://d1n47dxbyo7x8" path="res://scenes/halloween_kit/medium_dead_tree.tscn" id="26_081xv"]
+[ext_resource type="PackedScene" uid="uid://df1obj8xh5mby" path="res://scenes/halloween_kit/path_a.tscn" id="27_12q1p"]
+[ext_resource type="PackedScene" uid="uid://dfe63fkfbjl5m" path="res://scenes/halloween_kit/path_d.tscn" id="28_lhdcv"]
+[ext_resource type="PackedScene" uid="uid://qk6e8kyspqgs" path="res://scenes/halloween_kit/post_lantern.tscn" id="29_cgoaf"]
+[ext_resource type="PackedScene" uid="uid://chewp5rsgq5q4" path="res://scenes/halloween_kit/small_dead_tree.tscn" id="30_mniao"]
+[ext_resource type="PackedScene" uid="uid://c7mj7igs18twj" path="res://scenes/halloween_kit/grave_dirt.tscn" id="31_yfm5w"]
+[ext_resource type="PackedScene" uid="uid://crtmv1cyf5oe0" path="res://scenes/halloween_kit/coffin.tscn" id="32_081xv"]
+[ext_resource type="PackedScene" uid="uid://babtwlincfli4" path="res://scenes/cybertruck.tscn" id="33_081xv"]
+[ext_resource type="PackedScene" uid="uid://6i256qd8h36k" path="res://scenes/minecraft/chest.tscn" id="34_12q1p"]
+[ext_resource type="PackedScene" uid="uid://c7pn2ib6ias6i" path="res://scenes/halloween_kit/crypt.tscn" id="35_cgoaf"]
+[ext_resource type="PackedScene" uid="uid://01vsxmf218b7" path="res://scenes/halloween_kit/fence_gate_broken.tscn" id="36_mwr4f"]
+[ext_resource type="PackedScene" uid="uid://ci1ocj5yoyjyo" path="res://scenes/halloween_kit/fence_gate.tscn" id="37_1qn5a"]
+
+[sub_resource type="Gradient" id="Gradient_hrmi8"]
+offsets = PackedFloat32Array(0.2, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4xfga"]
+noise_type = 2
+frequency = 0.03
+cellular_jitter = 3.0
+cellular_return_type = 0
+domain_warp_enabled = true
+domain_warp_type = 1
+domain_warp_amplitude = 50.0
+domain_warp_fractal_type = 2
+domain_warp_fractal_lacunarity = 1.5
+domain_warp_fractal_gain = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_paxxb"]
+seamless = true
+color_ramp = SubResource("Gradient_hrmi8")
+noise = SubResource("FastNoiseLite_4xfga")
+
+[sub_resource type="Terrain3DMaterial" id="Terrain3DMaterial_gldc4"]
+_shader_parameters = {
+&"bias_distance": 512.0,
+&"blend_sharpness": 0.87,
+&"depth_blur": 0.0,
+&"enable_macro_variation": true,
+&"enable_projection": true,
+&"height_blending": true,
+&"macro_variation1": Color(1, 1, 1, 1),
+&"macro_variation2": Color(1, 1, 1, 1),
+&"macro_variation_slope": 0.333,
+&"mipmap_bias": 1.0,
+&"noise1_angle": 0.0,
+&"noise1_offset": Vector2(0.5, 0.5),
+&"noise1_scale": 0.04,
+&"noise2_scale": 0.076,
+&"noise3_scale": 0.225,
+&"noise_texture": SubResource("NoiseTexture2D_paxxb"),
+&"projection_angular_division": 2.0,
+&"projection_threshold": 0.8,
+&"world_space_normal_blend": true
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m335s"]
+transparency = 4
+cull_mode = 2
+vertex_color_use_as_albedo = true
+backlight_enabled = true
+backlight = Color(0.5, 0.5, 0.5, 1)
+distance_fade_mode = 1
+distance_fade_min_distance = 128.0
+distance_fade_max_distance = 96.0
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_y2ir2"]
+generated_type = 1
+height_offset = 0.5
+material_override = SubResource("StandardMaterial3D_m335s")
+last_lod = 0
+last_shadow_lod = 0
+lod0_range = 128.0
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_sq6bu"]
+name = "candle"
+id = 1
+scene_file = ExtResource("2_6k6j1")
+last_lod = 0
+last_shadow_lod = 0
+lod0_range = 128.0
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_gw3fx"]
+name = "rock"
+albedo_texture = ExtResource("8_mlgqr")
+normal_texture = ExtResource("9_wslke")
+normal_depth = 0.627
+detiling_rotation = 0.146
+detiling_shift = 0.082
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_2lpho"]
+name = "pecans"
+id = 1
+albedo_texture = ExtResource("2_0cso3")
+normal_texture = ExtResource("3_2klcf")
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_nakos"]
+name = "twig_grass"
+id = 2
+albedo_color = Color(0.63, 0.63, 0.63, 1)
+albedo_texture = ExtResource("4_2klcf")
+normal_texture = ExtResource("5_2lpho")
+normal_depth = 0.728
+detiling_rotation = 0.038
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_6ek7f"]
+name = "moss_dirt"
+id = 3
+albedo_texture = ExtResource("9_m335s")
+normal_texture = ExtResource("10_sq6bu")
+normal_depth = 1.753
+detiling_rotation = 0.196
+detiling_shift = 0.165
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_wslke"]
+name = "sand"
+id = 4
+albedo_texture = ExtResource("2_be0no")
+normal_texture = ExtResource("3_blm8a")
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_4qxv8"]
+name = "pave_stones"
+id = 5
+albedo_texture = ExtResource("13_4b7dj")
+normal_texture = ExtResource("14_2cfcp")
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_fq663"]
+name = "rock_grass"
+id = 6
+albedo_texture = ExtResource("15_y2ir2")
+normal_texture = ExtResource("16_5u2yt")
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_mniao"]
+name = "concrete"
+id = 7
+albedo_texture = ExtResource("17_30iet")
+normal_texture = ExtResource("18_mkblt")
+
+[sub_resource type="Terrain3DAssets" id="Terrain3DAssets_2lpho"]
+mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_y2ir2"), SubResource("Terrain3DMeshAsset_sq6bu")])
+texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_gw3fx"), SubResource("Terrain3DTextureAsset_2lpho"), SubResource("Terrain3DTextureAsset_nakos"), SubResource("Terrain3DTextureAsset_6ek7f"), SubResource("Terrain3DTextureAsset_wslke"), SubResource("Terrain3DTextureAsset_4qxv8"), SubResource("Terrain3DTextureAsset_fq663"), SubResource("Terrain3DTextureAsset_mniao")])
+
+[node name="Map" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_sq6bu")]
+floor_block_on_wall = false
+floor_max_angle = 1.0472
+floor_snap_length = 0.2
+
+[node name="Terrain3D" type="Terrain3D" parent="."]
+data_directory = "res://terrain_data"
+material = SubResource("Terrain3DMaterial_gldc4")
+assets = SubResource("Terrain3DAssets_2lpho")
+collision_mode = 0
+mesh_lods = 3
+vertex_spacing = 0.25
+top_level = true
+metadata/_edit_lock_ = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.320805, 0.506527, -0.800322, 0.577287, 0.565321, 0.589196, 0.750882, -0.651032, -0.111054, 0, 6.6802, 9.93699)
+light_color = Color(0.71, 0.874333, 1, 1)
+light_volumetric_fog_energy = 0.0
+light_specular = 4.59
+shadow_enabled = true
+
+[node name="chest" parent="." instance=ExtResource("34_12q1p")]
+transform = Transform3D(0.027433, -0.00112005, 0.999623, 0.000210846, 0.999999, 0.00111469, -0.999624, 0.000180186, 0.0274332, -21.6397, 5.88351, 38.6549)
+
+[node name="cybertruck" parent="." instance=ExtResource("33_081xv")]
+transform = Transform3D(-0.0726998, -0.17078, -0.982623, -0.00982036, 0.985305, -0.17052, 0.997306, -0.00274704, -0.0733086, 19.3555, 0.551991, 48.7619)
+
+[node name="Workbench" parent="." instance=ExtResource("19_4o3w1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.2097, 5.2544, 26.4323)
+
+[node name="Props" type="Node3D" parent="."]
+
+[node name="Small Dead Tree" parent="Props" instance=ExtResource("30_mniao")]
+transform = Transform3D(0.765214, 0, -0.643776, 0, 1, 0, 0.643777, 0, 0.765214, -13.4136, 5.00001, 37.6162)
+
+[node name="Grave B3" parent="Props" instance=ExtResource("22_4qxv8")]
+transform = Transform3D(-0.999917, 0, 0.0128801, 0, 1, 0, -0.0128801, 0, -0.999917, -10.3242, 5.00001, 37.0648)
+
+[node name="Grave Dirt" parent="Props" instance=ExtResource("31_yfm5w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.67787, 5.26998, 33.3128)
+
+[node name="Coffin" parent="Props" instance=ExtResource("32_081xv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.66125, 4.76539, 33.2343)
+
+[node name="Arch" parent="Props" instance=ExtResource("20_2cfcp")]
+transform = Transform3D(0.969577, 0.0387017, -0.241707, -0.0375525, 0.999251, 0.00936149, 0.241888, 0, 0.970304, -24.3449, 4.63252, 17.0727)
+
+[node name="Grave A" parent="Props" instance=ExtResource("21_6ek7f")]
+transform = Transform3D(-0.607431, 0, -0.794372, 0, 1, 0, 0.794372, 0, -0.607431, -14.274, 5.00001, 23.2945)
+
+[node name="Grave B" parent="Props" instance=ExtResource("22_4qxv8")]
+transform = Transform3D(-0.040498, 0, 0.99918, 0, 1, 0, -0.99918, 0, -0.040498, -15.5242, 5.00001, 20.9724)
+
+[node name="Large Dead Decorated Tree" parent="Props" instance=ExtResource("23_fq663")]
+transform = Transform3D(-0.660356, 0, -0.750953, 0, 1, 0, 0.750953, 0, -0.660356, -15.1467, 5.02226, 26.0293)
+
+[node name="Large Orange Pine" parent="Props" instance=ExtResource("24_mniao")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.973, 5.14084, 18.3348)
+
+[node name="Grave A2" parent="Props" instance=ExtResource("21_6ek7f")]
+transform = Transform3D(0.808658, 0, -0.588279, 0, 1, 0, 0.588279, 0, 0.808658, -38.1776, 5.00001, 31.4605)
+
+[node name="Grave B2" parent="Props" instance=ExtResource("22_4qxv8")]
+transform = Transform3D(0.948229, 0, -0.317586, 0, 1, 0, 0.317586, 0, 0.948229, -34.8266, 5.00001, 37.6129)
+
+[node name="Large Dead Tree" parent="Props" instance=ExtResource("25_yfm5w")]
+transform = Transform3D(0.943211, 0, -0.332194, 0, 1, 0, 0.332194, 0, 0.943211, -38.0787, 5.00001, 34.771)
+
+[node name="Medium Dead Tree" parent="Props" instance=ExtResource("26_081xv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.9231, 5.00001, 37.0571)
+
+[node name="Path A" parent="Props" instance=ExtResource("27_12q1p")]
+transform = Transform3D(0.911884, 0, 0.410448, 0, 1, 0, -0.410448, 0, 0.911884, -16.6314, 5.08468, 23.4221)
+
+[node name="Path D" parent="Props" instance=ExtResource("28_lhdcv")]
+transform = Transform3D(0.99689, 0.0788071, 0, -0.0788071, 0.99689, 0, 0, 0, 1, -24.4324, 5.49155, 22.7487)
+
+[node name="Post Lantern" parent="Props" instance=ExtResource("29_cgoaf")]
+transform = Transform3D(-0.950489, 0, 0.310759, 0, 1, 0, -0.310759, 0, -0.950489, -25.3058, 5.40232, 33.0645)
+
+[node name="crypt" parent="." instance=ExtResource("35_cgoaf")]
+transform = Transform3D(-0.76383, 0, -0.645418, 0, 1, 0, 0.645418, 0, -0.76383, 53.4656, 10, 54.2335)
+
+[node name="Fence Gate Broken" parent="." instance=ExtResource("36_mwr4f")]
+transform = Transform3D(0.880527, 0, 0.473996, 0, 1, 0, -0.473996, 0, 0.880527, 24.9242, 0, 38.3314)
+
+[node name="Fence Gate" parent="." instance=ExtResource("37_1qn5a")]
+transform = Transform3D(0.209584, 0, 0.977791, 0, 1, 0, -0.977791, 0, 0.209584, 22.8896, 0, 41.0858)
+
+[node name="Fence Gate2" parent="." instance=ExtResource("37_1qn5a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.5693, 2.38419e-07, 37.4342)

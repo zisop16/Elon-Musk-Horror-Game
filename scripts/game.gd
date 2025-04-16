@@ -1,6 +1,6 @@
 extends Node3D
 
-var capture_mouse: bool = false
+var capture_mouse: bool = true
 
 func _ready() -> void:
 	if capture_mouse:

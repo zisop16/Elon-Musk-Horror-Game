@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://gj08p6qpbjr5"]
+
+[ext_resource type="Texture2D" uid="uid://de7ggvd5y168n" path="res://assets/minecraft/workbench/minecraft_workbench_0.png" id="1_8odrh"]
+
+[resource]
+resource_name = "Crafting_Table"
+cull_mode = 2
+albedo_texture = ExtResource("1_8odrh")
+metallic = 0.65
+emission_texture = ExtResource("1_8odrh")
+texture_filter = 2

@@ -1,6 +1,6 @@
 extends Node
 
-var logging = false
+var logging = true
 
 var logged_variables = {}
 var alpha = 10

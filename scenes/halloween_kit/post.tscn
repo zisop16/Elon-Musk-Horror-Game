@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://0tg22egonv5p"]
+
+[ext_resource type="PackedScene" uid="uid://dby60fi1iio5v" path="res://assets/KayKit_HalloweenBits_1.0_FREE/fbx/post.fbx" id="1_fq4dh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ucwt2"]
+size = Vector3(0.34613, 1.31917, 0.262634)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vbg2f"]
+size = Vector3(0.34613, 3.26556, 0.254395)
+
+[node name="Post" type="StaticBody3D"]
+
+[node name="post" parent="." instance=ExtResource("1_fq4dh")]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.024153, -0.999709, 0, 0.999709, 0.024153, 0, 3.15029, 0.67828)
+shape = SubResource("BoxShape3D_ucwt2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.999777, 0.0211344, 0, -0.0211344, 0.999777, 0, 1.6533, -0.0376134)
+shape = SubResource("BoxShape3D_vbg2f")

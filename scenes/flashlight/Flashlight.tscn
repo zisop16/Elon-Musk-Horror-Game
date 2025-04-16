@@ -8,16 +8,16 @@
 [ext_resource type="AudioStream" uid="uid://dqjiyn0t1530w" path="res://assets/sfx/flashlight/flashlight on.mp3" id="6_77jry"]
 [ext_resource type="AudioStream" uid="uid://csobeppjhq0wa" path="res://assets/sfx/flashlight/flashlight off.mp3" id="7_pi1w5"]
 
-[sub_resource type="Resource" id="Resource_pi1w5"]
+[sub_resource type="Resource" id="Resource_emwln"]
 script = ExtResource("5_pi1w5")
-sounds = Array[AudioStream]([ExtResource("6_77jry")])
+sounds = Array[AudioStream]([ExtResource("7_pi1w5")])
 volume = 0.0
 pitch_variation = 0.0
 metadata/_custom_type_script = "uid://bcqs0sjegrs1a"
 
-[sub_resource type="Resource" id="Resource_emwln"]
+[sub_resource type="Resource" id="Resource_pi1w5"]
 script = ExtResource("5_pi1w5")
-sounds = Array[AudioStream]([ExtResource("7_pi1w5")])
+sounds = Array[AudioStream]([ExtResource("6_77jry")])
 volume = 0.0
 pitch_variation = 0.0
 metadata/_custom_type_script = "uid://bcqs0sjegrs1a"
@@ -29,9 +29,9 @@ script = ExtResource("1_2rhmn")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.28813, 0.9, 0)
-light_color = Color(0.959597, 0.844295, 0.801173, 1)
+light_color = Color(0.96, 0.4704, 0.4704, 1)
 light_energy = 10.698
-light_volumetric_fog_energy = 1.465
+light_volumetric_fog_energy = 0.3
 light_projector = ExtResource("4_2rpsh")
 shadow_enabled = true
 distance_fade_begin = 0.0

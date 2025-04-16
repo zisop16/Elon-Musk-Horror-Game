@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://ci1ocj5yoyjyo"]
+
+[ext_resource type="PackedScene" uid="uid://dfjmkxtfnw662" path="res://assets/KayKit_HalloweenBits_1.0_FREE/fbx/fence_gate.fbx" id="1_bmwxp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bmwxp"]
+size = Vector3(3.1, 2.5, 0.15)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k4ehm"]
+size = Vector3(0.5, 2, 0.5)
+
+[node name="Fence Gate" type="StaticBody3D"]
+
+[node name="fence_gate" parent="." instance=ExtResource("1_bmwxp")]
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+shape = SubResource("BoxShape3D_bmwxp")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 1, 0)
+shape = SubResource("BoxShape3D_k4ehm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 1, 0)
+shape = SubResource("BoxShape3D_k4ehm")

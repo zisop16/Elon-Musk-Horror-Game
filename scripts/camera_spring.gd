@@ -19,8 +19,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		rotation.x -= event.relative.y * mouse_sensitivity
 		rotation.x = clampf(rotation.x, -PI/2, PI/3);
 
+	var zoom_amount = .3
 	if event.is_action_pressed("Zoom In"):
-		spring.spring_length -= .1
+		spring.spring_length -= zoom_amount
 	if event.is_action_pressed("Zoom Out"):
-		spring.spring_length += .1
+		spring.spring_length += zoom_amount
 	spring.spring_length = clampf(spring.spring_length, min_length, max_length)

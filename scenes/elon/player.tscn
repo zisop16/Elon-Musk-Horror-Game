@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://tkllvr4o5did"]
+[gd_scene load_steps=8 format=3 uid="uid://tkllvr4o5did"]
 
 [ext_resource type="Script" uid="uid://dwrikpmcsfiqv" path="res://scripts/player.gd" id="1_hvogv"]
 [ext_resource type="PackedScene" uid="uid://bg2ah1m0ryp2v" path="res://scenes/elon/elon_model.tscn" id="2_p3gux"]
@@ -14,9 +14,6 @@ height = 1.75922
 radius = 0.271223
 height = 1.37375
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_7nqbs"]
-radius = 0.001
-
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("flashlight", "chainsaw")]
 collision_layer = 2
 collision_mask = 7
@@ -25,55 +22,53 @@ flashlight = NodePath("Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab
 chainsaw = NodePath("Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D/Chainsaw")
 
 [node name="Elon Model" parent="." instance=ExtResource("2_p3gux")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4" index="0"]
-bones/1/position = Vector3(-0.0451328, 0.994419, -0.00650787)
-bones/1/rotation = Quaternion(-0.726036, 0.00826637, 0.00362608, 0.687598)
-bones/2/rotation = Quaternion(0.683974, -0.00683901, 0.000748512, 0.729474)
-bones/3/rotation = Quaternion(0.0120315, -0.0207573, 0.00445066, 0.999702)
-bones/4/rotation = Quaternion(0.0119874, -0.0206602, 0.00478644, 0.999703)
-bones/5/rotation = Quaternion(-0.663175, 0.0156285, -0.0018064, 0.748299)
-bones/6/rotation = Quaternion(0.0685966, -0.027419, -0.0152792, 0.997151)
-bones/8/rotation = Quaternion(-0.535519, -0.450644, 0.586227, -0.408016)
-bones/9/rotation = Quaternion(0.550319, 0.16819, 0.0287631, 0.817333)
-bones/10/rotation = Quaternion(0.027718, 0.068248, 0.282872, 0.956325)
-bones/12/rotation = Quaternion(0.584718, -0.422878, 0.540437, 0.432675)
-bones/13/rotation = Quaternion(0.528461, -0.15971, -0.0503536, 0.832277)
-bones/14/rotation = Quaternion(0.0270562, -0.0706887, -0.292399, 0.953296)
-bones/16/rotation = Quaternion(-0.00779683, 0.665467, -0.743047, 0.0705261)
-bones/17/rotation = Quaternion(-0.192998, -0.075097, 0.030341, 0.97785)
-bones/18/rotation = Quaternion(0.588426, -0.0754391, -0.0453873, 0.803743)
-bones/21/rotation = Quaternion(0.0542438, 0.661416, -0.743488, -0.0825322)
-bones/22/rotation = Quaternion(-0.199005, 0.046325, -0.0179935, 0.978737)
-bones/23/rotation = Quaternion(0.595919, 0.0707754, 0.0122778, 0.799825)
-bones/24/rotation = Quaternion(0.271192, 0.0692914, -0.0192081, 0.959836)
+bones/1/position = Vector3(-0.0110359, 0.996698, -0.00305939)
+bones/1/rotation = Quaternion(-0.727212, -0.00445669, -0.0155595, 0.686222)
+bones/2/rotation = Quaternion(0.681763, -0.00336929, 9.55345e-05, 0.731566)
+bones/3/rotation = Quaternion(0.00951584, -0.0189435, 0.001991, 0.999773)
+bones/4/rotation = Quaternion(0.00937759, -0.0189026, 0.002294, 0.999775)
+bones/5/rotation = Quaternion(-0.671832, 0.0164016, 0.0011317, 0.740521)
+bones/6/rotation = Quaternion(0.0630475, -0.0297749, -0.00319296, 0.997561)
+bones/8/rotation = Quaternion(-0.525421, -0.460241, 0.582008, -0.416387)
+bones/9/rotation = Quaternion(0.551276, 0.160836, 0.0258827, 0.818264)
+bones/10/rotation = Quaternion(0.0284829, 0.0701306, 0.290676, 0.953823)
+bones/12/rotation = Quaternion(0.575779, -0.429831, 0.542563, 0.435142)
+bones/13/rotation = Quaternion(0.538781, -0.156232, -0.0495773, 0.826347)
+bones/14/rotation = Quaternion(0.0268423, -0.070131, -0.290085, 0.95405)
+bones/16/rotation = Quaternion(-0.0118371, 0.670978, -0.739402, 0.0541686)
+bones/17/rotation = Quaternion(-0.198082, -0.0781031, 0.0255459, 0.976735)
+bones/18/rotation = Quaternion(0.599184, -0.0916593, -0.0124789, 0.795249)
+bones/21/rotation = Quaternion(0.042784, 0.670625, -0.735125, -0.0895722)
+bones/22/rotation = Quaternion(-0.170611, 0.0459049, -0.0185427, 0.984094)
+bones/23/rotation = Quaternion(0.578013, 0.0607027, 0.0354027, 0.812996)
+bones/24/rotation = Quaternion(0.271037, 0.0695558, -0.0191583, 0.959862)
 
 [node name="BoneAttachment3D" parent="Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D" index="11"]
-transform = Transform3D(0.435973, 0.12111, 0.891773, 0.466545, -0.87777, -0.108878, 0.769586, 0.46352, -0.439188, -22.0281, -0.655045, 4.963)
+transform = Transform3D(0.396684, 0.0755611, 0.91484, 0.473842, -0.870421, -0.133571, 0.786203, 0.486475, -0.381086, -22.5435, 0.238445, 4.36192)
 
 [node name="AnimationTree" parent="Elon Model" index="2"]
 parameters/TimeScale/scale = 1.0
 
 [node name="Standing Box" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.844, -0.01)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.879, -0.01)
 shape = SubResource("CapsuleShape3D_p3gux")
 debug_color = Color(0, 0.6, 0.701961, 1)
 
 [node name="Crouched Box" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.65, -0.005)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.68, -0.005)
 shape = SubResource("CapsuleShape3D_dju7e")
 disabled = true
 debug_color = Color(0, 0.6, 0.701961, 1)
 
 [node name="Camera Pivot" type="Node3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.606, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.56, 0)
 script = ExtResource("3_p3gux")
 
 [node name="Camera Spring" type="SpringArm3D" parent="Camera Pivot"]
 collision_mask = 5
-shape = SubResource("SphereShape3D_7nqbs")
 spring_length = 2.0
 
 [node name="Camera Target" type="Node3D" parent="Camera Pivot/Camera Spring"]
@@ -83,12 +78,10 @@ script = ExtResource("4_7nqbs")
 target = NodePath("../Camera Spring/Camera Target")
 
 [node name="Standing Head" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.606, 0)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.56, 0)
 
 [node name="Crouched Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.22, 0)
-visible = false
 
 [node name="FootstepPlayer" parent="." instance=ExtResource("5_tcv2l")]
 
