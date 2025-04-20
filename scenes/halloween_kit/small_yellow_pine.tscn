@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4gtryir3l2rv"]
+
+[ext_resource type="PackedScene" uid="uid://hxx8cb1w62g4" path="res://assets/KayKit_HalloweenBits_1.0_FREE/fbx/tree_pine_yellow_small.fbx" id="1_ihcxx"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_gtscq"]
+height = 2.04199
+radius = 0.185547
+
+[node name="Small Yellow Pine" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02002, 0)
+shape = SubResource("CylinderShape3D_gtscq")
+
+[node name="tree_pine_yellow_small" parent="." instance=ExtResource("1_ihcxx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)

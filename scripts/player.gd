@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody3D
 
 @onready var crouched_hitbox = $"Crouched Box"
@@ -9,9 +10,15 @@ extends CharacterBody3D
 @onready var standing_head: Vector3 = $"Standing Head".position
 @onready var crouched_head: Vector3 = $"Crouched Head".position
 @onready var footsteps: PolyAudioPlayer = $FootstepPlayer
+@onready var interaction_ray: RayCast3D = $"Camera Pivot/Camera3D/Interaction"
 
-@export var flashlight: Item
-@export var chainsaw: Item
+@export var chainsaw_pos: Node3D
+@export var flashlight_pos: Node3D
+@export var remote_pos: Node3D
+
+var inventory: Array[Item]
+var equipped_item := 0
+const inventory_size = 3
 
 var standing: bool = true
 func stand(flag: bool) -> void:
@@ -27,8 +34,9 @@ func stand(flag: bool) -> void:
 
 func _ready():
 	stand(true)
-	chainsaw.dequip()
-	flashlight.equip()
+	for item in range(inventory_size):
+		inventory.append(null)
+	Global.player = self
 
 const BLEND_SPEED = 7
 var anim_state := "idle"
@@ -49,11 +57,81 @@ func handle_animations(delta):
 		else:
 			anim_amounts[state] = lerpf(anim_amounts[state], 0, BLEND_SPEED * delta)
 	update_tree()
-			
+
+var hovered_object: CollisionObject3D = null
+func set_item(slot: int, item: Item):
+	inventory[slot] = item
+	Global.item_interface.set_item(slot, item)
+
+func get_free_slot() -> int:
+	for slot in inventory.size():
+		if inventory[slot] == null:
+			return slot
+	return -1
+
+func select_item(slot: int):
+	# handle previously selected
+	if inventory[equipped_item] != null:
+		inventory[equipped_item].set_equipped(false)
+	equipped_item = slot
+	Global.item_interface.select_item(slot)
+	if inventory[equipped_item] != null:
+		inventory[equipped_item].set_equipped(true)
+
+func attach_item(item: Item):
+	if item is Flashlight:
+		item.attach(flashlight_pos)
+	elif item is Chainsaw:
+		item.attach(chainsaw_pos)
+	elif item is TvRemote:
+		item.attach(remote_pos)
+
+func handle_interactions():
+	hovered_object = interaction_ray.get_collider()
+	var should_interact = Input.is_action_just_pressed("Interact")
+	Global.item_tooltip.visible = hovered_object != null
+	if (not should_interact) or (hovered_object == null):
+		return
+	if hovered_object is Item:
+		var item: Item = hovered_object
+		if inventory[equipped_item] == null:
+			set_item(equipped_item, item)
+			item.set_equipped(true)
+		else:
+			var free_slot = get_free_slot()
+			if free_slot == -1:
+				# Must toss away the current item slot
+				pass
+			else:
+				set_item(free_slot, item)
+				item.set_equipped(false)
+		attach_item(item)
+	else:
+		hovered_object.interact()
+		
+
 func handle_items():
-	var flashlight_clicked = Input.is_action_just_pressed("Flashlight")
-	if flashlight_clicked:
-		flashlight.toggle()
+	var i0 = Input.is_action_just_pressed("SelectItem0")
+	var i1 = Input.is_action_just_pressed("SelectItem1")
+	var i2 = Input.is_action_just_pressed("SelectItem2")
+	if i0:
+		select_item(0)
+	elif i1:
+		select_item(1)
+	elif i2:
+		select_item(2)
+
+	var equipped := inventory[equipped_item]
+	if equipped == null:
+		return
+	if equipped is Flashlight:
+		var flashlight_clicked = Input.is_action_just_pressed("Flashlight")
+		if flashlight_clicked:
+			equipped.toggle()
+	elif equipped is TvRemote:
+		var tv_clicked = Input.is_action_just_pressed("Flashlight")
+		if tv_clicked:
+			equipped.toggle()
 
 func update_tree():
 	for key in anim_amounts.keys():
@@ -73,14 +151,14 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+	
+	if standing:
+		anim_state = "idle"
 	else:
-		if standing:
-			anim_state = "idle"
-		else:
-			anim_state = "crouch_idle"
+		anim_state = "crouch_idle"
 
 	# Handle jump.
-	if Input.is_action_just_pressed("Jump") and is_on_floor():
+	if Input.is_action_just_pressed("Jump") and is_on_floor() and not jumping:
 		anim_tree["parameters/jump/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 		jumping = true
 		time_of_jump = Global.time()
@@ -88,7 +166,7 @@ func _physics_process(delta: float) -> void:
 	var input_dir = Input.get_vector("Move Right", "Move Left", "Move Back", "Move Forward")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	var crouching = Input.is_action_pressed("Crouch")
-	var running = not crouching and direction.z >= 0 and Input.is_action_pressed("Run")
+	var running = not crouching and input_dir.y >= 0 and Input.is_action_pressed("Run")
 
 	var move_speed: float
 	if crouching:
@@ -116,27 +194,27 @@ func _physics_process(delta: float) -> void:
 		if is_on_floor():
 			footsteps.play_sound_effect("grass")
 		if standing:
-			if direction.z < 0:
+			if input_dir.y < 0:
 				anim_state = "walk_back"
 			elif running:
 				anim_state = "run"
 			else:
 				anim_state = "walk"
 		else:
-			if direction.z < 0:
+			if input_dir.y < 0:
 				anim_state = "crouch_walk_back"
 			else:
 				anim_state = "crouch_walk"
 		
 		var movement_angle = 0
-		if (direction.x != 0):
-			movement_angle = acos(-direction.x)
-			if (direction.z < 0):
+		if (input_dir.x != 0):
+			movement_angle = acos(-input_dir.x)
+			if (input_dir.y < 0):
 				movement_angle = -movement_angle
 		else:
-			movement_angle = asin(direction.z)
+			movement_angle = asin(input_dir.y)
 		var movement_rotation = movement_angle - PI/2
-		if (direction.z < 0):
+		if (input_dir.y < 0):
 			movement_rotation = movement_rotation - PI
 		
 		
@@ -156,5 +234,8 @@ func _physics_process(delta: float) -> void:
 	model.rotation.y = lerpf(model.rotation.y, rotation_target, move_speed * delta)
 
 	handle_animations(delta)
-	handle_items()
+	handle_interactions()
 	move_and_slide()
+
+func _process(_delta: float) -> void:
+	handle_items()

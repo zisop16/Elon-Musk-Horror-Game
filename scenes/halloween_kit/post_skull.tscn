@@ -106,3 +106,7 @@ shape = SubResource("BoxShape3D_ywsbm")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.999777, 0.0211344, 0, -0.0211344, 0.999777, 0, 1.6533, -0.0376134)
 shape = SubResource("BoxShape3D_2rqau")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.13877, 1.16317)
+omni_range = 7.0

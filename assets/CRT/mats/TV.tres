@@ -1,0 +1,20 @@
+[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="uid://d3eyfbmvp774c"]
+
+[ext_resource type="Texture2D" uid="uid://5ech71thw8ab" path="res://assets/CRT/CRTAlbedoCuts.png" id="1_hqdte"]
+[ext_resource type="Texture2D" uid="uid://bqlgbq5g02acy" path="res://assets/CRT/EmissionMap.png" id="2_fd3mu"]
+[ext_resource type="Texture2D" uid="uid://dh10xqmx88k3v" path="res://assets/CRT/CRTMonitor_CRTMetal-roughness.png" id="3_wge3x"]
+[ext_resource type="Texture2D" uid="uid://bdyj21ymdsdem" path="res://assets/CRT/roughness.png" id="4_t1noe"]
+[ext_resource type="Texture2D" uid="uid://puysqrs21a86" path="res://assets/CRT/subsurfMap.png" id="5_4yeop"]
+
+[resource]
+resource_name = "TV"
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_hqdte")
+metallic = 1.0
+metallic_texture = ExtResource("3_wge3x")
+roughness_texture = ExtResource("4_t1noe")
+emission_enabled = true
+emission_energy_multiplier = 0.2
+emission_texture = ExtResource("2_fd3mu")
+subsurf_scatter_enabled = true
+subsurf_scatter_texture = ExtResource("5_4yeop")

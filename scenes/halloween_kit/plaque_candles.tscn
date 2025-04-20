@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=4 uid="uid://cdy7o8rbnvoaq"]
+[gd_scene load_steps=20 format=4 uid="uid://cdy7o8rbnvoaq"]
 
 [ext_resource type="Texture2D" uid="uid://dp30lubhf10hm" path="res://assets/KayKit_HalloweenBits_1.0_FREE/halloweenbits_texture.png" id="1_qrehk"]
+[ext_resource type="Curve" uid="uid://b8vccpdq3uiqu" path="res://assets/particles/fade_in_out.tres" id="2_chd0s"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_28gjw"]
 resource_name = "HalloweenBits"
@@ -57,6 +58,57 @@ points = PackedVector3Array(-0.00899018, -0.00268441, 0.002, 0.00603175, 0.00603
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_wl78n"]
 points = PackedVector3Array(0.00897805, 0.00897818, 0.002, -0.010157, -0.0101587, -0.00015873, 0.0101585, -0.0101587, -0.00015873, -0.010157, 0.0101587, -0.00015873, -0.0089784, -0.00897818, 0.002, 0.0101585, 0.0101587, -0.00015873, 0.0101585, -0.0101587, 0.00174591, -0.010157, 0.0101587, 0.00174591, 0.0101585, 0.0101587, 0.00174591, -0.010157, -0.0101587, 0.00174591, 0.00897805, -0.00897818, 0.002, -0.0089784, 0.00897818, 0.002)
 
+[sub_resource type="CurveTexture" id="CurveTexture_h47lg"]
+curve = ExtResource("2_chd0s")
+
+[sub_resource type="Gradient" id="Gradient_xvo6n"]
+offsets = PackedFloat32Array(0, 0.156098, 0.253659, 0.365854, 0.521951, 0.663415, 0.814634, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 0.4, 0, 1, 1, 0.983333, 0.75, 1, 1, 0.533333, 0, 1, 0.76, 0.367333, 0, 1, 0.63, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gmnes"]
+gradient = SubResource("Gradient_xvo6n")
+
+[sub_resource type="Curve" id="Curve_5kdq5"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.160173, 1), 0.0, 0.0, 0, 0, Vector2(0.748918, 0.797753), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_pncxf"]
+curve = SubResource("Curve_5kdq5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wl78n"]
+emission_shape = 2
+emission_sphere_radius = 0.15
+direction = Vector3(0, 1, 0)
+spread = 20.0
+initial_velocity_min = 0.2
+initial_velocity_max = 0.5
+gravity = Vector3(0, 0.1, 0)
+scale_min = 0.2
+scale_curve = SubResource("CurveTexture_pncxf")
+color_ramp = SubResource("GradientTexture1D_gmnes")
+alpha_curve = SubResource("CurveTexture_h47lg")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qkm2l"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_cllgp"]
+material = SubResource("StandardMaterial3D_qkm2l")
+radius = 0.05
+height = 0.1
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k8pu5"]
+direction = Vector3(0, 1, 0)
+spread = 20.0
+initial_velocity_min = 0.2
+initial_velocity_max = 0.5
+gravity = Vector3(0, 0.1, 0)
+scale_min = 0.2
+scale_curve = SubResource("CurveTexture_pncxf")
+color_ramp = SubResource("GradientTexture1D_gmnes")
+alpha_curve = SubResource("CurveTexture_h47lg")
+
 [node name="Plaque Candles" type="StaticBody3D"]
 
 [node name="plaque_candles2" type="MeshInstance3D" parent="."]
@@ -83,3 +135,23 @@ shape = SubResource("ConvexPolygonShape3D_5kdq5")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_wl78n")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.999654, 0.0263165, 0, -0.0263165, 0.999654, 0.293707, 1.02087, 0.215975)
+amount = 30
+lifetime = 1.5
+process_material = SubResource("ParticleProcessMaterial_wl78n")
+draw_pass_1 = SubResource("SphereMesh_cllgp")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.291164, 0.918212, -0.17124)
+amount = 10
+lifetime = 1.5
+process_material = SubResource("ParticleProcessMaterial_k8pu5")
+draw_pass_1 = SubResource("SphereMesh_cllgp")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.242853, 1.24896, 0.145953)
+light_color = Color(1, 0.934, 0.78, 1)
+light_energy = 2.5
+omni_range = 3.0

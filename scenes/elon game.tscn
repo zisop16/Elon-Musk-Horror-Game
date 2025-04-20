@@ -1,8 +1,32 @@
-[gd_scene load_steps=4 format=3 uid="uid://do2828y10u0ct"]
+[gd_scene load_steps=15 format=3 uid="uid://do2828y10u0ct"]
 
 [ext_resource type="Script" uid="uid://cgxpjs0jsu731" path="res://scripts/game.gd" id="1_7r040"]
-[ext_resource type="PackedScene" uid="uid://dvh3j1ymr60v2" path="res://scenes/map.tscn" id="2_7r040"]
+[ext_resource type="PackedScene" uid="uid://66hmaqhutu1b" path="res://scenes/map.tscn" id="2_7r040"]
 [ext_resource type="Environment" uid="uid://bteiggvg166wx" path="res://assets/environment.tres" id="2_1783g"]
+[ext_resource type="Texture2D" uid="uid://bm3til2u5gqqo" path="res://assets/user_interface/crosshair.png" id="4_1783g"]
+[ext_resource type="PackedScene" uid="uid://cbh1n15ueuj4p" path="res://scenes/items/item_tooltip.tscn" id="4_spprr"]
+[ext_resource type="Script" uid="uid://dywjwspc58pp1" path="res://scripts/items/item_interface.gd" id="6_o1lrw"]
+[ext_resource type="Texture2D" uid="uid://bl8ine30ll1p5" path="res://assets/user_interface/item_icons/flashlight.png" id="7_aqn4u"]
+[ext_resource type="Texture2D" uid="uid://cbrflrrkwn4f5" path="res://assets/user_interface/item_icons/chainsaw.png" id="8_c5sh7"]
+[ext_resource type="Texture2D" uid="uid://o5bo76usq46k" path="res://assets/user_interface/item_icons/tv_remote.png" id="9_tqv2w"]
+[ext_resource type="StyleBox" uid="uid://bu7i6de5fb5kq" path="res://assets/user_interface/selected_slot.tres" id="10_c5sh7"]
+[ext_resource type="StyleBox" uid="uid://dinbw5v8q62m6" path="res://assets/user_interface/unselected_slot.tres" id="11_tqv2w"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_o1lrw"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qud4f"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_o1lrw")
+billboard_mode = 2
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_hrt84"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_qud4f")
+size = Vector2(1.5, 0.5)
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_7r040")
@@ -10,11 +34,124 @@ script = ExtResource("1_7r040")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("2_1783g")
 
-[node name="Map" parent="." instance=ExtResource("2_7r040")]
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.320805, 0.506527, -0.800322, 0.577287, 0.565321, 0.589196, 0.750882, -0.651032, -0.111054, 0, 6.6802, 9.93699)
-light_color = Color(0.58, 0.818, 1, 1)
+light_color = Color(0.71, 0.874333, 1, 1)
+light_energy = 0.1
 light_volumetric_fog_energy = 0.0
 light_specular = 4.59
 shadow_enabled = true
+
+[node name="Map" parent="." instance=ExtResource("2_7r040")]
+
+[node name="Item Tooltip" parent="." instance=ExtResource("4_spprr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1000, 0)
+mesh = SubResource("QuadMesh_hrt84")
+
+[node name="User Interface" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="User Interface"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="User Interface/CenterContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("4_1783g")
+expand_mode = 1
+
+[node name="Item Interface" type="Control" parent="User Interface"]
+layout_mode = 1
+anchor_top = 0.8
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_o1lrw")
+flashlight = ExtResource("7_aqn4u")
+chainsaw = ExtResource("8_c5sh7")
+tv_remote = ExtResource("9_tqv2w")
+selected_style = ExtResource("10_c5sh7")
+unselected_style = ExtResource("11_tqv2w")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="User Interface/Item Interface"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="Slot0" type="Panel" parent="User Interface/Item Interface/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.0
+theme_override_styles/panel = ExtResource("11_tqv2w")
+
+[node name="TextureRect" type="TextureRect" parent="User Interface/Item Interface/HBoxContainer/Slot0"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.05
+anchor_right = 0.95
+anchor_bottom = 0.95
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Slot1" type="Panel" parent="User Interface/Item Interface/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.0
+theme_override_styles/panel = ExtResource("11_tqv2w")
+
+[node name="TextureRect" type="TextureRect" parent="User Interface/Item Interface/HBoxContainer/Slot1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.05
+anchor_right = 0.95
+anchor_bottom = 0.95
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Slot2" type="Panel" parent="User Interface/Item Interface/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.0
+theme_override_styles/panel = ExtResource("11_tqv2w")
+
+[node name="TextureRect" type="TextureRect" parent="User Interface/Item Interface/HBoxContainer/Slot2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.05
+anchor_right = 0.95
+anchor_bottom = 0.95
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1

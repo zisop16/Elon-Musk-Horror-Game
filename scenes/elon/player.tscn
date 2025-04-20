@@ -14,58 +14,74 @@ height = 1.75922
 radius = 0.271223
 height = 1.37375
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("flashlight", "chainsaw")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("chainsaw_pos", "flashlight_pos", "remote_pos")]
 collision_layer = 2
-collision_mask = 7
+collision_mask = 3
+floor_max_angle = 0.872665
+floor_snap_length = 0.3
 script = ExtResource("1_hvogv")
-flashlight = NodePath("Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D/Flashlight")
-chainsaw = NodePath("Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D/Chainsaw")
+chainsaw_pos = NodePath("Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D/Chainsaw")
+flashlight_pos = NodePath("Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D/Flashlight")
+remote_pos = NodePath("Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D/Tv Remote")
 
 [node name="Elon Model" parent="." instance=ExtResource("2_p3gux")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4" index="0"]
-bones/1/position = Vector3(-0.0110359, 0.996698, -0.00305939)
-bones/1/rotation = Quaternion(-0.727212, -0.00445669, -0.0155595, 0.686222)
-bones/2/rotation = Quaternion(0.681763, -0.00336929, 9.55345e-05, 0.731566)
-bones/3/rotation = Quaternion(0.00951584, -0.0189435, 0.001991, 0.999773)
-bones/4/rotation = Quaternion(0.00937759, -0.0189026, 0.002294, 0.999775)
-bones/5/rotation = Quaternion(-0.671832, 0.0164016, 0.0011317, 0.740521)
-bones/6/rotation = Quaternion(0.0630475, -0.0297749, -0.00319296, 0.997561)
-bones/8/rotation = Quaternion(-0.525421, -0.460241, 0.582008, -0.416387)
-bones/9/rotation = Quaternion(0.551276, 0.160836, 0.0258827, 0.818264)
-bones/10/rotation = Quaternion(0.0284829, 0.0701306, 0.290676, 0.953823)
-bones/12/rotation = Quaternion(0.575779, -0.429831, 0.542563, 0.435142)
-bones/13/rotation = Quaternion(0.538781, -0.156232, -0.0495773, 0.826347)
-bones/14/rotation = Quaternion(0.0268423, -0.070131, -0.290085, 0.95405)
-bones/16/rotation = Quaternion(-0.0118371, 0.670978, -0.739402, 0.0541686)
-bones/17/rotation = Quaternion(-0.198082, -0.0781031, 0.0255459, 0.976735)
-bones/18/rotation = Quaternion(0.599184, -0.0916593, -0.0124789, 0.795249)
-bones/21/rotation = Quaternion(0.042784, 0.670625, -0.735125, -0.0895722)
-bones/22/rotation = Quaternion(-0.170611, 0.0459049, -0.0185427, 0.984094)
-bones/23/rotation = Quaternion(0.578013, 0.0607027, 0.0354027, 0.812996)
-bones/24/rotation = Quaternion(0.271037, 0.0695558, -0.0191583, 0.959862)
+bones/1/position = Vector3(0.0106923, 0.946661, -0.0123978)
+bones/1/rotation = Quaternion(-0.684498, -0.249501, -0.271168, 0.629031)
+bones/2/rotation = Quaternion(0.709258, 0.0320087, 0.0236473, 0.703825)
+bones/3/rotation = Quaternion(0.0960834, 0.0816718, -0.0105579, 0.991961)
+bones/4/rotation = Quaternion(0.0960833, 0.0816719, -0.0105579, 0.991961)
+bones/5/rotation = Quaternion(-0.686999, -0.00868639, -0.00725612, 0.726571)
+bones/6/rotation = Quaternion(-0.0372074, 0.00807499, 0.176395, 0.983583)
+bones/8/rotation = Quaternion(-0.56145, -0.438806, 0.574538, -0.402652)
+bones/9/rotation = Quaternion(0.448214, -0.105929, 0.0141035, 0.887516)
+bones/10/rotation = Quaternion(0.0318766, 0.0633634, 0.413874, 0.907567)
+bones/12/rotation = Quaternion(0.615315, -0.39327, 0.538466, 0.420454)
+bones/13/rotation = Quaternion(0.393197, 0.10852, 0.215577, 0.887213)
+bones/14/rotation = Quaternion(0.090657, 0.0102585, -0.357617, 0.929401)
+bones/16/rotation = Quaternion(0.0164809, 0.550096, -0.824521, 0.131485)
+bones/17/rotation = Quaternion(-0.296088, 0.120501, -0.0442917, 0.946494)
+bones/18/rotation = Quaternion(0.567423, -0.03987, -0.0514422, 0.82085)
+bones/19/rotation = Quaternion(0.286668, -0.0547906, -0.00728725, 0.956434)
+bones/21/rotation = Quaternion(0.00455975, 0.694332, -0.697781, -0.176023)
+bones/22/rotation = Quaternion(-0.284507, 0.0693869, -0.0243936, 0.955848)
+bones/23/rotation = Quaternion(0.663203, 0.0903644, 0.129485, 0.731594)
+bones/24/rotation = Quaternion(0.286238, 0.0725158, -0.0203122, 0.955195)
 
 [node name="BoneAttachment3D" parent="Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D" index="11"]
-transform = Transform3D(0.396684, 0.0755611, 0.91484, 0.473842, -0.870421, -0.133571, 0.786203, 0.486475, -0.381086, -22.5435, 0.238445, 4.36192)
+transform = Transform3D(-0.425012, -0.396032, 0.813955, 0.212908, -0.917721, -0.335348, 0.879793, 0.0307707, 0.474361, -32.6088, 3.15558, -18.2223)
+
+[node name="Flashlight" parent="Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D" index="0"]
+transform = Transform3D(-0.876426, -0.217629, 0.429552, -0.146225, 0.970201, 0.193199, -0.458798, 0.106513, -0.882132, 6.8796, 9.54946, 7.54433)
+
+[node name="Chainsaw" parent="Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D" index="1"]
+transform = Transform3D(12.7064, 16.6696, -3.78977, 14.4785, -7.98324, 13.4287, 9.08906, -10.5869, -16.0933, -21.5935, -6.78769, 61.8683)
+
+[node name="Tv Remote" parent="Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D" index="2"]
+transform = Transform3D(0.487915, 0.521505, -0.699979, -0.288171, -0.660714, -0.693119, -0.823952, 0.539896, -0.172089, 4.67343, 10.4363, 4.4918)
 
 [node name="AnimationTree" parent="Elon Model" index="2"]
 parameters/TimeScale/scale = 1.0
 
 [node name="Standing Box" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.879, -0.01)
+visible = false
 shape = SubResource("CapsuleShape3D_p3gux")
 debug_color = Color(0, 0.6, 0.701961, 1)
 
 [node name="Crouched Box" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.68, -0.005)
+visible = false
 shape = SubResource("CapsuleShape3D_dju7e")
 disabled = true
 debug_color = Color(0, 0.6, 0.701961, 1)
 
 [node name="Camera Pivot" type="Node3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.56, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.7, 0)
 script = ExtResource("3_p3gux")
+max_length = 2.0
+min_length = 0.5
 
 [node name="Camera Spring" type="SpringArm3D" parent="Camera Pivot"]
 collision_mask = 5
@@ -77,11 +93,17 @@ spring_length = 2.0
 script = ExtResource("4_7nqbs")
 target = NodePath("../Camera Spring/Camera Target")
 
+[node name="Interaction" type="RayCast3D" parent="Camera Pivot/Camera3D"]
+target_position = Vector3(0, 0, -8)
+collision_mask = 8
+
 [node name="Standing Head" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.56, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+visible = false
 
 [node name="Crouched Head" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.22, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35, 0)
+visible = false
 
 [node name="FootstepPlayer" parent="." instance=ExtResource("5_tcv2l")]
 

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8cvexn0dcbjf"]
+
+[ext_resource type="PackedScene" uid="uid://cyho0licdwsd0" path="res://assets/KayKit_HalloweenBits_1.0_FREE/fbx/bench.fbx" id="1_kjoy7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n0e25"]
+size = Vector3(3.9, 1, 1.4)
+
+[node name="Bench" type="StaticBody3D"]
+
+[node name="bench" parent="." instance=ExtResource("1_kjoy7")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_n0e25")

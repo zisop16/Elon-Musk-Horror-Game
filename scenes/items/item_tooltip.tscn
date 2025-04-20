@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=3 uid="uid://cbh1n15ueuj4p"]
+
+[ext_resource type="Script" uid="uid://g6td4wgh7b52" path="res://scripts/items/item_tooltip.gd" id="1_y0wkf"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_cs7dw"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y0wkf"]
+resource_local_to_scene = true
+transparency = 1
+no_depth_test = true
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_cs7dw")
+billboard_mode = 2
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_5vo3c"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_y0wkf")
+size = Vector2(1.5, 0.5)
+
+[sub_resource type="SystemFont" id="SystemFont_fw4h3"]
+font_names = PackedStringArray("Super Cartoon")
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_5ey1u"]
+font = SubResource("SystemFont_fw4h3")
+font_size = 80
+outline_size = 20
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Item Tooltip" type="MeshInstance3D"]
+mesh = SubResource("QuadMesh_5vo3c")
+script = ExtResource("1_y0wkf")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(900, 300)
+
+[node name="Control" type="Control" parent="SubViewport"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="SubViewport/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -71.5
+offset_top = -11.5
+offset_right = 71.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press 'F' to pick up"
+label_settings = SubResource("LabelSettings_5ey1u")

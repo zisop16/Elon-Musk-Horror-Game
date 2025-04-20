@@ -45,7 +45,9 @@ shadow_mesh = SubResource("ArrayMesh_hpq3h")
 [sub_resource type="BoxShape3D" id="BoxShape3D_xbm0a"]
 size = Vector3(0.906738, 0.542351, 0.896606)
 
-[node name="Yellow Pumpkin" type="StaticBody3D"]
+[node name="Yellow Pumpkin" type="RigidBody3D"]
+collision_layer = 4
+collision_mask = 15
 
 [node name="pumpkin_yellow" type="MeshInstance3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, 0, 0)

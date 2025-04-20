@@ -1,8 +1,7 @@
-[gd_scene load_steps=54 format=3 uid="uid://dvh3j1ymr60v2"]
+[gd_scene load_steps=85 format=3 uid="uid://66hmaqhutu1b"]
 
 [ext_resource type="PackedScene" uid="uid://tkllvr4o5did" path="res://scenes/elon/player.tscn" id="1_sq6bu"]
 [ext_resource type="Texture2D" uid="uid://cishbrj38kdq5" path="res://assets/terrain_textures/gravel/albedo.png" id="2_0cso3"]
-[ext_resource type="PackedScene" uid="uid://bkqniaq8a6xs" path="res://assets/KayKit_HalloweenBits_1.0_FREE/fbx/candle.fbx" id="2_6k6j1"]
 [ext_resource type="Texture2D" uid="uid://og23q550wdn5" path="res://assets/terrain_textures/sand/albedo.png" id="2_be0no"]
 [ext_resource type="Texture2D" uid="uid://ctqyrab16u1tb" path="res://assets/terrain_textures/gravel/normal.png" id="3_2klcf"]
 [ext_resource type="Texture2D" uid="uid://cv3ufq25fg5fv" path="res://assets/terrain_textures/sand/normal.png" id="3_blm8a"]
@@ -17,19 +16,31 @@
 [ext_resource type="Texture2D" uid="uid://beqktoe2ies7x" path="res://assets/terrain_textures/rocky_grass/albedo.png" id="15_y2ir2"]
 [ext_resource type="Texture2D" uid="uid://bdttn7kvf0ern" path="res://assets/terrain_textures/rocky_grass/normal.png" id="16_5u2yt"]
 [ext_resource type="Texture2D" uid="uid://dpu1sbmra62nd" path="res://assets/terrain_textures/concrete/albedo.png" id="17_30iet"]
+[ext_resource type="Texture2D" uid="uid://xykbv6c6my36" path="res://assets/terrain_textures/marble_1/albedo.png" id="17_litwm"]
+[ext_resource type="Texture2D" uid="uid://dwjutevm5m3ir" path="res://assets/terrain_textures/marble_1/normal.png" id="17_qcc5i"]
 [ext_resource type="Texture2D" uid="uid://7x6wo1j1qi2g" path="res://assets/terrain_textures/concrete/normal.png" id="18_mkblt"]
 [ext_resource type="PackedScene" uid="uid://c3hsmnwdm1jpv" path="res://scenes/minecraft/workbench.tscn" id="19_4o3w1"]
 [ext_resource type="PackedScene" uid="uid://bu323aaduohvb" path="res://scenes/halloween_kit/arch.tscn" id="20_2cfcp"]
 [ext_resource type="PackedScene" uid="uid://ca1yi23jy70pv" path="res://scenes/halloween_kit/grave_a.tscn" id="21_6ek7f"]
+[ext_resource type="Texture2D" uid="uid://dqub0jvduhhea" path="res://assets/terrain_textures/light_gravel/albedo.png" id="21_s2dh3"]
 [ext_resource type="PackedScene" uid="uid://utewf8gmpdml" path="res://scenes/halloween_kit/grave_b.tscn" id="22_4qxv8"]
+[ext_resource type="Texture2D" uid="uid://8mup4mp65xak" path="res://assets/terrain_textures/light_gravel/normal.png" id="22_8kgjo"]
+[ext_resource type="Texture2D" uid="uid://ch1tahpn46snd" path="res://assets/terrain_textures/marble_2/albedo.png" id="23_fq3dv"]
 [ext_resource type="PackedScene" uid="uid://cjsb3guv608vj" path="res://scenes/halloween_kit/large_dead_decorated_tree.tscn" id="23_fq663"]
 [ext_resource type="PackedScene" uid="uid://d2jk1x0iucbu6" path="res://scenes/halloween_kit/large_orange_pine.tscn" id="24_mniao"]
+[ext_resource type="Texture2D" uid="uid://dxx44kqlsycyt" path="res://assets/terrain_textures/marble_2/normal.png" id="24_ogd7i"]
+[ext_resource type="Texture2D" uid="uid://dxa4su0yp61mj" path="res://assets/terrain_textures/bricks/albedo.png" id="25_tf62m"]
 [ext_resource type="PackedScene" uid="uid://dscf5vk6y583j" path="res://scenes/halloween_kit/large_dead_tree.tscn" id="25_yfm5w"]
 [ext_resource type="PackedScene" uid="uid://d1n47dxbyo7x8" path="res://scenes/halloween_kit/medium_dead_tree.tscn" id="26_081xv"]
+[ext_resource type="Texture2D" uid="uid://d0weaqkqnvpyc" path="res://assets/terrain_textures/bricks/normal.png" id="26_nc68e"]
 [ext_resource type="PackedScene" uid="uid://df1obj8xh5mby" path="res://scenes/halloween_kit/path_a.tscn" id="27_12q1p"]
+[ext_resource type="Texture2D" uid="uid://c4064kx3oiddr" path="res://assets/terrain_textures/sandstone/albedo.png" id="27_r2y85"]
 [ext_resource type="PackedScene" uid="uid://dfe63fkfbjl5m" path="res://scenes/halloween_kit/path_d.tscn" id="28_lhdcv"]
+[ext_resource type="Texture2D" uid="uid://brckpirjjoums" path="res://assets/terrain_textures/sandstone/normal.png" id="28_w5y4v"]
 [ext_resource type="PackedScene" uid="uid://qk6e8kyspqgs" path="res://scenes/halloween_kit/post_lantern.tscn" id="29_cgoaf"]
 [ext_resource type="PackedScene" uid="uid://chewp5rsgq5q4" path="res://scenes/halloween_kit/small_dead_tree.tscn" id="30_mniao"]
+[ext_resource type="Texture2D" uid="uid://7si61dbylv2w" path="res://assets/terrain_textures/dirty_bricks/albedo.png" id="30_r2y85"]
+[ext_resource type="Texture2D" uid="uid://svrujqikhvkf" path="res://assets/terrain_textures/dirty_bricks/normal.png" id="31_w5y4v"]
 [ext_resource type="PackedScene" uid="uid://c7mj7igs18twj" path="res://scenes/halloween_kit/grave_dirt.tscn" id="31_yfm5w"]
 [ext_resource type="PackedScene" uid="uid://crtmv1cyf5oe0" path="res://scenes/halloween_kit/coffin.tscn" id="32_081xv"]
 [ext_resource type="PackedScene" uid="uid://babtwlincfli4" path="res://scenes/cybertruck.tscn" id="33_081xv"]
@@ -37,6 +48,19 @@
 [ext_resource type="PackedScene" uid="uid://c7pn2ib6ias6i" path="res://scenes/halloween_kit/crypt.tscn" id="35_cgoaf"]
 [ext_resource type="PackedScene" uid="uid://01vsxmf218b7" path="res://scenes/halloween_kit/fence_gate_broken.tscn" id="36_mwr4f"]
 [ext_resource type="PackedScene" uid="uid://ci1ocj5yoyjyo" path="res://scenes/halloween_kit/fence_gate.tscn" id="37_1qn5a"]
+[ext_resource type="PackedScene" uid="uid://dyl0kfuawdn14" path="res://scenes/particles/fire_effect.tscn" id="38_mwr4f"]
+[ext_resource type="PackedScene" uid="uid://boqc6w5obqpqq" path="res://scenes/halloween_kit/ribcage.tscn" id="39_1qn5a"]
+[ext_resource type="PackedScene" uid="uid://b7mt7q0nsjjpr" path="res://scenes/halloween_kit/post_skull.tscn" id="40_leq5k"]
+[ext_resource type="PackedScene" uid="uid://c5s3u5ri02eus" path="res://scenes/halloween_kit/pillar.tscn" id="52_v7gfb"]
+[ext_resource type="PackedScene" uid="uid://dj7ymq5yhxxi6" path="res://scenes/halloween_kit/medium_orange_pine.tscn" id="53_icjpl"]
+[ext_resource type="PackedScene" uid="uid://d2b2u6ovpkg7w" path="res://scenes/halloween_kit/path_c.tscn" id="54_vwuk8"]
+[ext_resource type="PackedScene" uid="uid://gp20bq1ixoii" path="res://scenes/furniture/chair.tscn" id="55_kycfx"]
+[ext_resource type="PackedScene" uid="uid://brkrxxyq4jkys" path="res://scenes/furniture/table.tscn" id="56_6iak1"]
+[ext_resource type="PackedScene" uid="uid://bh3o6b4g066g2" path="res://scenes/halloween_kit/yellow_pumpkin.tscn" id="57_w5y4v"]
+[ext_resource type="PackedScene" uid="uid://cdy7o8rbnvoaq" path="res://scenes/halloween_kit/plaque_candles.tscn" id="58_v7gfb"]
+[ext_resource type="PackedScene" uid="uid://be4ag7c0el24" path="res://scenes/halloween_kit/large_yellow_pine.tscn" id="59_vwuk8"]
+[ext_resource type="PackedScene" uid="uid://df37d2kagcck2" path="res://scenes/halloween_kit/medium_yellow_pine.tscn" id="60_kycfx"]
+[ext_resource type="PackedScene" uid="uid://csia6uw5e6xpc" path="res://scenes/house.tscn" id="61_kycfx"]
 
 [sub_resource type="Gradient" id="Gradient_hrmi8"]
 offsets = PackedFloat32Array(0.2, 1)
@@ -100,10 +124,18 @@ last_lod = 0
 last_shadow_lod = 0
 lod0_range = 128.0
 
-[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_sq6bu"]
-name = "candle"
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_s2dh3"]
+name = "arch"
 id = 1
-scene_file = ExtResource("2_6k6j1")
+scene_file = ExtResource("20_2cfcp")
+last_lod = 0
+last_shadow_lod = 0
+lod0_range = 128.0
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_8kgjo"]
+name = "ribcage"
+id = 2
+scene_file = ExtResource("39_1qn5a")
 last_lod = 0
 last_shadow_lod = 0
 lod0_range = 128.0
@@ -158,42 +190,100 @@ id = 6
 albedo_texture = ExtResource("15_y2ir2")
 normal_texture = ExtResource("16_5u2yt")
 
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_vqsqp"]
+name = "marble_1"
+id = 7
+albedo_texture = ExtResource("17_litwm")
+normal_texture = ExtResource("17_qcc5i")
+uv_scale = 0.4
+
 [sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_mniao"]
 name = "concrete"
-id = 7
+id = 8
 albedo_texture = ExtResource("17_30iet")
 normal_texture = ExtResource("18_mkblt")
 
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_v7gfb"]
+name = "light_gravel"
+id = 9
+albedo_texture = ExtResource("21_s2dh3")
+normal_texture = ExtResource("22_8kgjo")
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_icjpl"]
+name = "marble_2"
+id = 10
+albedo_texture = ExtResource("23_fq3dv")
+normal_texture = ExtResource("24_ogd7i")
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_vwuk8"]
+name = "bricks"
+id = 11
+albedo_texture = ExtResource("25_tf62m")
+normal_texture = ExtResource("26_nc68e")
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_kycfx"]
+name = "sandstone"
+id = 12
+albedo_texture = ExtResource("27_r2y85")
+normal_texture = ExtResource("28_w5y4v")
+uv_scale = 0.2
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_sp2wr"]
+name = "dirty_bricks"
+id = 13
+albedo_texture = ExtResource("30_r2y85")
+normal_texture = ExtResource("31_w5y4v")
+uv_scale = 0.2
+
 [sub_resource type="Terrain3DAssets" id="Terrain3DAssets_2lpho"]
-mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_y2ir2"), SubResource("Terrain3DMeshAsset_sq6bu")])
-texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_gw3fx"), SubResource("Terrain3DTextureAsset_2lpho"), SubResource("Terrain3DTextureAsset_nakos"), SubResource("Terrain3DTextureAsset_6ek7f"), SubResource("Terrain3DTextureAsset_wslke"), SubResource("Terrain3DTextureAsset_4qxv8"), SubResource("Terrain3DTextureAsset_fq663"), SubResource("Terrain3DTextureAsset_mniao")])
+mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_y2ir2"), SubResource("Terrain3DMeshAsset_s2dh3"), SubResource("Terrain3DMeshAsset_8kgjo")])
+texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_gw3fx"), SubResource("Terrain3DTextureAsset_2lpho"), SubResource("Terrain3DTextureAsset_nakos"), SubResource("Terrain3DTextureAsset_6ek7f"), SubResource("Terrain3DTextureAsset_wslke"), SubResource("Terrain3DTextureAsset_4qxv8"), SubResource("Terrain3DTextureAsset_fq663"), SubResource("Terrain3DTextureAsset_vqsqp"), SubResource("Terrain3DTextureAsset_mniao"), SubResource("Terrain3DTextureAsset_v7gfb"), SubResource("Terrain3DTextureAsset_icjpl"), SubResource("Terrain3DTextureAsset_vwuk8"), SubResource("Terrain3DTextureAsset_kycfx"), SubResource("Terrain3DTextureAsset_sp2wr")])
 
 [node name="Map" type="Node3D"]
 
 [node name="Player" parent="." instance=ExtResource("1_sq6bu")]
-floor_block_on_wall = false
-floor_max_angle = 1.0472
-floor_snap_length = 0.2
+transform = Transform3D(0.881097, 0, -0.472935, 0, 1, 0, 0.472935, 0, 0.881097, -55.123, 21.2926, -38.3971)
+
+[node name="Skeleton3D" parent="Player/Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4" index="0"]
+bones/1/position = Vector3(0.00799722, 0.944819, -0.0150757)
+bones/1/rotation = Quaternion(-0.684169, -0.248145, -0.268836, 0.630923)
+bones/2/rotation = Quaternion(0.710351, 0.0320096, 0.0235739, 0.702724)
+bones/3/rotation = Quaternion(0.0993219, 0.0816274, -0.0107914, 0.991643)
+bones/4/rotation = Quaternion(0.0993219, 0.0816273, -0.0107914, 0.991643)
+bones/5/rotation = Quaternion(-0.69686, -0.00888888, -0.00672858, 0.717121)
+bones/6/rotation = Quaternion(-0.045286, 0.00879609, 0.176738, 0.983176)
+bones/8/rotation = Quaternion(-0.571945, -0.426324, 0.576494, -0.398474)
+bones/9/rotation = Quaternion(0.44209, -0.110983, 0.0190136, 0.889875)
+bones/10/rotation = Quaternion(0.0283595, 0.0582972, 0.407014, 0.911119)
+bones/12/rotation = Quaternion(0.625828, -0.380655, 0.539586, 0.415077)
+bones/13/rotation = Quaternion(0.390753, 0.112797, 0.213426, 0.888278)
+bones/14/rotation = Quaternion(0.0831291, 0.0211374, -0.356288, 0.930431)
+bones/16/rotation = Quaternion(0.0185948, 0.546086, -0.827155, 0.131369)
+bones/17/rotation = Quaternion(-0.299518, 0.122247, -0.044628, 0.945174)
+bones/18/rotation = Quaternion(0.568511, -0.040885, -0.0529867, 0.819949)
+bones/19/rotation = Quaternion(0.287224, -0.0549684, -0.00728021, 0.956257)
+bones/21/rotation = Quaternion(0.0059717, 0.691026, -0.701373, -0.174709)
+bones/22/rotation = Quaternion(-0.293646, 0.0717908, -0.0253382, 0.952878)
+bones/23/rotation = Quaternion(0.667798, 0.0901179, 0.129321, 0.727461)
+bones/24/rotation = Quaternion(0.286321, 0.072624, -0.0203704, 0.95516)
+
+[node name="BoneAttachment3D" parent="Player/Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D" index="11"]
+transform = Transform3D(-0.434956, -0.382968, 0.814954, 0.202261, -0.923475, -0.326014, 0.877442, 0.0230317, 0.47913, -31.9835, 2.28274, -17.8114)
 
 [node name="Terrain3D" type="Terrain3D" parent="."]
 data_directory = "res://terrain_data"
 material = SubResource("Terrain3DMaterial_gldc4")
 assets = SubResource("Terrain3DAssets_2lpho")
-collision_mode = 0
-mesh_lods = 3
+collision_mode = 3
+collision_mask = 15
+mesh_lods = 4
+mesh_size = 20
 vertex_spacing = 0.25
 top_level = true
 metadata/_edit_lock_ = true
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.320805, 0.506527, -0.800322, 0.577287, 0.565321, 0.589196, 0.750882, -0.651032, -0.111054, 0, 6.6802, 9.93699)
-light_color = Color(0.71, 0.874333, 1, 1)
-light_volumetric_fog_energy = 0.0
-light_specular = 4.59
-shadow_enabled = true
-
 [node name="chest" parent="." instance=ExtResource("34_12q1p")]
-transform = Transform3D(0.027433, -0.00112005, 0.999623, 0.000210846, 0.999999, 0.00111469, -0.999624, 0.000180186, 0.0274332, -21.6397, 5.88351, 38.6549)
+transform = Transform3D(0.027433, -0.00112005, 0.999623, 0.000210846, 0.999999, 0.00111469, -0.999624, 0.000180186, 0.0274332, -21.6397, 6.35811, 38.6549)
 
 [node name="cybertruck" parent="." instance=ExtResource("33_081xv")]
 transform = Transform3D(-0.0726998, -0.17078, -0.982623, -0.00982036, 0.985305, -0.17052, 0.997306, -0.00274704, -0.0733086, 19.3555, 0.551991, 48.7619)
@@ -246,19 +336,196 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.9231, 5.00001, 37.0571)
 transform = Transform3D(0.911884, 0, 0.410448, 0, 1, 0, -0.410448, 0, 0.911884, -16.6314, 5.08468, 23.4221)
 
 [node name="Path D" parent="Props" instance=ExtResource("28_lhdcv")]
-transform = Transform3D(0.99689, 0.0788071, 0, -0.0788071, 0.99689, 0, 0, 0, 1, -24.4324, 5.49155, 22.7487)
+transform = Transform3D(0.992343, 0.123515, -3.27978e-10, -0.123506, 0.992271, -0.0119901, -0.00148096, 0.0118983, 0.999928, -24.4324, 5.44895, 22.7487)
 
 [node name="Post Lantern" parent="Props" instance=ExtResource("29_cgoaf")]
-transform = Transform3D(-0.950489, 0, 0.310759, 0, 1, 0, -0.310759, 0, -0.950489, -25.3058, 5.40232, 33.0645)
+transform = Transform3D(-0.950489, 0, 0.310759, 0, 1, 0, -0.310759, 0, -0.950489, -25.2991, 5.94293, 38.8422)
 
-[node name="crypt" parent="." instance=ExtResource("35_cgoaf")]
-transform = Transform3D(-0.76383, 0, -0.645418, 0, 1, 0, 0.645418, 0, -0.76383, 53.4656, 10, 54.2335)
-
-[node name="Fence Gate Broken" parent="." instance=ExtResource("36_mwr4f")]
+[node name="Fence Gate Broken" parent="Props" instance=ExtResource("36_mwr4f")]
 transform = Transform3D(0.880527, 0, 0.473996, 0, 1, 0, -0.473996, 0, 0.880527, 24.9242, 0, 38.3314)
 
-[node name="Fence Gate" parent="." instance=ExtResource("37_1qn5a")]
+[node name="Fence Gate" parent="Props" instance=ExtResource("37_1qn5a")]
 transform = Transform3D(0.209584, 0, 0.977791, 0, 1, 0, -0.977791, 0, 0.209584, 22.8896, 0, 41.0858)
 
-[node name="Fence Gate2" parent="." instance=ExtResource("37_1qn5a")]
+[node name="Fence Gate3" parent="Props" instance=ExtResource("37_1qn5a")]
+transform = Transform3D(0.858405, 0, -0.512972, 0, 1, 0, 0.512972, 0, 0.858405, 32.458, 2.38419e-07, 38.5506)
+
+[node name="Fence Gate2" parent="Props" instance=ExtResource("37_1qn5a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.5693, 2.38419e-07, 37.4342)
+
+[node name="Fence Gate4" parent="Props" instance=ExtResource("37_1qn5a")]
+transform = Transform3D(0.626227, -0.260887, -0.734695, 0.359889, 0.932675, -0.0244322, 0.691606, -0.249109, 0.677957, 35.6018, 0.856828, 41.414)
+
+[node name="FireEffect" parent="Props" instance=ExtResource("38_mwr4f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.7332, 1.02911, 50)
+
+[node name="FireEffect2" parent="Props" instance=ExtResource("38_mwr4f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.7283, 0.532287, 47.2231)
+
+[node name="crypt" parent="Props" instance=ExtResource("35_cgoaf")]
+transform = Transform3D(-0.766044, -0.0727656, -0.638656, 0, 0.993572, -0.113203, 0.642788, -0.0867187, -0.76112, 57.912, 10.9094, 57.3643)
+
+[node name="ribcage" parent="Props" instance=ExtResource("39_1qn5a")]
+transform = Transform3D(1.2602, 0.920302, 1.25098, -1.34322, 1.45452, 0.283087, -0.779519, -1.01854, 1.53458, 57.81, 10.3698, 51.7402)
+
+[node name="Post Skull" parent="Props" instance=ExtResource("40_leq5k")]
+transform = Transform3D(-0.880385, -0.364489, -0.30343, -0.374321, 0.926896, -0.0273439, 0.291214, 0.089507, -0.952462, 35.4184, 4.47091, 48.1902)
+
+[node name="Medium Dead Tree2" parent="Props" instance=ExtResource("26_081xv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.3684, 10.624, 56.6844)
+
+[node name="Fence Gate Broken2" parent="Props" instance=ExtResource("36_mwr4f")]
+transform = Transform3D(0.910341, -0.165454, 0.379347, 0.167041, 0.985524, 0.0289825, -0.378651, 0.0369825, 0.924801, 51.4394, 10.5423, 56.4629)
+
+[node name="Fence Gate5" parent="Props" instance=ExtResource("37_1qn5a")]
+transform = Transform3D(-0.346772, 0, 0.937949, -0.16068, 0.985217, -0.0594055, -0.924084, -0.17131, -0.341646, 23.3868, 0.678298, 45.0252)
+
+[node name="Fence Gate6" parent="Props" instance=ExtResource("37_1qn5a")]
+transform = Transform3D(-0.68625, 0, 0.727366, 0, 1, 0, -0.727366, 0, -0.68625, 25.3783, 1.39428, 48.2679)
+
+[node name="Fence Gate7" parent="Props" instance=ExtResource("37_1qn5a")]
+transform = Transform3D(0.947294, 0, -0.320365, 0, 1, 0, 0.320365, 0, 0.947294, 28.7808, 1.54057, 50.302)
+
+[node name="Fence Gate8" parent="Props" instance=ExtResource("37_1qn5a")]
+transform = Transform3D(-0.27283, -0.0665123, 0.95976, -0.214431, 0.976716, 0.00673132, -0.937861, -0.203966, -0.28074, 31.4306, 2.40665, 53.0326)
+
+[node name="Large Dead Tree2" parent="Props" instance=ExtResource("25_yfm5w")]
+transform = Transform3D(0.75687, -0.653566, 0, 0.653566, 0.75687, 0, 0, 0, 1, 32.0984, 4.19783, 54.6184)
+
+[node name="Arch2" parent="Props" instance=ExtResource("20_2cfcp")]
+transform = Transform3D(0.300689, 0, 0.953722, 0, 1, 0, -0.953722, 0, 0.300689, 42.835, 9.98721, 50.1696)
+
+[node name="Pillar" parent="Props" instance=ExtResource("52_v7gfb")]
+transform = Transform3D(0.269725, -0.717516, -0.642199, 0.936085, 0.0389771, 0.349609, -0.225819, -0.695451, 0.682168, 19.1531, 1.18922, 54.2443)
+
+[node name="Small Dead Tree2" parent="Props" instance=ExtResource("30_mniao")]
+transform = Transform3D(0.672858, 0, 0.739772, 0, 1, 0, -0.739772, 0, 0.672858, 24.8976, 1.13767, 50.3128)
+
+[node name="Medium Dead Tree3" parent="Props" instance=ExtResource("26_081xv")]
+transform = Transform3D(0.999783, 0, 0.0208203, 0, 1, 0, -0.0208203, 0, 0.999783, 23.4196, 1.00057, 52.4701)
+
+[node name="Large Dead Tree3" parent="Props" instance=ExtResource("25_yfm5w")]
+transform = Transform3D(0.657494, 0.390093, 0.644616, -0.705168, 0.0172272, 0.708831, 0.265405, -0.920614, 0.286408, 20.2311, 1.02894, 54.7928)
+
+[node name="Large Orange Pine2" parent="Props" instance=ExtResource("24_mniao")]
+transform = Transform3D(0.995865, -0.0908412, 0, 0.0908301, 0.995744, 0.0155852, -0.00141577, -0.0155207, 0.999879, 25.0687, 1.63112, 54.2482)
+
+[node name="Medium Orange Pine" parent="Props" instance=ExtResource("53_icjpl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.6296, 1.4759, 56.9845)
+
+[node name="Medium Orange Pine2" parent="Props" instance=ExtResource("53_icjpl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6094, 1.14284, 56.2643)
+
+[node name="Large Orange Pine3" parent="Props" instance=ExtResource("24_mniao")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.0923, 1.09226, 56.0904)
+
+[node name="Medium Dead Tree4" parent="Props" instance=ExtResource("26_081xv")]
+transform = Transform3D(-0.944371, 0, 0.328883, 0, 1, 0, -0.328883, 0, -0.944371, 15.1835, 1.00001, 54.548)
+
+[node name="Path D2" parent="Props" instance=ExtResource("28_lhdcv")]
+transform = Transform3D(0.999071, -0.0430963, 0, 0.0430963, 0.999071, 0, 0, 0, 1, 23.6812, 1.02134, 48.6982)
+
+[node name="Path C" parent="Props" instance=ExtResource("54_vwuk8")]
+transform = Transform3D(0.934236, -0.333432, -0.126599, 0.356656, 0.873399, 0.331616, 0, -0.35496, 0.934881, 19.6181, 0.667988, 51.513)
+
+[node name="Large Orange Pine4" parent="Props" instance=ExtResource("24_mniao")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.9579, 1.52859, 59.9516)
+
+[node name="Large Orange Pine5" parent="Props" instance=ExtResource("24_mniao")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.9936, 1.83066, 60.6393)
+
+[node name="Large Orange Pine6" parent="Props" instance=ExtResource("24_mniao")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.2438, 1.25429, 59.131)
+
+[node name="Medium Orange Pine3" parent="Props" instance=ExtResource("53_icjpl")]
+transform = Transform3D(0.99328, -0.115735, 0, 0.115657, 0.992612, 0.0366786, -0.00424498, -0.0364321, 0.999327, 22.5689, 1.38901, 55.9999)
+
+[node name="Medium Orange Pine4" parent="Props" instance=ExtResource("53_icjpl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.0723, 1.57475, 58.4437)
+
+[node name="Medium Orange Pine5" parent="Props" instance=ExtResource("53_icjpl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.6023, 1.32569, 62.906)
+
+[node name="Medium Orange Pine6" parent="Props" instance=ExtResource("53_icjpl")]
+transform = Transform3D(0.189729, -0.0403934, -0.981005, -0.0410364, 0.997954, -0.0490278, 0.980979, 0.0495589, 0.187683, 16.8066, 1.63717, 62.5557)
+
+[node name="Medium Orange Pine7" parent="Props" instance=ExtResource("53_icjpl")]
+transform = Transform3D(0.992675, 0, -0.120813, -0.00399924, 0.999452, -0.0328604, 0.120746, 0.0331028, 0.992131, 13.7924, 1.80156, 61.2384)
+
+[node name="Chair" parent="Props" instance=ExtResource("55_kycfx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.00668, 1.2, 56.8195)
+
+[node name="Table" parent="Props" instance=ExtResource("56_6iak1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.78687, 1.2, 58.2307)
+
+[node name="Table2" parent="Props" instance=ExtResource("56_6iak1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.26837, 1.2, 59.7173)
+
+[node name="Chair2" parent="Props" instance=ExtResource("55_kycfx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.16227, 1.2, 58.5081)
+
+[node name="Chair3" parent="Props" instance=ExtResource("55_kycfx")]
+transform = Transform3D(0.114926, 0.561548, 0.819424, 0.967195, 0.124874, -0.221227, -0.226554, 0.817967, -0.528775, -5.94988, 1.9183, 60.4216)
+
+[node name="Chair4" parent="Props" instance=ExtResource("55_kycfx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.3699, 1.2, 56.0993)
+
+[node name="Table3" parent="Props" instance=ExtResource("56_6iak1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.60127, 1.2, 55.4988)
+
+[node name="Chair5" parent="Props" instance=ExtResource("55_kycfx")]
+transform = Transform3D(0.473858, 0, 0.880601, 0, 1, 0, -0.880601, 0, 0.473858, -11.1733, 1.2, 57.8748)
+
+[node name="Table4" parent="Props" instance=ExtResource("56_6iak1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.1995, 1.2, 60.7708)
+
+[node name="Table5" parent="Props" instance=ExtResource("56_6iak1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.6405, 1.2, 56.6285)
+
+[node name="Chair6" parent="Props" instance=ExtResource("55_kycfx")]
+transform = Transform3D(-0.448461, 0, 0.893802, 0, 1, 0, -0.893802, 0, -0.448461, -14.1206, 1.2, 61.5773)
+
+[node name="Table6" parent="Props" instance=ExtResource("56_6iak1")]
+transform = Transform3D(0.536799, -0.685172, 0.492328, 0.795582, 0.216797, -0.565729, 0.280887, 0.69537, 0.661486, -11.6541, 2.11265, 55.2339)
+
+[node name="Large Dead Decorated Tree2" parent="Props" instance=ExtResource("23_fq663")]
+transform = Transform3D(-0.475993, 0, 0.879449, 0, 1, 0, -0.879449, 0, -0.475993, -8.00675, 0, 49.0039)
+
+[node name="Yellow Pumpkin" parent="Props" instance=ExtResource("57_w5y4v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.63122, 2.92721, 55.4182)
+
+[node name="Yellow Pumpkin2" parent="Props" instance=ExtResource("57_w5y4v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.73601, 3.00338, 58.1044)
+
+[node name="Yellow Pumpkin3" parent="Props" instance=ExtResource("57_w5y4v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.0226, 3.00338, 60.77)
+
+[node name="Plaque Candles" parent="Props" instance=ExtResource("58_v7gfb")]
+transform = Transform3D(0.80002, 0, -0.599973, 0, 1, 0, 0.599973, 0, 0.80002, -9.51838, 1.20001, 59.2807)
+
+[node name="Small Dead Tree3" parent="Props" instance=ExtResource("30_mniao")]
+transform = Transform3D(0.994491, 0.104257, 0.0108824, -0.104824, 0.989117, 0.103245, 0, -0.103817, 0.994596, -9.16848, 1.33619, 62.7138)
+
+[node name="Large Yellow Pine" parent="Props" instance=ExtResource("59_vwuk8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.9136, 1.42415, 55.5013)
+
+[node name="Large Yellow Pine2" parent="Props" instance=ExtResource("59_vwuk8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0808, 1.38922, 58.688)
+
+[node name="Medium Orange Pine8" parent="Props" instance=ExtResource("53_icjpl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.62213, 1.20082, 55.8691)
+
+[node name="Medium Yellow Pine" parent="Props" instance=ExtResource("60_kycfx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.7846, 1.38265, 52.2027)
+
+[node name="Medium Orange Pine9" parent="Props" instance=ExtResource("53_icjpl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.94664, 1.25071, 60.9254)
+
+[node name="Large Yellow Pine3" parent="Props" instance=ExtResource("59_vwuk8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.3408, 1.00477, 62.0135)
+
+[node name="House" parent="." instance=ExtResource("61_kycfx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.535, 20.1459, -41.1623)
+
+[editable path="Player"]
+[editable path="Player/Elon Model"]

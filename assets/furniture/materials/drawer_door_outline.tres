@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bsspbms5go61a"]
+
+[ext_resource type="Shader" uid="uid://biluacepvfae1" path="res://assets/shaders/outline.gdshader" id="1_4dqqu"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_4dqqu")
+shader_parameter/normal_threshold = 1.5342
+shader_parameter/depth_threshold = 1.415
+shader_parameter/depth_artifact_correction_coef = 2.395
+shader_parameter/outline_width = 1.87
+shader_parameter/outline_color = Color(0.64, 0.5472, 0.4544, 1)
+shader_parameter/enabled = false

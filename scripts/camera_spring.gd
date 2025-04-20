@@ -3,8 +3,8 @@ extends Node3D
 
 @export var mouse_sensitivity: float = .0007
 @onready var spring = $"Camera Spring"
-@export var max_length = 2.5
-@export var min_length = 1
+@export var max_length := 2.5
+@export var min_length := 1.
 
 var target_position: Vector3
 func _physics_process(delta: float) -> void:

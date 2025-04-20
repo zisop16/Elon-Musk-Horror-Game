@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://m5al8dycu8xs"]
+
+[resource]
+resource_name = "Display"
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.38, 0.342, 0.363533, 0)
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.1

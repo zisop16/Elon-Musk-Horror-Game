@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=4 uid="uid://qk6e8kyspqgs"]
+[gd_scene load_steps=12 format=4 uid="uid://qk6e8kyspqgs"]
 
 [ext_resource type="Texture2D" uid="uid://dp30lubhf10hm" path="res://assets/KayKit_HalloweenBits_1.0_FREE/halloweenbits_texture.png" id="1_i77nv"]
 [ext_resource type="Material" uid="uid://cb888dpkem1bk" path="res://assets/KayKit_HalloweenBits_1.0_FREE/fbx/custom_materials/light.tres" id="2_3lvwe"]
+[ext_resource type="PackedScene" uid="uid://dno7napwma2ex" path="res://scenes/particles/light_particles.tscn" id="3_y62kd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hc3tp"]
 resource_name = "HalloweenBits"
@@ -92,14 +93,8 @@ mesh = SubResource("ArrayMesh_u3cew")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("2_3lvwe")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="post_lantern_lantern"]
-transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 9.31323e-10, -0.0096312)
-light_color = Color(1, 1, 0.46, 1)
-light_energy = 4.0
-light_volumetric_fog_energy = 0.0
-shadow_enabled = true
-omni_range = 40.0
-omni_attenuation = 0.2
+[node name="Light Particles" parent="post_lantern_lantern" instance=ExtResource("3_y62kd")]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 9.31323e-10, -0.00939315)
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, 3, 0.999998)

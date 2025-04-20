@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://dno7napwma2ex"]
+
+[ext_resource type="Curve" uid="uid://b8vccpdq3uiqu" path="res://assets/particles/fade_in_out.tres" id="1_i0dme"]
+
+[sub_resource type="CurveTexture" id="CurveTexture_wha1x"]
+curve = ExtResource("1_i0dme")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_v6stm"]
+emission_shape = 2
+emission_sphere_radius = 0.8
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -0.200002
+radial_accel_max = -0.100002
+tangential_accel_min = -0.200002
+tangential_accel_max = 0.199998
+scale_min = 0.2
+alpha_curve = SubResource("CurveTexture_wha1x")
+hue_variation_min = -0.05
+hue_variation_max = 0.05
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_spkhy"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0.988667, 0.32, 0.109804)
+
+[sub_resource type="SphereMesh" id="SphereMesh_41j0u"]
+material = SubResource("StandardMaterial3D_spkhy")
+radius = 0.05
+height = 0.1
+
+[node name="Light Particles" type="GPUParticles3D"]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
+amount = 16
+lifetime = 10.0
+process_material = SubResource("ParticleProcessMaterial_v6stm")
+draw_pass_1 = SubResource("SphereMesh_41j0u")
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+light_color = Color(1, 1, 0.46, 1)
+light_energy = 4.0
+light_volumetric_fog_energy = 0.0
+shadow_enabled = true
+omni_range = 15.0
+omni_attenuation = 0.5

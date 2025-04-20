@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://bmv6g6ndyihx8"]
+
+[ext_resource type="Texture2D" uid="uid://cd1u4gxgwwcx4" path="res://assets/furniture/materials/chipboard/Chipboard004_1K-PNG_Color.png" id="1_pkewd"]
+[ext_resource type="Texture2D" uid="uid://c0hbyx0l3w3td" path="res://assets/furniture/materials/chipboard/Chipboard004_1K-PNG_Displacement.png" id="2_01qoj"]
+[ext_resource type="Texture2D" uid="uid://dmjwm8i6fck5x" path="res://assets/furniture/materials/chipboard/Chipboard004_1K-PNG_NormalGL.png" id="3_1gow1"]
+[ext_resource type="Texture2D" uid="uid://b2qc1fty4f7gb" path="res://assets/furniture/materials/chipboard/Chipboard004_1K-PNG_Roughness.png" id="4_man2q"]
+
+[resource]
+albedo_texture = ExtResource("1_pkewd")
+roughness_texture = ExtResource("4_man2q")
+normal_enabled = true
+normal_texture = ExtResource("3_1gow1")
+heightmap_enabled = true
+heightmap_texture = ExtResource("2_01qoj")

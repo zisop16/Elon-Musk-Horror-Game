@@ -1,6 +1,9 @@
 extends Node
 
-var logging = true
+var logging = false
+var player: Player
+var item_tooltip: ItemTooltip
+var item_interface: ItemInterface
 
 var logged_variables = {}
 var alpha = 10

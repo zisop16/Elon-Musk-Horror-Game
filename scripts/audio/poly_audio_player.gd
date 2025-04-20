@@ -2,6 +2,7 @@ class_name PolyAudioPlayer
 extends AudioStreamPlayer3D
 
 @export var sound_effects: Dictionary[String, SoundEffect]
+var streams: Dictionary[String, int]
 
 func _ready() -> void:
 	stream = AudioStreamPolyphonic.new()
@@ -25,4 +26,10 @@ func play_sound_effect(tag: String) -> void:
 		self.play()
 	var poly_stream_playback := self.get_stream_playback()
 
-	poly_stream_playback.play_stream(audio_stream, 0, sound_effect.volume, sound_effect.get_pitch())
+	streams[tag] = poly_stream_playback.play_stream(audio_stream, 0, sound_effect.volume, sound_effect.get_pitch())
+
+func stop_sound_effect(tag: String) -> void:
+	if not streams.has(tag):
+		return
+	var poly_stream_playback := self.get_stream_playback()
+	poly_stream_playback.stop_stream(streams[tag])

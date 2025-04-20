@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://dhkav21huycsh"]
+
+[ext_resource type="Texture2D" uid="uid://bsl6devn2don2" path="res://assets/furniture/materials/fabric/Fabric026_1K-PNG_Color.png" id="1_a7cwy"]
+[ext_resource type="Texture2D" uid="uid://48kcrerivgmf" path="res://assets/furniture/materials/fabric/Fabric026_1K-PNG_Displacement.png" id="2_2cqkm"]
+[ext_resource type="Texture2D" uid="uid://dt546fcrvccme" path="res://assets/furniture/materials/fabric/Fabric026_1K-PNG_NormalGL.png" id="3_k2oqw"]
+[ext_resource type="Texture2D" uid="uid://dhuk2s63f2bm" path="res://assets/furniture/materials/fabric/Fabric026_1K-PNG_Roughness.png" id="4_qk6fp"]
+
+[resource]
+albedo_texture = ExtResource("1_a7cwy")
+roughness_texture = ExtResource("4_qk6fp")
+normal_enabled = true
+normal_texture = ExtResource("3_k2oqw")
+heightmap_enabled = true
+heightmap_texture = ExtResource("2_2cqkm")
+uv1_scale = Vector3(4.41, 4.41, 4.41)
