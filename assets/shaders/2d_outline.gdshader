@@ -8,7 +8,7 @@ uniform float custom_alpha: hint_range(0, 1, .01) = .4;
 void fragment()
 {
     vec4 tcol = texture(TEXTURE, UV);
-    
+
     if (tcol.a == 0.0)
     {
         if (texture(TEXTURE, UV + vec2(0.0,          outLineSize)).a  != 0.0 ||
@@ -23,7 +23,7 @@ void fragment()
 				tcol.a = custom_alpha;
 			}
     } else {
-		tcol.a = custom_alpha;	
+		tcol.a = custom_alpha;
 	}
     COLOR = tcol;
 }

@@ -56,22 +56,8 @@ size = Vector3(1.8, 1.8, 1.8)
 
 [node name="chest" type="StaticBody3D"]
 
-[node name="Sketchfab_model" type="Node3D" parent="."]
-transform = Transform3D(0.01, 0, 0, 0, -4.37114e-10, 0.01, 0, -0.01, -4.37114e-10, 0, 0.5, 0)
-
-[node name="chest_fbx" type="Node3D" parent="Sketchfab_model"]
-transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)
-
-[node name="Object_2" type="Node3D" parent="Sketchfab_model/chest_fbx"]
-
-[node name="RootNode" type="Node3D" parent="Sketchfab_model/chest_fbx/Object_2"]
-
-[node name="Chest_0_A" type="Node3D" parent="Sketchfab_model/chest_fbx/Object_2/RootNode"]
-transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, -6.36512, -87.9849, -3.57628e-05)
-
-[node name="Object_5" type="Node3D" parent="Sketchfab_model/chest_fbx/Object_2/RootNode/Chest_0_A"]
-
-[node name="Skeleton3D" type="Skeleton3D" parent="Sketchfab_model/chest_fbx/Object_2/RootNode/Chest_0_A/Object_5"]
+[node name="Skeleton3D" type="Skeleton3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -1.6292e-07, 1, 0, -1, -1.6292e-07, -0.0636512, -0.379849, -3.19169e-07)
 bones/0/name = "_rootJoint"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
@@ -108,15 +94,9 @@ bones/4/position = Vector3(0, 0.721004, 0)
 bones/4/rotation = Quaternion(0, 0, 0, 1)
 bones/4/scale = Vector3(1, 1, 1)
 
-[node name="Object_12" type="MeshInstance3D" parent="Sketchfab_model/chest_fbx/Object_2/RootNode/Chest_0_A/Object_5/Skeleton3D"]
+[node name="Object_12" type="MeshInstance3D" parent="Skeleton3D"]
 mesh = SubResource("ArrayMesh_03hc4")
 skin = SubResource("Skin_ggehi")
-
-[node name="Object_11" type="Node3D" parent="Sketchfab_model/chest_fbx/Object_2/RootNode/Chest_0_A/Object_5"]
-transform = Transform3D(100, 0, 0, 0, 6.12323e-15, 100, 0, -100, 6.12323e-15, 1.78814e-07, -2.38419e-06, 0)
-
-[node name="Chest_0" type="Node3D" parent="Sketchfab_model/chest_fbx/Object_2/RootNode"]
-transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, 0, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

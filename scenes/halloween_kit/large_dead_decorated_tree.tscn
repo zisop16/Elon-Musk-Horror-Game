@@ -1,11 +1,13 @@
-[gd_scene load_steps=8 format=4 uid="uid://cjsb3guv608vj"]
+[gd_scene load_steps=10 format=4 uid="uid://cjsb3guv608vj"]
 
 [ext_resource type="Texture2D" uid="uid://dp30lubhf10hm" path="res://assets/KayKit_HalloweenBits_1.0_FREE/halloweenbits_texture.png" id="1_7j4db"]
-[ext_resource type="Script" uid="uid://bvsb75ttnrgct" path="res://scripts/interactions/mineable.gd" id="1_mkugm"]
 [ext_resource type="PackedScene" uid="uid://dno7napwma2ex" path="res://scenes/particles/light_particles.tscn" id="2_mkugm"]
+[ext_resource type="PackedScene" uid="uid://dyvcurcwcrsx0" path="res://scenes/mine_component.tscn" id="3_hq2b2"]
+[ext_resource type="PackedScene" uid="uid://drtvxnbrms54n" path="res://scenes/items/wood_block.tscn" id="4_ngt75"]
+[ext_resource type="PackedScene" uid="uid://cvamxjbghe44p" path="res://scenes/particles/tree_explosion.tscn" id="5_ngt75"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_7j4db"]
-height = 4.51807
+height = 5.11353
 radius = 0.230469
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cvsk5"]
@@ -50,10 +52,9 @@ shadow_mesh = SubResource("ArrayMesh_8p1oy")
 
 [node name="Large Dead Decorated Tree" type="StaticBody3D"]
 collision_layer = 17
-script = ExtResource("1_mkugm")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.24851, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.54624, 0)
 shape = SubResource("CylinderShape3D_7j4db")
 
 [node name="tree_dead_large_decorated2" type="MeshInstance3D" parent="."]
@@ -63,3 +64,8 @@ skeleton = NodePath("")
 
 [node name="Light Particles" parent="." instance=ExtResource("2_mkugm")]
 transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, -0.815401, 2.39169, -0.455133)
+
+[node name="MineComponent" parent="." instance=ExtResource("3_hq2b2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+dropped_item = ExtResource("4_ngt75")
+particle_effect = ExtResource("5_ngt75")

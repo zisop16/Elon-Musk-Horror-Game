@@ -1,19 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://chewp5rsgq5q4"]
+[gd_scene load_steps=6 format=3 uid="uid://chewp5rsgq5q4"]
 
-[ext_resource type="Script" uid="uid://bvsb75ttnrgct" path="res://scripts/interactions/mineable.gd" id="1_3ll5f"]
 [ext_resource type="PackedScene" uid="uid://bc4fw2c47al8p" path="res://assets/KayKit_HalloweenBits_1.0_FREE/fbx/tree_dead_small.fbx" id="1_cq00y"]
+[ext_resource type="PackedScene" uid="uid://dyvcurcwcrsx0" path="res://scenes/mine_component.tscn" id="2_3ll5f"]
+[ext_resource type="PackedScene" uid="uid://drtvxnbrms54n" path="res://scenes/items/wood_block.tscn" id="3_aac6m"]
+[ext_resource type="PackedScene" uid="uid://cvamxjbghe44p" path="res://scenes/particles/tree_explosion.tscn" id="4_b7glr"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_3ll5f"]
-height = 2.40869
+height = 2.78491
 radius = 0.217773
 
 [node name="Small Dead Tree" type="StaticBody3D"]
 collision_layer = 17
-script = ExtResource("1_3ll5f")
 
 [node name="tree_dead_small" parent="." instance=ExtResource("1_cq00y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.22485, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.41296, 0)
 shape = SubResource("CylinderShape3D_3ll5f")
+
+[node name="MineComponent" parent="." instance=ExtResource("2_3ll5f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+dropped_item = ExtResource("3_aac6m")
+particle_effect = ExtResource("4_b7glr")

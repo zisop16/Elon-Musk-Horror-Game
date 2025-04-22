@@ -1,16 +1,17 @@
 [gd_scene load_steps=13 format=4 uid="uid://drtvxnbrms54n"]
 
-[ext_resource type="Script" uid="uid://cjlalpfwb0nvt" path="res://scripts/items/wood_block.gd" id="1_itjkh"]
-[ext_resource type="Texture2D" uid="uid://bycr481wjrvmb" path="res://assets/minecraft/wood/minecraft_wood_block_0.jpg" id="1_uutpy"]
-[ext_resource type="Texture2D" uid="uid://f5sgqprb34v6" path="res://assets/minecraft/wood/minecraft_wood_block_1.jpg" id="2_bybdu"]
-[ext_resource type="Material" uid="uid://d3ok12nyduvt8" path="res://assets/minecraft/wood/wood_block_outline.tres" id="3_eky8n"]
-[ext_resource type="PackedScene" uid="uid://dvrh54jtkocta" path="res://scenes/interaction_component.tscn" id="5_rx5jh"]
+[ext_resource type="Script" uid="uid://cjlalpfwb0nvt" path="res://scripts/items/wood_block.gd" id="1_hi3ax"]
+[ext_resource type="Texture2D" uid="uid://bycr481wjrvmb" path="res://assets/minecraft/wood/minecraft_wood_block_0.jpg" id="2_wvdb4"]
+[ext_resource type="Material" uid="uid://d3ok12nyduvt8" path="res://assets/minecraft/wood/wood_block_outline.tres" id="3_y35kf"]
+[ext_resource type="Texture2D" uid="uid://f5sgqprb34v6" path="res://assets/minecraft/wood/minecraft_wood_block_1.jpg" id="4_4omsd"]
+[ext_resource type="PackedScene" uid="uid://dvrh54jtkocta" path="res://scenes/interaction_component.tscn" id="5_3y27j"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x7p02"]
+resource_local_to_scene = true
 resource_name = "Material.001"
-next_pass = ExtResource("3_eky8n")
+next_pass = ExtResource("3_y35kf")
 cull_mode = 2
-albedo_texture = ExtResource("1_uutpy")
+albedo_texture = ExtResource("2_wvdb4")
 roughness = 0.804041
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_uwgdq"]
@@ -49,9 +50,9 @@ shadow_mesh = SubResource("ArrayMesh_uwgdq")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ovruq"]
 resource_local_to_scene = true
 resource_name = "Material"
-next_pass = ExtResource("3_eky8n")
+next_pass = ExtResource("3_y35kf")
 cull_mode = 2
-albedo_texture = ExtResource("2_bybdu")
+albedo_texture = ExtResource("4_4omsd")
 roughness = 0.804041
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_tw8hn"]
@@ -88,13 +89,14 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_tw8hn")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h55ws"]
+size = Vector3(0.5, 0.5, 0.5)
 
 [node name="WoodBlock" type="RigidBody3D"]
 mass = 2.0
-script = ExtResource("1_itjkh")
+script = ExtResource("1_hi3ax")
 
 [node name="Model" type="Node3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, -2.18557e-08, 0.5, 0, -0.5, -2.18557e-08, 0, 0.5, 0)
+transform = Transform3D(0.25, 0, 0, 0, -1.09278e-08, 0.25, 0, -0.25, -1.09278e-08, 0, 0.25, 0)
 
 [node name="Cube_Material_001_0" type="MeshInstance3D" parent="Model"]
 mesh = SubResource("ArrayMesh_cq43n")
@@ -105,11 +107,11 @@ material_override = SubResource("StandardMaterial3D_ovruq")
 mesh = SubResource("ArrayMesh_vk3hr")
 skeleton = NodePath("")
 
-[node name="InteractionComponent" parent="." node_paths=PackedStringArray("outline_material_holder") instance=ExtResource("5_rx5jh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.06897, 0)
+[node name="InteractionComponent" parent="." node_paths=PackedStringArray("outline_material_holder") instance=ExtResource("5_3y27j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.262474, 0)
 outline_material_holder = NodePath("../Model/Cube_Material_0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 visible = false
 shape = SubResource("BoxShape3D_h55ws")

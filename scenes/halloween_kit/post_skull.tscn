@@ -1,11 +1,11 @@
-[gd_scene load_steps=10 format=4 uid="uid://b7mt7q0nsjjpr"]
+[gd_scene load_steps=9 format=4 uid="uid://b7mt7q0nsjjpr"]
 
-[ext_resource type="Texture2D" uid="uid://dp30lubhf10hm" path="res://assets/KayKit_HalloweenBits_1.0_FREE/halloweenbits_texture.png" id="1_mihfd"]
+[ext_resource type="Texture2D" uid="uid://dp30lubhf10hm" path="res://assets/KayKit_HalloweenBits_1.0_FREE/halloweenbits_texture.png" id="1_exdx8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1f7gw"]
 resource_name = "HalloweenBits"
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("1_mihfd")
+albedo_texture = ExtResource("1_exdx8")
 emission_enabled = true
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_lspx6"]
@@ -74,39 +74,34 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_74m8u")
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_mihfd"]
-radius = 0.446
+[sub_resource type="BoxShape3D" id="BoxShape3D_lfxug"]
+size = Vector3(0.3, 3.25928, 0.3)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ywsbm"]
-size = Vector3(0.34613, 1.31917, 0.262634)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_2rqau"]
-size = Vector3(0.34613, 3.26556, 0.254395)
+[sub_resource type="BoxShape3D" id="BoxShape3D_2gfyy"]
+size = Vector3(0.3, 1.34412, 0.3)
 
 [node name="Post Skull" type="StaticBody3D"]
 
-[node name="post_skull" type="MeshInstance3D" parent="."]
+[node name="post_skull2" type="MeshInstance3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, 0, 0)
 mesh = SubResource("ArrayMesh_xiavm")
 skeleton = NodePath("")
 
-[node name="post_skull_skull" type="MeshInstance3D" parent="post_skull"]
+[node name="post_skull_skull" type="MeshInstance3D" parent="post_skull2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.62939e-08, -0.00999996, 0.03)
 mesh = SubResource("ArrayMesh_dfp6o")
 skeleton = NodePath("")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.998834, -0.0482919, 0, 0.0482919, -0.998834, 0, 2.13269, 0.930709)
-shape = SubResource("SphereShape3D_mihfd")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.62163, 0)
+shape = SubResource("BoxShape3D_lfxug")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.024153, -0.999709, 0, 0.999709, 0.024153, 0, 3.15029, 0.67828)
-shape = SubResource("BoxShape3D_ywsbm")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.999777, 0.0211344, 0, -0.0211344, 0.999777, 0, 1.6533, -0.0376134)
-shape = SubResource("BoxShape3D_2rqau")
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 3.17303, 0.688293)
+shape = SubResource("BoxShape3D_2gfyy")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.13877, 1.16317)
-omni_range = 7.0
+light_color = Color(0.958833, 1, 0.81, 1)
+light_energy = 3.59
+omni_range = 6.0
+omni_attenuation = 0.515

@@ -1,8 +1,9 @@
-class_name Mineable
-extends StaticBody3D
+class_name MineComponent
+extends Node3D
 
 @export var requires_pickaxe = false
 @export var dropped_item: PackedScene
+@export var particle_effect: PackedScene = null
 
 ## Generate uniform random euler rotation
 func generate_random_rotation() -> Vector3:
@@ -17,8 +18,11 @@ func generate_random_rotation() -> Vector3:
 
 func mine():
 	var item: Item = dropped_item.instantiate()
-	item.global_position = global_position
-	item.global_position.y += .5
-	item.rotation = generate_random_rotation()
+	if particle_effect != null:
+		var effect: GPUParticles3D = particle_effect.instantiate()
+		get_tree().root.add_child(effect)
+		effect.global_position = global_position
 	get_tree().root.add_child(item)
-	queue_free()
+	item.global_position = global_position
+	item.rotation = generate_random_rotation()
+	get_parent().queue_free()

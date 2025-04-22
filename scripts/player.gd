@@ -13,10 +13,12 @@ extends CharacterBody3D
 @onready var sfx_player: PolyAudioPlayer = $SFXPlayer
 @onready var interaction_ray: RayCast3D = $"Camera Pivot/Camera3D/Interaction"
 
-@export var chainsaw_pos: Node3D
-@export var flashlight_pos: Node3D
-@export var remote_pos: Node3D
-@export var mining_hitbox: Area3D
+
+@onready var chainsaw_pos: Node3D = $"Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D/Chainsaw"
+@onready var flashlight_pos: Node3D = $"Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D/Flashlight"
+@onready var remote_pos: Node3D = $"Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D/TvRemote"
+@onready var wood_block_pos: Node3D = $"Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D/WoodBlock"
+@onready var mining_hitbox: Area3D = $"Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D/MiningHitbox"
 
 var inventory: Array[Item]
 var equipped_item := 0
@@ -94,6 +96,8 @@ func attach_item(item: Item):
 		item.attach(chainsaw_pos)
 	elif item is TvRemote:
 		item.attach(remote_pos)
+	elif item is WoodBlock:
+		item.attach(wood_block_pos)
 
 func handle_interactions():
 	# Disable the outline of the object hovered on previous frame
@@ -154,44 +158,47 @@ func handle_items():
 	var use_item = Input.is_action_just_pressed("Use")
 	if not use_item:
 		return
-	if equipped == null:
-		self.mine()
 	if equipped is Flashlight:
 		equipped.toggle()
 	elif equipped is TvRemote:
 		equipped.toggle()
+	else:
+		# All items without uses will just mine
+		print("hi")
+		self.mine()
 
 var mining := false
 
 func mine():
 	if mining:
 		return
+	self.sfx_player.play_sound_effect("mine")
 	anim_tree["parameters/mine/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 	mining = true
 
 ## Called by mining animation
 func mine_effect():
 	mining = false
-	var targets: Array[Mineable] = []
-	targets.assign(mining_hitbox.get_overlapping_bodies())
+	var targets := mining_hitbox.get_overlapping_bodies()
 	print(targets)
 	if targets.size() == 0:
 		return
 	var holding_pickaxe := self.inventory[equipped_item] is Pickaxe
 	var min_dist: float
-	var closest_valid_target: Mineable = null
+	var closest_valid_target: MineComponent = null
 	for target in targets:
-		if not holding_pickaxe and target.requires_pickaxe:
+		var target_component = target.find_child("MineComponent")
+		if not holding_pickaxe and target_component.requires_pickaxe:
 			continue
 		var dist: float = (target.global_position - global_position).length_squared()
 		if closest_valid_target == null:
 			min_dist = dist
-			closest_valid_target = target
+			closest_valid_target = target_component
 		elif dist < min_dist:
 			min_dist = dist
-			closest_valid_target = target
-	print(closest_valid_target)
+			closest_valid_target = target_component
 	if closest_valid_target != null:
+		print(min_dist)
 		closest_valid_target.mine()
 
 func update_tree():

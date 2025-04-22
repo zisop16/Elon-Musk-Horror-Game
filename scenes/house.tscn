@@ -165,49 +165,6 @@ albedo_texture = ExtResource("23_c2gpw")
 size = Vector2(2.26, 2.26)
 orientation = 1
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_kn7tx"]
-resource_local_to_scene = true
-render_priority = -1
-shader = ExtResource("28_q425y")
-shader_parameter/normal_threshold = 0.917
-shader_parameter/depth_threshold = 0.14
-shader_parameter/depth_artifact_correction_coef = 2.0
-shader_parameter/outline_width = 1.0
-shader_parameter/outline_color = Color(0.8, 1, 0.843333, 1)
-shader_parameter/enabled = false
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xdv06"]
-resource_local_to_scene = true
-resource_name = "Door_Mat"
-next_pass = SubResource("ShaderMaterial_kn7tx")
-albedo_texture = ExtResource("26_p4eap")
-metallic = 1.0
-metallic_texture = ExtResource("27_80gfe")
-metallic_texture_channel = 2
-roughness_texture = ExtResource("27_80gfe")
-roughness_texture_channel = 1
-normal_enabled = true
-normal_texture = ExtResource("29_in3qe")
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_0l2s1"]
-resource_local_to_scene = true
-_surfaces = [{
-"aabb": AABB(-4.55222, -0.219565, 0.00125216, 9.10444, 0.43913, 20.7697),
-"attribute_data": PackedByteArray("eduUOCBnfj9525Q4IGd+P/nUmD4FnCc/+dSYPgWcJz9PFpU+ywcmP08WlT7LByY/oP3xO1r7fz+g/fE7Wvt/P3ZO2j4dygA/dk7aPh3KAD/Lj9Y+yGv+PsuP1j7Ia/4+u603PySrIT67rTc/JKshPmbONT89Whs+Zs41Pz1aGz55alg/l3DMO3lqWD+XcMw7JItWP8fzlDgki1Y/x/OUODJkWj62seg+MmRaPrax6D5bytI+4Fk1O1vK0j7gWTU7MmRaPuBZNTsyZFo+4Fk1O1vK0j62seg+W8rSPrax6D7HZEw+DFk1O8dkTD4MWTU7piCaOrax6D6mIJo6trHoPsdkTD62seg+x2RMPrax6D7/H5o6r1k1O/8fmjqvWTU7"),
-"bone_aabbs": [AABB(0, 0, 0, -1, -1, -1), AABB(0, 0, 0, -1, -1, -1), AABB(-4.55222, -0.219565, 0.00125216, 9.10444, 0.43913, 20.7697)],
-"format": 34359745591,
-"index_count": 36,
-"index_data": PackedByteArray("AAABAAIAAAADAAEABAACAAEABAAFAAIABgAFAAQABgAHAAUACAAHAAYACAAJAAcACgALAAwACgANAAsADgAPABAADgARAA8A"),
-"material": SubResource("StandardMaterial3D_xdv06"),
-"name": "Door_Mat",
-"primitive": 3,
-"skin_data": PackedByteArray("AgACAAIAAgD//wAAAAAAAAIAAgACAAIA//8AAAAAAAACAAIAAgACAP//AAAAAAAAAgACAAIAAgD//wAAAAAAAAIAAgACAAIA//8AAAAAAAACAAIAAgACAP//AAAAAAAAAgACAAIAAgD//wAAAAAAAAIAAgACAAIA//8AAAAAAAACAAIAAgACAP//AAAAAAAAAgACAAIAAgD//wAAAAAAAAIAAgACAAIA//8AAAAAAAACAAIAAgACAP//AAAAAAAAAgACAAIAAgD//wAAAAAAAAIAAgACAAIA//8AAAAAAAACAAIAAgACAP//AAAAAAAAAgACAAIAAgD//wAAAAAAAAIAAgACAAIA//8AAAAAAAACAAIAAgACAP//AAAAAAAA"),
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 18,
-"vertex_data": PackedByteArray("xquRwLLVYL6AH6Q6xquRwLTVYD7qKqZBxquRwLLVYL7qKqZBxquRwLTVYD6AH6Q6xquRQLTVYD7qKqZBxquRQLLVYL7qKqZBxquRQLTVYD6AH6Q6xquRQLLVYL6AH6Q6xquRwLTVYD6AH6Q6xquRwLLVYL6AH6Q6xquRwLTVYD6AH6Q6xquRQLTVYD7qKqZBxquRwLTVYD7qKqZBxquRQLTVYD6AH6Q6xquRQLLVYL6AH6Q6xquRwLLVYL7qKqZBxquRQLLVYL7qKqZBxquRwLLVYL6AH6Q6qiqqKv8/BtRUVaqq/7/b2VRVVFU5jOLZqipU1XuD/9+qqqqqOczh+aqqVFVHzP/fVNVU1bcz/99U1aoqxTPh+aoqVNUoaBPUqiqqKv8/wuGqKlTV/9//36qqqqr/3/+fVFWqqv+//89U1VTV/7//r1TVqir/v//PVFVUVf+//6+qqlRV/9//36oqqir/3/+f")
-}]
-blend_shape_mode = 0
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_28gjw"]
 resource_name = "HalloweenBits"
 vertex_color_use_as_albedo = true
@@ -313,6 +270,49 @@ scale_min = 0.2
 scale_curve = SubResource("CurveTexture_pncxf")
 color_ramp = SubResource("GradientTexture1D_gmnes")
 alpha_curve = SubResource("CurveTexture_h47lg")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kn7tx"]
+resource_local_to_scene = true
+render_priority = -1
+shader = ExtResource("28_q425y")
+shader_parameter/normal_threshold = 0.917
+shader_parameter/depth_threshold = 0.14
+shader_parameter/depth_artifact_correction_coef = 2.0
+shader_parameter/outline_width = 1.0
+shader_parameter/outline_color = Color(0.8, 1, 0.843333, 1)
+shader_parameter/enabled = false
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xdv06"]
+resource_local_to_scene = true
+resource_name = "Door_Mat"
+next_pass = SubResource("ShaderMaterial_kn7tx")
+albedo_texture = ExtResource("26_p4eap")
+metallic = 1.0
+metallic_texture = ExtResource("27_80gfe")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("27_80gfe")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_texture = ExtResource("29_in3qe")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_0l2s1"]
+resource_local_to_scene = true
+_surfaces = [{
+"aabb": AABB(-4.55222, -0.219565, 0.00125216, 9.10444, 0.43913, 20.7697),
+"attribute_data": PackedByteArray("eduUOCBnfj9525Q4IGd+P/nUmD4FnCc/+dSYPgWcJz9PFpU+ywcmP08WlT7LByY/oP3xO1r7fz+g/fE7Wvt/P3ZO2j4dygA/dk7aPh3KAD/Lj9Y+yGv+PsuP1j7Ia/4+u603PySrIT67rTc/JKshPmbONT89Whs+Zs41Pz1aGz55alg/l3DMO3lqWD+XcMw7JItWP8fzlDgki1Y/x/OUODJkWj62seg+MmRaPrax6D5bytI+4Fk1O1vK0j7gWTU7MmRaPuBZNTsyZFo+4Fk1O1vK0j62seg+W8rSPrax6D7HZEw+DFk1O8dkTD4MWTU7piCaOrax6D6mIJo6trHoPsdkTD62seg+x2RMPrax6D7/H5o6r1k1O/8fmjqvWTU7"),
+"bone_aabbs": [AABB(0, 0, 0, -1, -1, -1), AABB(0, 0, 0, -1, -1, -1), AABB(-4.55222, -0.219565, 0.00125216, 9.10444, 0.43913, 20.7697)],
+"format": 34359745591,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAACAAEABAAFAAIABgAFAAQABgAHAAUACAAHAAYACAAJAAcACgALAAwACgANAAsADgAPABAADgARAA8A"),
+"material": SubResource("StandardMaterial3D_xdv06"),
+"name": "Door_Mat",
+"primitive": 3,
+"skin_data": PackedByteArray("AgACAAIAAgD//wAAAAAAAAIAAgACAAIA//8AAAAAAAACAAIAAgACAP//AAAAAAAAAgACAAIAAgD//wAAAAAAAAIAAgACAAIA//8AAAAAAAACAAIAAgACAP//AAAAAAAAAgACAAIAAgD//wAAAAAAAAIAAgACAAIA//8AAAAAAAACAAIAAgACAP//AAAAAAAAAgACAAIAAgD//wAAAAAAAAIAAgACAAIA//8AAAAAAAACAAIAAgACAP//AAAAAAAAAgACAAIAAgD//wAAAAAAAAIAAgACAAIA//8AAAAAAAACAAIAAgACAP//AAAAAAAAAgACAAIAAgD//wAAAAAAAAIAAgACAAIA//8AAAAAAAACAAIAAgACAP//AAAAAAAA"),
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 18,
+"vertex_data": PackedByteArray("xquRwLLVYL6AH6Q6xquRwLTVYD7qKqZBxquRwLLVYL7qKqZBxquRwLTVYD6AH6Q6xquRQLTVYD7qKqZBxquRQLLVYL7qKqZBxquRQLTVYD6AH6Q6xquRQLLVYL6AH6Q6xquRwLTVYD6AH6Q6xquRwLLVYL6AH6Q6xquRwLTVYD6AH6Q6xquRQLTVYD7qKqZBxquRwLTVYD7qKqZBxquRQLTVYD6AH6Q6xquRQLLVYL6AH6Q6xquRwLLVYL7qKqZBxquRQLLVYL7qKqZBxquRwLLVYL6AH6Q6qiqqKv8/BtRUVaqq/7/b2VRVVFU5jOLZqipU1XuD/9+qqqqqOczh+aqqVFVHzP/fVNVU1bcz/99U1aoqxTPh+aoqVNUoaBPUqiqqKv8/wuGqKlTV/9//36qqqqr/3/+fVFWqqv+//89U1VTV/7//r1TVqir/v//PVFVUVf+//6+qqlRV/9//36oqqir/3/+f")
+}]
+blend_shape_mode = 0
 
 [node name="House" type="Node3D"]
 
@@ -572,14 +572,121 @@ mesh = SubResource("QuadMesh_q425y")
 [node name="Two Seater Sofa" parent="Props" instance=ExtResource("25_c2gpw")]
 transform = Transform3D(1.69371, 0, -1.06365, 0, 2, 0, 1.06365, 0, 1.69371, 3.21639, 0.0835211, -17.1336)
 
+[node name="Chair2" parent="Props" instance=ExtResource("10_3853c")]
+transform = Transform3D(0.873313, 0, -0.487159, 0, 1, 0, 0.487159, 0, 0.873313, 2.51742, 1.27451, -17.594)
+
+[node name="Plaque Candles" type="StaticBody3D" parent="Props"]
+transform = Transform3D(0.722569, 0, -0.691299, 0, 1, 0, 0.691299, 0, 0.722569, 0.960318, 0.072134, -11.428)
+
+[node name="plaque_candles2" type="MeshInstance3D" parent="Props/Plaque Candles"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, 0, 0)
+mesh = SubResource("ArrayMesh_2gu20")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="Props/Plaque Candles"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_qrehk")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Props/Plaque Candles"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_chd0s")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Props/Plaque Candles"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_xvo6n")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Props/Plaque Candles"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_5kdq5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Props/Plaque Candles"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_wl78n")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="Props/Plaque Candles"]
+transform = Transform3D(1, 0, 0, 0, 0.999654, 0.0263165, 0, -0.0263165, 0.999654, 0.293707, 1.02087, 0.215975)
+amount = 30
+lifetime = 1.5
+process_material = SubResource("ParticleProcessMaterial_wl78n")
+draw_pass_1 = SubResource("SphereMesh_cllgp")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Props/Plaque Candles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.291164, 0.918212, -0.17124)
+amount = 10
+lifetime = 1.5
+process_material = SubResource("ParticleProcessMaterial_k8pu5")
+draw_pass_1 = SubResource("SphereMesh_cllgp")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Props/Plaque Candles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.242853, 1.24896, 0.145953)
+light_color = Color(1, 0.934, 0.78, 1)
+light_energy = 3.25
+light_volumetric_fog_energy = 0.0
+omni_range = 12.085
+omni_attenuation = 0.683
+
+[node name="Yellow Pumpkin" parent="Props" instance=ExtResource("29_k27xr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.38053, 0.085883, -13.7589)
+
+[node name="Yellow Pumpkin2" parent="Props" instance=ExtResource("29_k27xr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.18609, 0.0858828, -15.32)
+
+[node name="Yellow Pumpkin3" parent="Props" instance=ExtResource("29_k27xr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.739153, 0.085883, -13.9394)
+
+[node name="Yellow Pumpkin4" parent="Props" instance=ExtResource("29_k27xr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.645602, 0.0858835, -16.3099)
+
+[node name="Yellow Pumpkin5" parent="Props" instance=ExtResource("29_k27xr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.684222, 0.0858818, -15.4875)
+
+[node name="Yellow Pumpkin6" parent="Props" instance=ExtResource("29_k27xr")]
+transform = Transform3D(0.930886, 0.0953593, 0.352644, -0.089175, 0.995443, -0.0337818, -0.354258, 0, 0.935148, 0.189084, 0.677186, -17.5577)
+
+[node name="Yellow Pumpkin7" parent="Props" instance=ExtResource("29_k27xr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.27402, 0.0858833, -17.251)
+
+[node name="Yellow Pumpkin8" parent="Props" instance=ExtResource("29_k27xr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.87679, 0.0858828, -15.318)
+
+[node name="Yellow Pumpkin9" parent="Props" instance=ExtResource("29_k27xr")]
+transform = Transform3D(0.988822, 0.149104, 0, -0.149104, 0.988822, 0, 0, 0, 1, -3.75361, 0.580444, -15.5769)
+
+[node name="Yellow Pumpkin10" parent="Props" instance=ExtResource("29_k27xr")]
+transform = Transform3D(0.752668, 0, -0.658401, 0, 1, 0, 0.658401, 0, 0.752668, -2.3222, 0.631877, -15.4686)
+
+[node name="Yellow Pumpkin11" parent="Props" instance=ExtResource("29_k27xr")]
+transform = Transform3D(1, 0, 0, 0, 0.899276, -0.437383, 0, 0.437383, 0.899276, -1.02181, 1.37398, -16.1912)
+
+[node name="Yellow Pumpkin12" parent="Props" instance=ExtResource("29_k27xr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.00943, 0.631877, -14.208)
+
+[node name="Yellow Pumpkin13" parent="Props" instance=ExtResource("29_k27xr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.370194, 0.631876, -15.3648)
+
+[node name="Yellow Pumpkin14" parent="Props" instance=ExtResource("29_k27xr")]
+transform = Transform3D(0.543013, 0, -0.839724, 0, 1, 0, 0.839724, 0, 0.543013, -2.03927, 0.631877, -16.9257)
+
+[node name="Wardrobe2" parent="Props" instance=ExtResource("9_7685u")]
+transform = Transform3D(1.20821, 0, -0.888948, 0, 1.5, 0, 0.888948, 0, 1.20821, 6.583, 0.0825001, -15.1036)
+
+[node name="Drawer2" parent="Props" instance=ExtResource("7_ptc3g")]
+transform = Transform3D(0.820531, 0, -0.571602, 0, 1, 0, 0.571602, 0, 0.820531, 6.3218, 0.763631, -15.5581)
+
+[node name="Yellow Pumpkin15" parent="Props" instance=ExtResource("29_k27xr")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 6.13602, 0.933518, -15.6557)
+
+[node name="Yellow Pumpkin16" parent="Props" instance=ExtResource("29_k27xr")]
+transform = Transform3D(0.230619, 0, -0.191872, 0, 0.3, 0, 0.191872, 0, 0.230619, 6.41798, 0.933518, -15.426)
+
+[node name="Batteries" parent="Props" instance=ExtResource("30_4jkga")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.03391, 0.777996, -14.9916)
+
 [node name="Door" parent="." instance=ExtResource("18_82h1m")]
 transform = Transform3D(1.2127, 0, 0.468356, 0, 1.3, 0, -0.468356, 0, 1.2127, 8.40878, 0.174621, -5.87151)
 
 [node name="Starting Door" parent="." instance=ExtResource("18_82h1m")]
 transform = Transform3D(0.423689, 0, 1.22902, 0, 1.3, 0, -1.22902, 0, 0.423689, -0.176992, 0.17462, 3.20815)
-
-[node name="BoneAttachment3D" parent="Starting Door/Skeleton3D" index="0"]
-transform = Transform3D(5.04992e-07, 1, 3.96347e-06, 0.0223707, 4.05312e-06, -0.99975, -0.99975, 6.8347e-07, -0.0223706, -4.29104, -8.34465e-07, 9.97645)
 
 [node name="Object_13" parent="Starting Door/Skeleton3D" index="2"]
 mesh = SubResource("ArrayMesh_0l2s1")
@@ -589,116 +696,6 @@ script = ExtResource("30_m31jp")
 
 [node name="Door3" parent="." instance=ExtResource("18_82h1m")]
 transform = Transform3D(-5.68248e-08, 0, 1.3, 0, 1.3, 0, -1.3, 0, -5.68248e-08, 16.3319, 0.17462, 3.66353)
-
-[node name="Chair" parent="." instance=ExtResource("10_3853c")]
-transform = Transform3D(0.873313, 0, -0.487159, 0, 1, 0, 0.487159, 0, 0.873313, 2.51742, 1.27451, -17.594)
-
-[node name="Plaque Candles" type="StaticBody3D" parent="."]
-transform = Transform3D(0.722569, 0, -0.691299, 0, 1, 0, 0.691299, 0, 0.722569, 0.960318, 0.072134, -11.428)
-
-[node name="plaque_candles2" type="MeshInstance3D" parent="Plaque Candles"]
-transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, 0, 0)
-mesh = SubResource("ArrayMesh_2gu20")
-skeleton = NodePath("")
-
-[node name="CollisionShape3D5" type="CollisionShape3D" parent="Plaque Candles"]
-transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, 0, 0)
-shape = SubResource("ConvexPolygonShape3D_qrehk")
-
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="Plaque Candles"]
-transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, 0, 0)
-shape = SubResource("ConvexPolygonShape3D_chd0s")
-
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="Plaque Candles"]
-transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, 0, 0)
-shape = SubResource("ConvexPolygonShape3D_xvo6n")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Plaque Candles"]
-transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, 0, 0)
-shape = SubResource("ConvexPolygonShape3D_5kdq5")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Plaque Candles"]
-transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, 0, 0)
-shape = SubResource("ConvexPolygonShape3D_wl78n")
-
-[node name="GPUParticles3D2" type="GPUParticles3D" parent="Plaque Candles"]
-transform = Transform3D(1, 0, 0, 0, 0.999654, 0.0263165, 0, -0.0263165, 0.999654, 0.293707, 1.02087, 0.215975)
-amount = 30
-lifetime = 1.5
-process_material = SubResource("ParticleProcessMaterial_wl78n")
-draw_pass_1 = SubResource("SphereMesh_cllgp")
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="Plaque Candles"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.291164, 0.918212, -0.17124)
-amount = 10
-lifetime = 1.5
-process_material = SubResource("ParticleProcessMaterial_k8pu5")
-draw_pass_1 = SubResource("SphereMesh_cllgp")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Plaque Candles"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.242853, 1.24896, 0.145953)
-light_color = Color(1, 0.934, 0.78, 1)
-light_energy = 3.25
-light_volumetric_fog_energy = 0.0
-omni_range = 12.085
-omni_attenuation = 0.683
-
-[node name="Yellow Pumpkin" parent="." instance=ExtResource("29_k27xr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.38053, 0.085883, -13.7589)
-
-[node name="Yellow Pumpkin2" parent="." instance=ExtResource("29_k27xr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.18609, 0.0858828, -15.32)
-
-[node name="Yellow Pumpkin3" parent="." instance=ExtResource("29_k27xr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.739153, 0.085883, -13.9394)
-
-[node name="Yellow Pumpkin4" parent="." instance=ExtResource("29_k27xr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.645602, 0.0858835, -16.3099)
-
-[node name="Yellow Pumpkin5" parent="." instance=ExtResource("29_k27xr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.684222, 0.0858818, -15.4875)
-
-[node name="Yellow Pumpkin6" parent="." instance=ExtResource("29_k27xr")]
-transform = Transform3D(0.930886, 0.0953593, 0.352644, -0.089175, 0.995443, -0.0337818, -0.354258, 0, 0.935148, 0.189084, 0.677186, -17.5577)
-
-[node name="Yellow Pumpkin7" parent="." instance=ExtResource("29_k27xr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.27402, 0.0858833, -17.251)
-
-[node name="Yellow Pumpkin8" parent="." instance=ExtResource("29_k27xr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.87679, 0.0858828, -15.318)
-
-[node name="Yellow Pumpkin9" parent="." instance=ExtResource("29_k27xr")]
-transform = Transform3D(0.988822, 0.149104, 0, -0.149104, 0.988822, 0, 0, 0, 1, -3.75361, 0.580444, -15.5769)
-
-[node name="Yellow Pumpkin10" parent="." instance=ExtResource("29_k27xr")]
-transform = Transform3D(0.752668, 0, -0.658401, 0, 1, 0, 0.658401, 0, 0.752668, -2.3222, 0.631877, -15.4686)
-
-[node name="Yellow Pumpkin11" parent="." instance=ExtResource("29_k27xr")]
-transform = Transform3D(1, 0, 0, 0, 0.899276, -0.437383, 0, 0.437383, 0.899276, -1.02181, 1.37398, -16.1912)
-
-[node name="Yellow Pumpkin12" parent="." instance=ExtResource("29_k27xr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.00943, 0.631877, -14.208)
-
-[node name="Yellow Pumpkin13" parent="." instance=ExtResource("29_k27xr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.370194, 0.631876, -15.3648)
-
-[node name="Yellow Pumpkin14" parent="." instance=ExtResource("29_k27xr")]
-transform = Transform3D(0.543013, 0, -0.839724, 0, 1, 0, 0.839724, 0, 0.543013, -2.03927, 0.631877, -16.9257)
-
-[node name="Wardrobe" parent="." instance=ExtResource("9_7685u")]
-transform = Transform3D(1.20821, 0, -0.888948, 0, 1.5, 0, 0.888948, 0, 1.20821, 6.583, 0.0825001, -15.1036)
-
-[node name="Drawer" parent="." instance=ExtResource("7_ptc3g")]
-transform = Transform3D(0.820531, 0, -0.571602, 0, 1, 0, 0.571602, 0, 0.820531, 6.3218, 0.763631, -15.5581)
-
-[node name="Yellow Pumpkin15" parent="." instance=ExtResource("29_k27xr")]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 6.13602, 0.933518, -15.6557)
-
-[node name="Yellow Pumpkin16" parent="." instance=ExtResource("29_k27xr")]
-transform = Transform3D(0.230619, 0, -0.191872, 0, 0.3, 0, 0.191872, 0, 0.230619, 6.41798, 0.933518, -15.426)
-
-[node name="Node3D" parent="." instance=ExtResource("30_4jkga")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.03391, 0.777996, -14.9916)
 
 [editable path="Props/Triple Candle"]
 [editable path="Starting Door"]
