@@ -1,15 +1,20 @@
-[gd_scene load_steps=8 format=4 uid="uid://c3hsmnwdm1jpv"]
+[gd_scene load_steps=18 format=4 uid="uid://c3hsmnwdm1jpv"]
 
-[ext_resource type="Texture2D" uid="uid://de7ggvd5y168n" path="res://assets/minecraft/workbench/minecraft_workbench_0.png" id="1_n3q8y"]
+[ext_resource type="Script" uid="uid://bnlldl3cil48l" path="res://scripts/interactions/workbench.gd" id="1_4wa1c"]
+[ext_resource type="Resource" uid="uid://vlpfuwdwmqc1" path="res://assets/user_interface/item_textures.tres" id="2_fr654"]
 [ext_resource type="Material" uid="uid://gj08p6qpbjr5" path="res://assets/minecraft/workbench/Crafting_Table.tres" id="2_hc8hf"]
+[ext_resource type="Script" uid="uid://c5ycs17o1ls2d" path="res://scripts/items/crafting_recipe.gd" id="2_qrrc1"]
+[ext_resource type="StyleBox" uid="uid://dcxmwxgpbu2xm" path="res://assets/user_interface/crafting_slot.tres" id="3_x1pq0"]
+[ext_resource type="Texture2D" uid="uid://tfyhr3j5ode3" path="res://assets/user_interface/plus_sign.png" id="4_x1pq0"]
+[ext_resource type="Material" uid="uid://c8muugid5fho1" path="res://assets/user_interface/2d_outline.tres" id="4_xvuwy"]
+[ext_resource type="PackedScene" uid="uid://dvrh54jtkocta" path="res://scenes/interaction_component.tscn" id="10_m0625"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mm8yq"]
-resource_name = "Crafting_Table"
-cull_mode = 2
-albedo_texture = ExtResource("1_n3q8y")
-emission_enabled = true
-emission_texture = ExtResource("1_n3q8y")
-texture_filter = 2
+[sub_resource type="Resource" id="Resource_fr654"]
+script = ExtResource("2_qrrc1")
+input1 = 3
+input2 = 3
+output = 0
+metadata/_custom_type_script = "uid://c5ycs17o1ls2d"
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_mm8yq"]
 _surfaces = [{
@@ -51,7 +56,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 36,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
-"material": SubResource("StandardMaterial3D_mm8yq"),
+"material": ExtResource("2_hc8hf"),
 "name": "Crafting_Table",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -63,14 +68,35 @@ shadow_mesh = SubResource("ArrayMesh_ofco8")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4ij56"]
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_n3q8y"]
+viewport_path = NodePath("MeshInstance3D/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n3q8y"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_n3q8y")
+billboard_mode = 2
+
+[sub_resource type="QuadMesh" id="QuadMesh_hc8hf"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_n3q8y")
+size = Vector2(4, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4wa1c"]
+bg_color = Color(0.44, 0.44, 0.44, 0.564706)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
 [node name="Workbench" type="StaticBody3D"]
+script = ExtResource("1_4wa1c")
+item_textures = ExtResource("2_fr654")
+recipes = Array[ExtResource("2_qrrc1")]([SubResource("Resource_fr654")])
 
-[node name="Sketchfab_model" type="Node3D" parent="."]
+[node name="Workbench" type="MeshInstance3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 4.44089e-16, 2, 0, -2, 4.44089e-16, -1, 0, -1)
-
-[node name="Mineways2Skfb_obj_minecraft_cleaner_materialmerger_gles" type="Node3D" parent="Sketchfab_model"]
-
-[node name="Object_2" type="MeshInstance3D" parent="Sketchfab_model/Mineways2Skfb_obj_minecraft_cleaner_materialmerger_gles"]
 mesh = SubResource("ArrayMesh_teyag")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("2_hc8hf")
@@ -79,3 +105,147 @@ surface_material_override/0 = ExtResource("2_hc8hf")
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1, 0)
 visible = false
 shape = SubResource("BoxShape3D_4ij56")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.58243, 0)
+mesh = SubResource("QuadMesh_hc8hf")
+
+[node name="SubViewport" type="SubViewport" parent="MeshInstance3D"]
+transparent_bg = true
+size = Vector2i(1000, 500)
+
+[node name="Control" type="Control" parent="MeshInstance3D/SubViewport"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="MeshInstance3D/SubViewport/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4wa1c")
+
+[node name="Control" type="Control" parent="MeshInstance3D/SubViewport/Control"]
+layout_mode = 1
+anchor_right = 0.6
+anchor_bottom = 1.0
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MeshInstance3D/SubViewport/Control/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -255.0
+offset_top = -100.0
+offset_right = 255.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 150
+
+[node name="Panel" type="Panel" parent="MeshInstance3D/SubViewport/Control/Control/HBoxContainer"]
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 2
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.0
+theme_override_styles/panel = ExtResource("3_x1pq0")
+
+[node name="Input1" type="TextureRect" parent="MeshInstance3D/SubViewport/Control/Control/HBoxContainer/Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.05
+anchor_right = 0.95
+anchor_bottom = 0.95
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Panel2" type="Panel" parent="MeshInstance3D/SubViewport/Control/Control/HBoxContainer"]
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 2
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.0
+theme_override_styles/panel = ExtResource("3_x1pq0")
+
+[node name="Input2" type="TextureRect" parent="MeshInstance3D/SubViewport/Control/Control/HBoxContainer/Panel2"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.05
+anchor_right = 0.95
+anchor_bottom = 0.95
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="MeshInstance3D/SubViewport/Control/Control"]
+material = ExtResource("4_xvuwy")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_x1pq0")
+expand_mode = 2
+
+[node name="Control2" type="Control" parent="MeshInstance3D/SubViewport/Control"]
+layout_mode = 1
+anchor_left = 0.8
+anchor_top = 0.5
+anchor_right = 0.8
+anchor_bottom = 0.5
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="MeshInstance3D/SubViewport/Control/Control2"]
+custom_minimum_size = Vector2(275, 275)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -90.0
+offset_right = 90.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.0
+theme_override_styles/panel = ExtResource("3_x1pq0")
+
+[node name="Output" type="TextureRect" parent="MeshInstance3D/SubViewport/Control/Control2/Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.05
+anchor_right = 0.95
+anchor_bottom = 0.95
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="InteractionComponent" parent="." node_paths=PackedStringArray("outline_material_holder") instance=ExtResource("10_m0625")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.37788, 0)
+outline_material_holder = NodePath("../Workbench")

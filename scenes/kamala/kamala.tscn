@@ -10,7 +10,7 @@ height = 1.64795
 
 [node name="Kamala" type="CharacterBody3D"]
 collision_layer = 2
-collision_mask = 7
+collision_mask = 3
 script = ExtResource("1_u5lcr")
 
 [node name="Model" parent="." instance=ExtResource("1_w1ewx")]

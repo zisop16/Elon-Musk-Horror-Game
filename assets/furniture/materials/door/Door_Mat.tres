@@ -1,0 +1,19 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://ds1iamyajw4gf"]
+
+[ext_resource type="Texture2D" uid="uid://x412mjs7vm42" path="res://assets/furniture/source/door_3.png" id="1_14e0k"]
+[ext_resource type="Texture2D" uid="uid://bcc1arr3gmllf" path="res://assets/furniture/source/door_4.png" id="2_sbh8c"]
+[ext_resource type="Material" uid="uid://dbqi1yauqrtm0" path="res://assets/furniture/materials/door_outline.tres" id="3_2is6s"]
+[ext_resource type="Texture2D" uid="uid://3epmx0pmjhe6" path="res://assets/furniture/source/door_5.png" id="4_rqivo"]
+
+[resource]
+resource_local_to_scene = true
+resource_name = "Door_Mat"
+next_pass = ExtResource("3_2is6s")
+albedo_texture = ExtResource("1_14e0k")
+metallic = 1.0
+metallic_texture = ExtResource("2_sbh8c")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("2_sbh8c")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_texture = ExtResource("4_rqivo")

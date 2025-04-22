@@ -1,9 +1,11 @@
 extends Node
 
-var logging = false
+var logging = true
 var player: Player
 var item_tooltip: ItemTooltip
 var item_interface: ItemInterface
+var terrain: Terrain3D
+var watched_tv := false
 
 var logged_variables = {}
 var alpha = 10

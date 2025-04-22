@@ -17,7 +17,7 @@ billboard_keep_scale = true
 [sub_resource type="QuadMesh" id="QuadMesh_5vo3c"]
 resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_y0wkf")
-size = Vector2(1.5, 0.5)
+size = Vector2(3, 1)
 
 [sub_resource type="SystemFont" id="SystemFont_fw4h3"]
 font_names = PackedStringArray("Super Cartoon")
@@ -25,8 +25,8 @@ subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_5ey1u"]
 font = SubResource("SystemFont_fw4h3")
-font_size = 80
-outline_size = 20
+font_size = 40
+outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
 [node name="Item Tooltip" type="MeshInstance3D"]
@@ -60,5 +60,8 @@ offset_right = 71.5
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "Press 'F' to pick up"
+text = "You have a feeling
+You should turn on the TV..."
 label_settings = SubResource("LabelSettings_5ey1u")
+horizontal_alignment = 1
+vertical_alignment = 1

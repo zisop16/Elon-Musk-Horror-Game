@@ -9,6 +9,9 @@
 albedo_texture = ExtResource("1_pkewd")
 roughness_texture = ExtResource("4_man2q")
 normal_enabled = true
+normal_scale = 3.65
 normal_texture = ExtResource("3_1gow1")
 heightmap_enabled = true
+heightmap_scale = 1.0
 heightmap_texture = ExtResource("2_01qoj")
+uv1_scale = Vector3(3.995, 3.995, 3.995)

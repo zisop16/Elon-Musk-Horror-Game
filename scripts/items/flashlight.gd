@@ -3,6 +3,13 @@ extends Item
 
 @onready var spotlight = $SpotLight3D
 @onready var player: PolyAudioPlayer = $AudioPlayer
+# Seconds of duration left in battery
+const flashlight_battery_limit: float = 30
+var flashlight_battery := flashlight_battery_limit
+
+func _ready() -> void:
+	super._ready()
+	id = item_id.flashlight
 
 func activate():
 	super.activate()
@@ -13,3 +20,22 @@ func deactivate():
 	super.deactivate()
 	player.play_sound_effect("off")
 	spotlight.visible = false
+
+func drop():
+	super.drop()
+	spotlight.visible = false
+
+func toggle():
+	if flashlight_battery == 0:
+		return
+	super.toggle()
+
+func _process(delta: float) -> void:
+	if active:
+		flashlight_battery = move_toward(flashlight_battery, 0, delta)
+	if flashlight_battery == 0 and active:
+		deactivate()
+	
+func add_battery(duration: float):
+	flashlight_battery += duration
+	flashlight_battery = clampf(flashlight_battery, 0, flashlight_battery_limit)

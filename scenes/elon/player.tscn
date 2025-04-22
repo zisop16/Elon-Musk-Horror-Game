@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://tkllvr4o5did"]
+[gd_scene load_steps=13 format=4 uid="uid://tkllvr4o5did"]
 
 [ext_resource type="Script" uid="uid://dwrikpmcsfiqv" path="res://scripts/player.gd" id="1_hvogv"]
 [ext_resource type="PackedScene" uid="uid://bg2ah1m0ryp2v" path="res://scenes/elon/elon_model.tscn" id="2_p3gux"]
 [ext_resource type="Script" uid="uid://dnqc0fylmytqi" path="res://scripts/camera_spring.gd" id="3_p3gux"]
 [ext_resource type="Script" uid="uid://c3qjwfyfbhg25" path="res://scripts/camera.gd" id="4_7nqbs"]
 [ext_resource type="PackedScene" uid="uid://dlo226k12agvr" path="res://scenes/sfx/FootstepPlayer.tscn" id="5_tcv2l"]
+[ext_resource type="Script" uid="uid://bgbnsqe0qmhtj" path="res://scripts/audio/poly_audio_player.gd" id="6_ucyqf"]
+[ext_resource type="Script" uid="uid://bcqs0sjegrs1a" path="res://scripts/audio/sound_effect.gd" id="7_hi6qs"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p3gux"]
 radius = 0.271223
@@ -14,55 +16,61 @@ height = 1.75922
 radius = 0.271223
 height = 1.37375
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("chainsaw_pos", "flashlight_pos", "remote_pos")]
+[sub_resource type="SphereShape3D" id="SphereShape3D_yboub"]
+margin = 0.0
+radius = 0.25
+
+[sub_resource type="AudioStreamMP3" id="AudioStreamMP3_yboub"]
+data = PackedByteArray("//vkRAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA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qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqoAAAB0zNWPDYjN8MK4e8wQhuDGtBkMLwM8wjgYTCoGJMkAZkxTjLxJk0zvUjjl+Oz4SETLEsDcK/xczThGVDNY//vkZCAP/uVjLpvd4qIAAA0gAAABAAABpAAAACAAADSAAAAEHjC5fzgJSTWfcP1wI1BSTZSQORoQ2IsTbW/OlIA666DEhzMKqI2CtDOpVOTWU2wjjiEZNRC0xAGzP8uOTgA4tBTHc+OjrwxqPTR6+M+kA0G8jlMKNMj04Jezz2BOPGE03GjWRjMZG8zwDDX6wMhRk5ElzCw3MnGo7X7DiiFMdGsx8UDaM2PM8A7CYjZE5OSLswYVAMTDGJwNkuY0aIzRBXMYpg0SLTlnFPdTkxamzm0rMuIIyC4Tv0tBDONahIxgFjT6yMOAQxskzNwCMsloy+ZjJokMfnQSa5oBVmSwMWBQZPHgYIizw4GTHBJMzK839FQ51mUCeZWQ5r51nCIWbIFJnVRGk2Qc9qBk5CGmQMJGAyaUAETkExgMEGCwMYFAxcV2ExlTKmVMsZOYEgBFF9HWCgFL4GEw4YZBxgkBFpgQAUkY8uZCUgGLvFsi0yxWuvzATDlMkVkikhl2s5irSmvK3AUBGBQEW2L+o+wA15wkTkVkJSmzWWutdjjXmtNedpHpiMOw7z8ssqYFFcCgkFN4FAoK76QUFd+IKC1MQU1FMy4xMDEgKGJldGEgMilVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV")
+
+[sub_resource type="Resource" id="Resource_2vt8h"]
+script = ExtResource("7_hi6qs")
+sounds = Array[AudioStream]([SubResource("AudioStreamMP3_yboub")])
+volume = -12.0
+pitch_variation = 0.33
+metadata/_custom_type_script = "uid://bcqs0sjegrs1a"
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("chainsaw_pos", "flashlight_pos", "remote_pos", "mining_hitbox")]
 collision_layer = 2
-collision_mask = 3
+collision_mask = 7
 floor_max_angle = 0.872665
 floor_snap_length = 0.3
 script = ExtResource("1_hvogv")
 chainsaw_pos = NodePath("Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D/Chainsaw")
 flashlight_pos = NodePath("Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D/Flashlight")
 remote_pos = NodePath("Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D/Tv Remote")
+mining_hitbox = NodePath("Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D/MiningHitbox")
 
 [node name="Elon Model" parent="." instance=ExtResource("2_p3gux")]
 
 [node name="Skeleton3D" parent="Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4" index="0"]
-bones/1/position = Vector3(0.0106923, 0.946661, -0.0123978)
-bones/1/rotation = Quaternion(-0.684498, -0.249501, -0.271168, 0.629031)
-bones/2/rotation = Quaternion(0.709258, 0.0320087, 0.0236473, 0.703825)
-bones/3/rotation = Quaternion(0.0960834, 0.0816718, -0.0105579, 0.991961)
-bones/4/rotation = Quaternion(0.0960833, 0.0816719, -0.0105579, 0.991961)
-bones/5/rotation = Quaternion(-0.686999, -0.00868639, -0.00725612, 0.726571)
-bones/6/rotation = Quaternion(-0.0372074, 0.00807499, 0.176395, 0.983583)
-bones/8/rotation = Quaternion(-0.56145, -0.438806, 0.574538, -0.402652)
-bones/9/rotation = Quaternion(0.448214, -0.105929, 0.0141035, 0.887516)
-bones/10/rotation = Quaternion(0.0318766, 0.0633634, 0.413874, 0.907567)
-bones/12/rotation = Quaternion(0.615315, -0.39327, 0.538466, 0.420454)
-bones/13/rotation = Quaternion(0.393197, 0.10852, 0.215577, 0.887213)
-bones/14/rotation = Quaternion(0.090657, 0.0102585, -0.357617, 0.929401)
-bones/16/rotation = Quaternion(0.0164809, 0.550096, -0.824521, 0.131485)
-bones/17/rotation = Quaternion(-0.296088, 0.120501, -0.0442917, 0.946494)
-bones/18/rotation = Quaternion(0.567423, -0.03987, -0.0514422, 0.82085)
-bones/19/rotation = Quaternion(0.286668, -0.0547906, -0.00728725, 0.956434)
-bones/21/rotation = Quaternion(0.00455975, 0.694332, -0.697781, -0.176023)
-bones/22/rotation = Quaternion(-0.284507, 0.0693869, -0.0243936, 0.955848)
-bones/23/rotation = Quaternion(0.663203, 0.0903644, 0.129485, 0.731594)
-bones/24/rotation = Quaternion(0.286238, 0.0725158, -0.0203122, 0.955195)
+bones/1/position = Vector3(0.00368558, 0.944174, -0.0165024)
+bones/1/rotation = Quaternion(-0.682086, -0.251163, -0.26894, 0.631939)
+bones/2/rotation = Quaternion(0.709742, 0.0318095, 0.0232725, 0.703358)
+bones/3/rotation = Quaternion(0.0995589, 0.0806898, -0.0113429, 0.99169)
+bones/4/rotation = Quaternion(0.099559, 0.0806897, -0.0113429, 0.99169)
+bones/5/rotation = Quaternion(-0.700874, -0.00785402, -0.00675155, 0.71321)
+bones/6/rotation = Quaternion(-0.0504789, 0.0127931, 0.177638, 0.982717)
+bones/8/rotation = Quaternion(-0.575966, -0.421464, 0.577027, -0.397078)
+bones/9/rotation = Quaternion(0.436545, -0.111576, 0.0196395, 0.892521)
+bones/10/rotation = Quaternion(0.0289189, 0.0566748, 0.406595, 0.91139)
+bones/12/rotation = Quaternion(0.629091, -0.376571, 0.539771, 0.413627)
+bones/13/rotation = Quaternion(0.384977, 0.115557, 0.212459, 0.890674)
+bones/14/rotation = Quaternion(0.0795627, 0.0244061, -0.353933, 0.931561)
+bones/16/rotation = Quaternion(0.0190174, 0.54486, -0.827517, 0.134092)
+bones/17/rotation = Quaternion(-0.299489, 0.12205, -0.04566, 0.945159)
+bones/18/rotation = Quaternion(0.56944, -0.0420518, -0.0546775, 0.819134)
+bones/19/rotation = Quaternion(0.28902, -0.060077, -0.00810592, 0.955402)
+bones/21/rotation = Quaternion(0.00607297, 0.688517, -0.70397, -0.174165)
+bones/22/rotation = Quaternion(-0.298201, 0.0703722, -0.0246585, 0.951586)
+bones/23/rotation = Quaternion(0.671028, 0.0887957, 0.12771, 0.724932)
+bones/24/rotation = Quaternion(0.286564, 0.0719416, -0.0199297, 0.955149)
 
 [node name="BoneAttachment3D" parent="Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D" index="11"]
-transform = Transform3D(-0.425012, -0.396032, 0.813955, 0.212908, -0.917721, -0.335348, 0.879793, 0.0307707, 0.474361, -32.6088, 3.15558, -18.2223)
-
-[node name="Flashlight" parent="Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D" index="0"]
-transform = Transform3D(-0.876426, -0.217629, 0.429552, -0.146225, 0.970201, 0.193199, -0.458798, 0.106513, -0.882132, 6.8796, 9.54946, 7.54433)
-
-[node name="Chainsaw" parent="Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D" index="1"]
-transform = Transform3D(12.7064, 16.6696, -3.78977, 14.4785, -7.98324, 13.4287, 9.08906, -10.5869, -16.0933, -21.5935, -6.78769, 61.8683)
-
-[node name="Tv Remote" parent="Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D" index="2"]
-transform = Transform3D(0.487915, 0.521505, -0.699979, -0.288171, -0.660714, -0.693119, -0.823952, 0.539896, -0.172089, 4.67343, 10.4363, 4.4918)
+transform = Transform3D(-0.442539, -0.389456, 0.807764, 0.199586, -0.920952, -0.334683, 0.874256, 0.0131085, 0.485287, -32.2286, 2.17678, -18.1142)
 
 [node name="AnimationTree" parent="Elon Model" index="2"]
-parameters/TimeScale/scale = 1.0
+"parameters/TimeScale 2/scale" = 1.0
 
 [node name="Standing Box" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.879, -0.01)
@@ -84,18 +92,19 @@ max_length = 2.0
 min_length = 0.5
 
 [node name="Camera Spring" type="SpringArm3D" parent="Camera Pivot"]
-collision_mask = 5
+shape = SubResource("SphereShape3D_yboub")
 spring_length = 2.0
 
 [node name="Camera Target" type="Node3D" parent="Camera Pivot/Camera Spring"]
 
 [node name="Camera3D" type="Camera3D" parent="Camera Pivot" node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 0.990268, -0.139173, 0, 0.139173, 0.990268, 0, 0, 0)
 script = ExtResource("4_7nqbs")
 target = NodePath("../Camera Spring/Camera Target")
 
 [node name="Interaction" type="RayCast3D" parent="Camera Pivot/Camera3D"]
-target_position = Vector3(0, 0, -8)
-collision_mask = 8
+target_position = Vector3(0, 0, -5)
+collision_mask = 15
 
 [node name="Standing Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
@@ -106,5 +115,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35, 0)
 visible = false
 
 [node name="FootstepPlayer" parent="." instance=ExtResource("5_tcv2l")]
+
+[node name="SFXPlayer" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.37832, 0.203002)
+script = ExtResource("6_ucyqf")
+sound_effects = Dictionary[String, ExtResource("7_hi6qs")]({
+"item_pickup": SubResource("Resource_2vt8h")
+})
+metadata/_custom_type_script = "uid://bgbnsqe0qmhtj"
 
 [editable path="Elon Model"]

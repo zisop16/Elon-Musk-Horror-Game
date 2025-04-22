@@ -12,6 +12,9 @@ size = Vector3(3.42776, 1.84247, 4.42295)
 size = Vector3(3.43262, 1.4062, 5.8883)
 
 [node name="cybertruck" type="RigidBody3D"]
+collision_layer = 4
+collision_mask = 15
+mass = 200.0
 
 [node name="teslacyberv3_0" parent="." instance=ExtResource("1_40yi2")]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)

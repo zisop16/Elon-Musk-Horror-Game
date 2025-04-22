@@ -1,10 +1,14 @@
-[gd_scene load_steps=21 format=4 uid="uid://bxhpq7qbhiir1"]
+[gd_scene load_steps=30 format=4 uid="uid://bxhpq7qbhiir1"]
 
 [ext_resource type="Texture2D" uid="uid://68hcfavkdmmt" path="res://assets/furniture/source/home_essentials_2.png" id="1_qc7jt"]
 [ext_resource type="Texture2D" uid="uid://cu7m3tnn2pard" path="res://assets/furniture/source/home_essentials_3.png" id="2_5o3de"]
 [ext_resource type="Script" uid="uid://doan6mawh3p60" path="res://scripts/interactions/openable.gd" id="3_jah34"]
-[ext_resource type="Material" uid="uid://bsspbms5go61a" path="res://assets/furniture/materials/drawer_door_outline.tres" id="4_jah34"]
+[ext_resource type="Shader" uid="uid://biluacepvfae1" path="res://assets/shaders/outline.gdshader" id="4_gp8pm"]
 [ext_resource type="PackedScene" uid="uid://dvrh54jtkocta" path="res://scenes/interaction_component.tscn" id="5_jah34"]
+[ext_resource type="Script" uid="uid://bgbnsqe0qmhtj" path="res://scripts/audio/poly_audio_player.gd" id="6_gp8pm"]
+[ext_resource type="Script" uid="uid://bcqs0sjegrs1a" path="res://scripts/audio/sound_effect.gd" id="7_48ihg"]
+[ext_resource type="AudioStream" uid="uid://6pc3whv4gfdd" path="res://assets/sfx/drawer/drawer_open.mp3" id="8_kdo1f"]
+[ext_resource type="AudioStream" uid="uid://cjd6loevhdmma" path="res://assets/sfx/drawer/drawer_close.mp3" id="9_lqw1q"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hvft1"]
 resource_name = "Drawer"
@@ -81,11 +85,26 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ysh6f")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uamhe"]
-size = Vector3(1, 0.747, 0.653)
+size = Vector3(1, 0.35008, 0.653)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1eqg2"]
+size = Vector3(1, 0.129331, 0.653)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_48ihg"]
+resource_local_to_scene = true
+render_priority = -1
+shader = ExtResource("4_gp8pm")
+shader_parameter/normal_threshold = 1.5342
+shader_parameter/depth_threshold = 1.415
+shader_parameter/depth_artifact_correction_coef = 2.395
+shader_parameter/outline_width = 1.87
+shader_parameter/outline_color = Color(1, 0.855, 0.71, 1)
+shader_parameter/enabled = false
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wffyq"]
+resource_local_to_scene = true
 resource_name = "Drawer"
-next_pass = ExtResource("4_jah34")
+next_pass = SubResource("ShaderMaterial_48ihg")
 cull_mode = 2
 albedo_texture = ExtResource("1_qc7jt")
 roughness = 0.821115
@@ -135,6 +154,22 @@ size = Vector3(0.955566, 0.627769, 0.0378685)
 [sub_resource type="BoxShape3D" id="BoxShape3D_2x7l5"]
 size = Vector3(0.0223999, 0.238461, 0.631958)
 
+[sub_resource type="Animation" id="Animation_jah34"]
+resource_name = "RESET"
+length = 0.0333367
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Drawer Door:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.3),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_gp8pm"]
 length = 0.4
 tracks/0/type = "value"
@@ -147,7 +182,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(0.297302, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, -0.319843)]
+"values": [Vector3(0, 0, 0.32), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_1eqg2"]
@@ -163,19 +198,34 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(0.3, 1),
 "update": 0,
-"values": [Vector3(0, 0, -0.319843), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.32)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_48ihg"]
 _data = {
+&"RESET": SubResource("Animation_jah34"),
 &"close": SubResource("Animation_gp8pm"),
 &"open": SubResource("Animation_1eqg2")
 }
 
+[sub_resource type="Resource" id="Resource_7sbnq"]
+script = ExtResource("7_48ihg")
+sounds = Array[AudioStream]([ExtResource("9_lqw1q")])
+volume = -10.0
+pitch_variation = 0.0
+metadata/_custom_type_script = "uid://bcqs0sjegrs1a"
+
+[sub_resource type="Resource" id="Resource_x35pv"]
+script = ExtResource("7_48ihg")
+sounds = Array[AudioStream]([ExtResource("8_kdo1f")])
+volume = -10.0
+pitch_variation = 0.2
+metadata/_custom_type_script = "uid://bcqs0sjegrs1a"
+
 [node name="Drawer" type="Node3D"]
 
 [node name="Main Drawer" type="StaticBody3D" parent="."]
-collision_mask = 31
+collision_mask = 15
 
 [node name="Drawer_Drawer_0" type="MeshInstance3D" parent="Main Drawer"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
@@ -188,42 +238,58 @@ mesh = SubResource("ArrayMesh_vlh0c")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Main Drawer"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.383538, 0.00377196)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.581998, 0.00377196)
 shape = SubResource("BoxShape3D_uamhe")
 
-[node name="Drawer Door" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.319843)
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Main Drawer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0655159, 0.00377196)
+shape = SubResource("BoxShape3D_1eqg2")
+
+[node name="Drawer Door" type="AnimatableBody3D" parent="."]
 collision_layer = 8
 collision_mask = 12
 script = ExtResource("3_jah34")
 
 [node name="Drawer Door 02_Drawer_0" type="MeshInstance3D" parent="Drawer Door"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.268253, 0.369302)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.268253, 0.049459)
 mesh = SubResource("ArrayMesh_evoie")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="Drawer Door"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.287, 0.676)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.287, 0.356157)
 shape = SubResource("BoxShape3D_jah34")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Drawer Door"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.00170898, 0.147569, 0.373636)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.00170898, 0.147569, 0.053793)
 shape = SubResource("BoxShape3D_wffyq")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="Drawer Door"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.468, 0.287, 0.369)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.468, 0.287, 0.049157)
 shape = SubResource("BoxShape3D_2x7l5")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Drawer Door"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.467729, 0.287496, 0.369056)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.467729, 0.287496, 0.049213)
 shape = SubResource("BoxShape3D_2x7l5")
 
-[node name="InteractionComponent" parent="Drawer Door" instance=ExtResource("5_jah34")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.886782, 0.393295)
-outline_material = ExtResource("4_jah34")
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="Drawer Door"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.287, -0.262503)
+shape = SubResource("BoxShape3D_jah34")
+
+[node name="InteractionComponent" parent="Drawer Door" node_paths=PackedStringArray("outline_material_holder") instance=ExtResource("5_jah34")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.465198, 0.360329)
+outline_material_holder = NodePath("../Drawer Door 02_Drawer_0")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Drawer Door"]
 root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_48ihg")
 }
+
+[node name="PolyAudioPlayer" type="AudioStreamPlayer3D" parent="Drawer Door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.315203, 0.31533)
+script = ExtResource("6_gp8pm")
+sound_effects = Dictionary[String, ExtResource("7_48ihg")]({
+"close": SubResource("Resource_7sbnq"),
+"open": SubResource("Resource_x35pv")
+})
+metadata/_custom_type_script = "uid://bgbnsqe0qmhtj"

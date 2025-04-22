@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=3 uid="uid://66hmaqhutu1b"]
+[gd_scene load_steps=86 format=3 uid="uid://66hmaqhutu1b"]
 
 [ext_resource type="PackedScene" uid="uid://tkllvr4o5did" path="res://scenes/elon/player.tscn" id="1_sq6bu"]
 [ext_resource type="Texture2D" uid="uid://cishbrj38kdq5" path="res://assets/terrain_textures/gravel/albedo.png" id="2_0cso3"]
@@ -40,6 +40,7 @@
 [ext_resource type="PackedScene" uid="uid://qk6e8kyspqgs" path="res://scenes/halloween_kit/post_lantern.tscn" id="29_cgoaf"]
 [ext_resource type="PackedScene" uid="uid://chewp5rsgq5q4" path="res://scenes/halloween_kit/small_dead_tree.tscn" id="30_mniao"]
 [ext_resource type="Texture2D" uid="uid://7si61dbylv2w" path="res://assets/terrain_textures/dirty_bricks/albedo.png" id="30_r2y85"]
+[ext_resource type="Script" uid="uid://who7e6qtg486" path="res://scripts/terrain_3d.gd" id="31_6iak1"]
 [ext_resource type="Texture2D" uid="uid://svrujqikhvkf" path="res://assets/terrain_textures/dirty_bricks/normal.png" id="31_w5y4v"]
 [ext_resource type="PackedScene" uid="uid://c7mj7igs18twj" path="res://scenes/halloween_kit/grave_dirt.tscn" id="31_yfm5w"]
 [ext_resource type="PackedScene" uid="uid://crtmv1cyf5oe0" path="res://scenes/halloween_kit/coffin.tscn" id="32_081xv"]
@@ -241,35 +242,6 @@ texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_
 
 [node name="Map" type="Node3D"]
 
-[node name="Player" parent="." instance=ExtResource("1_sq6bu")]
-transform = Transform3D(0.881097, 0, -0.472935, 0, 1, 0, 0.472935, 0, 0.881097, -55.123, 21.2926, -38.3971)
-
-[node name="Skeleton3D" parent="Player/Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4" index="0"]
-bones/1/position = Vector3(0.00799722, 0.944819, -0.0150757)
-bones/1/rotation = Quaternion(-0.684169, -0.248145, -0.268836, 0.630923)
-bones/2/rotation = Quaternion(0.710351, 0.0320096, 0.0235739, 0.702724)
-bones/3/rotation = Quaternion(0.0993219, 0.0816274, -0.0107914, 0.991643)
-bones/4/rotation = Quaternion(0.0993219, 0.0816273, -0.0107914, 0.991643)
-bones/5/rotation = Quaternion(-0.69686, -0.00888888, -0.00672858, 0.717121)
-bones/6/rotation = Quaternion(-0.045286, 0.00879609, 0.176738, 0.983176)
-bones/8/rotation = Quaternion(-0.571945, -0.426324, 0.576494, -0.398474)
-bones/9/rotation = Quaternion(0.44209, -0.110983, 0.0190136, 0.889875)
-bones/10/rotation = Quaternion(0.0283595, 0.0582972, 0.407014, 0.911119)
-bones/12/rotation = Quaternion(0.625828, -0.380655, 0.539586, 0.415077)
-bones/13/rotation = Quaternion(0.390753, 0.112797, 0.213426, 0.888278)
-bones/14/rotation = Quaternion(0.0831291, 0.0211374, -0.356288, 0.930431)
-bones/16/rotation = Quaternion(0.0185948, 0.546086, -0.827155, 0.131369)
-bones/17/rotation = Quaternion(-0.299518, 0.122247, -0.044628, 0.945174)
-bones/18/rotation = Quaternion(0.568511, -0.040885, -0.0529867, 0.819949)
-bones/19/rotation = Quaternion(0.287224, -0.0549684, -0.00728021, 0.956257)
-bones/21/rotation = Quaternion(0.0059717, 0.691026, -0.701373, -0.174709)
-bones/22/rotation = Quaternion(-0.293646, 0.0717908, -0.0253382, 0.952878)
-bones/23/rotation = Quaternion(0.667798, 0.0901179, 0.129321, 0.727461)
-bones/24/rotation = Quaternion(0.286321, 0.072624, -0.0203704, 0.95516)
-
-[node name="BoneAttachment3D" parent="Player/Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D" index="11"]
-transform = Transform3D(-0.434956, -0.382968, 0.814954, 0.202261, -0.923475, -0.326014, 0.877442, 0.0230317, 0.47913, -31.9835, 2.28274, -17.8114)
-
 [node name="Terrain3D" type="Terrain3D" parent="."]
 data_directory = "res://terrain_data"
 material = SubResource("Terrain3DMaterial_gldc4")
@@ -280,6 +252,7 @@ mesh_lods = 4
 mesh_size = 20
 vertex_spacing = 0.25
 top_level = true
+script = ExtResource("31_6iak1")
 metadata/_edit_lock_ = true
 
 [node name="chest" parent="." instance=ExtResource("34_12q1p")]
@@ -527,5 +500,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.3408, 1.00477, 62.0135)
 [node name="House" parent="." instance=ExtResource("61_kycfx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.535, 20.1459, -41.1623)
 
-[editable path="Player"]
-[editable path="Player/Elon Model"]
+[node name="Player" parent="." instance=ExtResource("1_sq6bu")]
+transform = Transform3D(0.0479782, 0, -0.998848, 0, 1, 0, 0.998848, 0, 0.0479782, -21.0677, 5.57499, 21.0949)

@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=4 uid="uid://cjsb3guv608vj"]
+[gd_scene load_steps=8 format=4 uid="uid://cjsb3guv608vj"]
 
 [ext_resource type="Texture2D" uid="uid://dp30lubhf10hm" path="res://assets/KayKit_HalloweenBits_1.0_FREE/halloweenbits_texture.png" id="1_7j4db"]
+[ext_resource type="Script" uid="uid://bvsb75ttnrgct" path="res://scripts/interactions/mineable.gd" id="1_mkugm"]
 [ext_resource type="PackedScene" uid="uid://dno7napwma2ex" path="res://scenes/particles/light_particles.tscn" id="2_mkugm"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_7j4db"]
@@ -48,6 +49,8 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_8p1oy")
 
 [node name="Large Dead Decorated Tree" type="StaticBody3D"]
+collision_layer = 17
+script = ExtResource("1_mkugm")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.24851, 0)

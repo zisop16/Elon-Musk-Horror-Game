@@ -9,12 +9,14 @@ extends CharacterBody3D
 @onready var anim_player: AnimationPlayer = model.get_node("AnimationPlayer")
 @onready var standing_head: Vector3 = $"Standing Head".position
 @onready var crouched_head: Vector3 = $"Crouched Head".position
-@onready var footsteps: PolyAudioPlayer = $FootstepPlayer
+@onready var footsteps: FootstepPlayer = $FootstepPlayer
+@onready var sfx_player: PolyAudioPlayer = $SFXPlayer
 @onready var interaction_ray: RayCast3D = $"Camera Pivot/Camera3D/Interaction"
 
 @export var chainsaw_pos: Node3D
 @export var flashlight_pos: Node3D
 @export var remote_pos: Node3D
+@export var mining_hitbox: Area3D
 
 var inventory: Array[Item]
 var equipped_item := 0
@@ -62,6 +64,7 @@ var hovered_object: CollisionObject3D = null
 func set_item(slot: int, item: Item):
 	inventory[slot] = item
 	Global.item_interface.set_item(slot, item)
+	attach_item(item)
 
 func get_free_slot() -> int:
 	for slot in inventory.size():
@@ -69,14 +72,20 @@ func get_free_slot() -> int:
 			return slot
 	return -1
 
+func get_flashlight() -> Flashlight:
+	for item in inventory:
+		if item is Flashlight:
+			return item
+	return null
+
 func select_item(slot: int):
 	# handle previously selected
 	if inventory[equipped_item] != null:
-		inventory[equipped_item].set_equipped(false)
+		inventory[equipped_item].visible = false
 	equipped_item = slot
 	Global.item_interface.select_item(slot)
 	if inventory[equipped_item] != null:
-		inventory[equipped_item].set_equipped(true)
+		inventory[equipped_item].visible = true
 
 func attach_item(item: Item):
 	if item is Flashlight:
@@ -87,51 +96,103 @@ func attach_item(item: Item):
 		item.attach(remote_pos)
 
 func handle_interactions():
-	hovered_object = interaction_ray.get_collider()
-	var should_interact = Input.is_action_just_pressed("Interact")
-	Global.item_tooltip.visible = hovered_object != null
-	if (not should_interact) or (hovered_object == null):
+	# Disable the outline of the object hovered on previous frame
+	if hovered_object != null:
+		hovered_object.interaction.disable_outline()
+	var coll := interaction_ray.get_collider()
+	if (coll == null) or (not coll.has_method("interact")):
+		hovered_object = null
+		Global.item_tooltip.label.text = ""
+		return
+	hovered_object = coll
+	hovered_object.interaction.show_tooltip()
+	var should_interact = Input.is_action_just_pressed("Interact") and hovered_object.interaction_requirement() == ""
+	if not should_interact:
 		return
 	if hovered_object is Item:
 		var item: Item = hovered_object
 		if inventory[equipped_item] == null:
 			set_item(equipped_item, item)
-			item.set_equipped(true)
 		else:
 			var free_slot = get_free_slot()
 			if free_slot == -1:
 				# Must toss away the current item slot
-				pass
+				drop_item()
+				set_item(free_slot, item)
 			else:
 				set_item(free_slot, item)
-				item.set_equipped(false)
-		attach_item(item)
+				item.visible = false
+		hovered_object = null
+		Global.item_tooltip.label.text = ""
+		sfx_player.play_sound_effect("item_pickup")
 	else:
 		hovered_object.interact()
 		
+func drop_item():
+	var to_drop := inventory[equipped_item]
+	if to_drop == null:
+		return
+	inventory[equipped_item] = null
+	to_drop.drop()
+	Global.item_interface.set_item(equipped_item, null)
 
 func handle_items():
 	var i0 = Input.is_action_just_pressed("SelectItem0")
 	var i1 = Input.is_action_just_pressed("SelectItem1")
 	var i2 = Input.is_action_just_pressed("SelectItem2")
+	var drop = Input.is_action_just_pressed("DropItem")
 	if i0:
 		select_item(0)
 	elif i1:
 		select_item(1)
 	elif i2:
 		select_item(2)
+	if drop:
+		drop_item()
 
 	var equipped := inventory[equipped_item]
-	if equipped == null:
+	var use_item = Input.is_action_just_pressed("Use")
+	if not use_item:
 		return
+	if equipped == null:
+		self.mine()
 	if equipped is Flashlight:
-		var flashlight_clicked = Input.is_action_just_pressed("Flashlight")
-		if flashlight_clicked:
-			equipped.toggle()
+		equipped.toggle()
 	elif equipped is TvRemote:
-		var tv_clicked = Input.is_action_just_pressed("Flashlight")
-		if tv_clicked:
-			equipped.toggle()
+		equipped.toggle()
+
+var mining := false
+
+func mine():
+	if mining:
+		return
+	anim_tree["parameters/mine/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+	mining = true
+
+## Called by mining animation
+func mine_effect():
+	mining = false
+	var targets: Array[Mineable] = []
+	targets.assign(mining_hitbox.get_overlapping_bodies())
+	print(targets)
+	if targets.size() == 0:
+		return
+	var holding_pickaxe := self.inventory[equipped_item] is Pickaxe
+	var min_dist: float
+	var closest_valid_target: Mineable = null
+	for target in targets:
+		if not holding_pickaxe and target.requires_pickaxe:
+			continue
+		var dist: float = (target.global_position - global_position).length_squared()
+		if closest_valid_target == null:
+			min_dist = dist
+			closest_valid_target = target
+		elif dist < min_dist:
+			min_dist = dist
+			closest_valid_target = target
+	print(closest_valid_target)
+	if closest_valid_target != null:
+		closest_valid_target.mine()
 
 func update_tree():
 	for key in anim_amounts.keys():
@@ -139,18 +200,26 @@ func update_tree():
 		anim_tree[blend_name] = anim_amounts[key]
 
 var jumping := false
-var time_of_jump: float = 0
-@onready var jump_anim_delay: float = .4 / anim_tree["parameters/jump_speed/scale"]
 
-const SPEED = 5.0
+const WALK_SPEED = 3.5
 const CROUCH_SPEED = 2.0
-const RUN_SPEED = 11.
-const JUMP_VELOCITY = 7
+const RUN_SPEED = 8.
+const JUMP_SPEED = 8
+
+## Called by jump animation
+func jump_effect() -> void:
+	jumping = false
+	velocity.y = JUMP_SPEED
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
-		velocity += get_gravity() * delta
+		var falling = velocity.y < 0
+		var gravity = get_gravity() * delta
+		if falling:
+			const fast_fall_multiplier = 2.2
+			gravity *= fast_fall_multiplier
+		velocity += gravity
 	
 	if standing:
 		anim_state = "idle"
@@ -161,38 +230,34 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("Jump") and is_on_floor() and not jumping:
 		anim_tree["parameters/jump/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 		jumping = true
-		time_of_jump = Global.time()
 
 	var input_dir = Input.get_vector("Move Right", "Move Left", "Move Back", "Move Forward")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	var crouching = Input.is_action_pressed("Crouch")
 	var running = not crouching and input_dir.y >= 0 and Input.is_action_pressed("Run")
 
-	var move_speed: float
+	var current_horizontal_speed := velocity.slide(Vector3.UP).length()
+	var target_speed: float
 	if crouching:
-		move_speed = CROUCH_SPEED
-		footsteps.speed_scale = .6
+		target_speed = CROUCH_SPEED
+		footsteps.speed_scale = .8
 		stand(false)
 	else:
 		if running:
-			move_speed = RUN_SPEED
+			target_speed = RUN_SPEED
 			footsteps.speed_scale = 1.4
 		else:
-			move_speed = SPEED
+			target_speed = WALK_SPEED
 			footsteps.speed_scale = 1
 		stand(true)
-
-
-
-	if jumping and Global.time() - time_of_jump > jump_anim_delay:
-		jumping = false
-		velocity.y = JUMP_VELOCITY
+	const speed_control: float = 20
+	current_horizontal_speed = move_toward(current_horizontal_speed, target_speed, speed_control * delta)
 	
 	var rotation_target := camera_pivot.rotation.y + PI
 	
 	if direction:
 		if is_on_floor():
-			footsteps.play_sound_effect("grass")
+			footsteps.play_step()
 		if standing:
 			if input_dir.y < 0:
 				anim_state = "walk_back"
@@ -219,23 +284,36 @@ func _physics_process(delta: float) -> void:
 		
 		
 		direction = direction.rotated(Vector3.UP, rotation_target)
-		velocity.x = direction.x * move_speed
-		velocity.z = direction.z * move_speed
+		velocity.x = direction.x * current_horizontal_speed
+		velocity.z = direction.z * current_horizontal_speed
 		rotation_target += movement_rotation
 	else:
-		velocity.x = move_toward(velocity.x, 0, move_speed)
-		velocity.z = move_toward(velocity.z, 0, move_speed)
+		var friction = 60
+		var current_horizontal_direction = velocity.slide(Vector3.UP).normalized()
+		current_horizontal_speed = move_toward(current_horizontal_speed, 0, friction * delta)
+		velocity = current_horizontal_direction * current_horizontal_speed + velocity.project(Vector3.UP)
 
 	rotation_target = fmod(rotation_target, (2 * PI))
 	var rotation_diff = model.rotation.y - rotation_target
-	if abs(rotation_diff) > PI:
+	if rotation_diff > PI:
+		rotation_target = rotation_target + 2*PI
+	elif rotation_diff < -PI:
 		rotation_target = rotation_target - 2*PI
 
-	model.rotation.y = lerpf(model.rotation.y, rotation_target, move_speed * delta)
+	var rotate_speed = 10
+	model.rotation.y = lerpf(model.rotation.y, rotation_target, rotate_speed * delta)
+	model.rotation.y = fmod(model.rotation.y, (2 * PI))
 
 	handle_animations(delta)
-	handle_interactions()
+	var mass = 1
+	
 	move_and_slide()
+	for i in get_slide_collision_count():
+		var coll = get_slide_collision(i)
+		var push_impulse = (target_speed * mass * direction).project(-coll.get_normal())
+		if coll.get_collider() is RigidBody3D:
+			coll.get_collider().apply_central_impulse(push_impulse)
 
 func _process(_delta: float) -> void:
+	handle_interactions()
 	handle_items()

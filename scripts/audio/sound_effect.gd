@@ -7,7 +7,7 @@ extends Resource
 
 func get_sound() -> AudioStream:
 	if len(sounds) == 0:
-		printerr("Attempted to play a sound effect that didnt exist")
+		printerr("Attempted to play a sound effect that didnt exist", self)
 		return null
 	var random_index = randi_range(0, len(sounds) - 1)
 	return sounds[random_index]

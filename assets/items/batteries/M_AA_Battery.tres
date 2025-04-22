@@ -1,0 +1,31 @@
+[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="uid://baxtl4b0c60ws"]
+
+[ext_resource type="Texture2D" uid="uid://bf5ile1qcyekq" path="res://assets/items/batteries/batteries_0.png" id="1_1wugd"]
+[ext_resource type="Texture2D" uid="uid://skw3md8s05ti" path="res://assets/items/batteries/batteries_1.png" id="2_llw76"]
+[ext_resource type="Shader" uid="uid://biluacepvfae1" path="res://assets/shaders/outline.gdshader" id="3_llw76"]
+[ext_resource type="Texture2D" uid="uid://w13pul3kbwk" path="res://assets/items/batteries/batteries_2.png" id="3_nv2h8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nv2h8"]
+render_priority = 0
+shader = ExtResource("3_llw76")
+shader_parameter/normal_threshold = 2.23
+shader_parameter/depth_threshold = 0.1
+shader_parameter/depth_artifact_correction_coef = 2.0
+shader_parameter/outline_width = 1.63
+shader_parameter/outline_color = Color(0.73, 0.946, 1, 1)
+shader_parameter/enabled = false
+
+[resource]
+resource_local_to_scene = true
+resource_name = "M_AA_Battery"
+next_pass = SubResource("ShaderMaterial_nv2h8")
+albedo_texture = ExtResource("1_1wugd")
+metallic = 1.0
+metallic_texture = ExtResource("2_llw76")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("2_llw76")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_texture = ExtResource("3_nv2h8")
+ao_enabled = true
+ao_texture = ExtResource("2_llw76")

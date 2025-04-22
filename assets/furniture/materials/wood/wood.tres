@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ck0eps0lsl4o5" path="res://assets/furniture/materials/wood/Wood062_1K-PNG_Roughness.png" id="5_3wxrg"]
 
 [resource]
+cull_mode = 2
 albedo_texture = ExtResource("1_g8u07")
 roughness_texture = ExtResource("5_3wxrg")
 normal_enabled = true

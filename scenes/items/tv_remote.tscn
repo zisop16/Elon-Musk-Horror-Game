@@ -1,10 +1,12 @@
-[gd_scene load_steps=12 format=4 uid="uid://c8gjas2vl8m5p"]
+[gd_scene load_steps=15 format=4 uid="uid://c8gjas2vl8m5p"]
 
 [ext_resource type="Script" uid="uid://b4gyu5l5cssa4" path="res://scripts/items/tv_remote.gd" id="1_fw4h3"]
-[ext_resource type="Texture2D" uid="uid://c1r0h5uv2whcs" path="res://assets/tv_remote/samsung_tv_remote_control_0.png" id="2_305f7"]
-[ext_resource type="Material" uid="uid://baxorwlrjv8r8" path="res://assets/tv_remote/remote_outline.tres" id="2_tuhb1"]
-[ext_resource type="Material" uid="uid://cggltdd4g7euo" path="res://assets/tv_remote/TVRemote.tres" id="3_0dfs4"]
+[ext_resource type="Texture2D" uid="uid://c1r0h5uv2whcs" path="res://assets/items/tv_remote/samsung_tv_remote_control_0.png" id="2_305f7"]
+[ext_resource type="Material" uid="uid://cggltdd4g7euo" path="res://assets/items/tv_remote/TVRemote.tres" id="3_0dfs4"]
 [ext_resource type="PackedScene" uid="uid://dvrh54jtkocta" path="res://scenes/interaction_component.tscn" id="5_tuhb1"]
+[ext_resource type="Script" uid="uid://bgbnsqe0qmhtj" path="res://scripts/audio/poly_audio_player.gd" id="6_n3gt3"]
+[ext_resource type="Script" uid="uid://bcqs0sjegrs1a" path="res://scripts/audio/sound_effect.gd" id="7_le2am"]
+[ext_resource type="AudioStream" uid="uid://c28t88kgno0m" path="res://assets/sfx/toggle_remote.mp3" id="8_n3gt3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_no2qm"]
 resource_name = "TVRemote"
@@ -63,6 +65,7 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_cfe7a"]
+resource_local_to_scene = true
 resource_name = "Sketchfab_Scene_Body_TVRemote_0"
 _surfaces = [{
 "aabb": AABB(-1.48133, -6.94705, -0.360345, 2.96265, 13.1054, 1.29351),
@@ -84,12 +87,18 @@ shadow_mesh = SubResource("ArrayMesh_egbnl")
 [sub_resource type="BoxShape3D" id="BoxShape3D_tuhb1"]
 size = Vector3(0.25, 0.121511, 0.65)
 
+[sub_resource type="Resource" id="Resource_4i7po"]
+script = ExtResource("7_le2am")
+sounds = Array[AudioStream]([ExtResource("8_n3gt3")])
+volume = -11.0
+pitch_variation = 0.11
+metadata/_custom_type_script = "uid://bcqs0sjegrs1a"
+
 [node name="Tv Remote" type="RigidBody3D"]
 collision_layer = 8
 collision_mask = 15
 continuous_cd = true
 script = ExtResource("1_fw4h3")
-outline_material = ExtResource("2_tuhb1")
 
 [node name="Model" type="Node3D" parent="."]
 
@@ -108,6 +117,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0487554, 0)
 visible = false
 shape = SubResource("BoxShape3D_tuhb1")
 
-[node name="InteractionComponent" parent="." instance=ExtResource("5_tuhb1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
-outline_material = ExtResource("2_tuhb1")
+[node name="InteractionComponent" parent="." node_paths=PackedStringArray("outline_material_holder") instance=ExtResource("5_tuhb1")]
+outline_material_holder = NodePath("../Model/Body_TVRemote_0")
+
+[node name="PolyAudioPlayer" type="AudioStreamPlayer3D" parent="."]
+script = ExtResource("6_n3gt3")
+sound_effects = Dictionary[String, ExtResource("7_le2am")]({
+"toggle": SubResource("Resource_4i7po")
+})
+metadata/_custom_type_script = "uid://bgbnsqe0qmhtj"

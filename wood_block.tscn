@@ -1,0 +1,115 @@
+[gd_scene load_steps=13 format=4 uid="uid://drtvxnbrms54n"]
+
+[ext_resource type="Script" uid="uid://cjlalpfwb0nvt" path="res://scripts/items/wood_block.gd" id="1_itjkh"]
+[ext_resource type="Texture2D" uid="uid://bycr481wjrvmb" path="res://assets/minecraft/wood/minecraft_wood_block_0.jpg" id="1_uutpy"]
+[ext_resource type="Texture2D" uid="uid://f5sgqprb34v6" path="res://assets/minecraft/wood/minecraft_wood_block_1.jpg" id="2_bybdu"]
+[ext_resource type="Material" uid="uid://d3ok12nyduvt8" path="res://assets/minecraft/wood/wood_block_outline.tres" id="3_eky8n"]
+[ext_resource type="PackedScene" uid="uid://dvrh54jtkocta" path="res://scenes/interaction_component.tscn" id="5_rx5jh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x7p02"]
+resource_name = "Material.001"
+next_pass = ExtResource("3_eky8n")
+cull_mode = 2
+albedo_texture = ExtResource("1_uutpy")
+roughness = 0.804041
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_uwgdq"]
+_surfaces = [{
+"aabb": AABB(-1, -1, -1, 2, 2, 2),
+"format": 34896613377,
+"index_count": 12,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUA"),
+"name": "Material.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("////////AAAAAAAA//8AAAAA/////wAA//8AAP//AAAAAP//AAAAAP//AAAAAAAA/////wAAAAAAAAAAAAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_cq43n"]
+resource_local_to_scene = true
+resource_name = "Sketchfab_Scene_Cube_Material_001_0"
+_surfaces = [{
+"aabb": AABB(-1, -1, -1, 2, 2, 2),
+"attribute_data": PackedByteArray("/wFvAYz9/PyM/W8B/wH8/CQBIQBN/0r+Tf8hACQBSv4="),
+"format": 34896613399,
+"index_count": 12,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUA"),
+"material": SubResource("StandardMaterial3D_x7p02"),
+"name": "Material.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("////////AAAAAAAA//8AAAAA/////wAA//8AAP//AAAAAP//AAAAAP//AAAAAAAA/////wAAAAAAAAAAAAAAAP9//3//f/9//3//f/9//3////9/////f////3////9/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_uwgdq")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ovruq"]
+resource_local_to_scene = true
+resource_name = "Material"
+next_pass = ExtResource("3_eky8n")
+cull_mode = 2
+albedo_texture = ExtResource("2_bybdu")
+roughness = 0.804041
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_tw8hn"]
+_surfaces = [{
+"aabb": AABB(-1, -1, -1, 2, 2, 2),
+"format": 34896613377,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAAAAIAAwAFAAEABAACAAYAAwAHAAUABwAEAAYABwAGAAUA"),
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("//8AAAAAAAAAAAAA//8AAP//AAD//wAAAAAAAAAAAAD/////AAAAAAAA/////wAA////////AAAAAP//AAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_vk3hr"]
+resource_local_to_scene = true
+resource_name = "Sketchfab_Scene_Cube_Material_0"
+_surfaces = [{
+"aabb": AABB(-1, -1, -1, 2, 2, 2),
+"attribute_data": PackedByteArray("lIASgIv/Qf+L/xKAlIBB/4qAX4CU/6H/lP9fgIqAof8ggLt////S////u38ggNL/SoA7gNX////V/zuASoD//w=="),
+"format": 34896613399,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0A"),
+"material": SubResource("StandardMaterial3D_ovruq"),
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(1.998, 1.99457, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("//8AAAAAqioAAAAA//+qKv//AAD//6oqAAAAAAAAqioAAAAAAAD/PwAA//////8/AAAAAP///z8AAP//AAD/P/////8AAAAA//8AAP//AAD///////8AAP//AAAAAAAAAAD//wAAqir///////+qKgAA/////6oq/////wAAqiqqKlTVqipU1aoqVNWqKlTV/3////9/////f////3////+//3//v/9//7//f/+//3+qqqqqqqqqqqqqqqqqqqqq")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_tw8hn")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h55ws"]
+
+[node name="WoodBlock" type="RigidBody3D"]
+mass = 2.0
+script = ExtResource("1_itjkh")
+
+[node name="Model" type="Node3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, -2.18557e-08, 0.5, 0, -0.5, -2.18557e-08, 0, 0.5, 0)
+
+[node name="Cube_Material_001_0" type="MeshInstance3D" parent="Model"]
+mesh = SubResource("ArrayMesh_cq43n")
+skeleton = NodePath("")
+
+[node name="Cube_Material_0" type="MeshInstance3D" parent="Model"]
+material_override = SubResource("StandardMaterial3D_ovruq")
+mesh = SubResource("ArrayMesh_vk3hr")
+skeleton = NodePath("")
+
+[node name="InteractionComponent" parent="." node_paths=PackedStringArray("outline_material_holder") instance=ExtResource("5_rx5jh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.06897, 0)
+outline_material_holder = NodePath("../Model/Cube_Material_0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+visible = false
+shape = SubResource("BoxShape3D_h55ws")

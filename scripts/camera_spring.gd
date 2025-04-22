@@ -8,7 +8,7 @@ extends Node3D
 
 var target_position: Vector3
 func _physics_process(delta: float) -> void:
-	var LERP_SPEED = 8
+	var LERP_SPEED = 15
 	position = position.lerp(target_position, delta * LERP_SPEED)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

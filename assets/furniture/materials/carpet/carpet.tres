@@ -16,5 +16,4 @@ ao_texture = ExtResource("2_bn1hk")
 heightmap_enabled = true
 heightmap_scale = 1.0
 heightmap_texture = ExtResource("3_kypmt")
-uv1_scale = Vector3(0.095, 0.095, 0.095)
-uv1_triplanar = true
+uv1_scale = Vector3(17.92, 17.92, 17.92)

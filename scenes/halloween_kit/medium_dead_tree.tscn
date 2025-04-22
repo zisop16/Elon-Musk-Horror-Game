@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://d1n47dxbyo7x8"]
+[gd_scene load_steps=4 format=3 uid="uid://d1n47dxbyo7x8"]
 
+[ext_resource type="Script" uid="uid://bvsb75ttnrgct" path="res://scripts/interactions/mineable.gd" id="1_o4ang"]
 [ext_resource type="PackedScene" uid="uid://bll8bvckso3bj" path="res://assets/KayKit_HalloweenBits_1.0_FREE/fbx/tree_dead_medium.fbx" id="1_wh8s4"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_o4ang"]
@@ -7,6 +8,8 @@ height = 2.40306
 radius = 0.195313
 
 [node name="Medium Dead Tree" type="StaticBody3D"]
+collision_layer = 17
+script = ExtResource("1_o4ang")
 
 [node name="tree_dead_medium" parent="." instance=ExtResource("1_wh8s4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.307278, 0)

@@ -1,11 +1,11 @@
 [gd_scene load_steps=24 format=4 uid="uid://cxl60mo1c2en2"]
 
 [ext_resource type="Script" uid="uid://cgqj044y0l53h" path="res://scripts/items/chainsaw.gd" id="1_cs4vb"]
-[ext_resource type="Texture2D" uid="uid://bqc0ilg02ts7j" path="res://assets/chainsaw/chainsaw_0.jpg" id="2_tbktl"]
-[ext_resource type="Material" uid="uid://c4lsf7fjbhiy0" path="res://assets/chainsaw/chainsaw_outline.tres" id="3_6sed6"]
-[ext_resource type="Texture2D" uid="uid://cr2e31ae8ral5" path="res://assets/chainsaw/chainsaw_1.jpg" id="3_cnh5o"]
-[ext_resource type="Texture2D" uid="uid://cf7a7umblib5v" path="res://assets/chainsaw/chainsaw_2.png" id="4_2jfs0"]
-[ext_resource type="Texture2D" uid="uid://dajg4eags76ia" path="res://assets/chainsaw/chainsaw_3.jpg" id="5_5xu6v"]
+[ext_resource type="Texture2D" uid="uid://bqc0ilg02ts7j" path="res://assets/items/chainsaw/chainsaw_0.jpg" id="2_tbktl"]
+[ext_resource type="Material" uid="uid://c4lsf7fjbhiy0" path="res://assets/items/chainsaw/chainsaw_outline.tres" id="3_6sed6"]
+[ext_resource type="Texture2D" uid="uid://cr2e31ae8ral5" path="res://assets/items/chainsaw/chainsaw_1.jpg" id="3_cnh5o"]
+[ext_resource type="Texture2D" uid="uid://cf7a7umblib5v" path="res://assets/items/chainsaw/chainsaw_2.png" id="4_2jfs0"]
+[ext_resource type="Texture2D" uid="uid://dajg4eags76ia" path="res://assets/items/chainsaw/chainsaw_3.jpg" id="5_5xu6v"]
 [ext_resource type="PackedScene" uid="uid://dvrh54jtkocta" path="res://scenes/interaction_component.tscn" id="7_xsy4a"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nou5l"]
@@ -268,7 +268,6 @@ collision_layer = 8
 collision_mask = 15
 mass = 20.0
 script = ExtResource("1_cs4vb")
-outline_material = ExtResource("3_6sed6")
 
 [node name="Sketchfab_model" type="Node3D" parent="."]
 transform = Transform3D(-0.213, 3.21621e-08, 1.40585e-15, 0, -9.31053e-09, 0.213, 3.21621e-08, 0.213, 9.31053e-09, 0, 0, -0.5)
@@ -328,9 +327,8 @@ libraries = {
 }
 speed_scale = 6.0
 
-[node name="InteractionComponent" parent="." instance=ExtResource("7_xsy4a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
-outline_material = ExtResource("3_6sed6")
+[node name="InteractionComponent" parent="." node_paths=PackedStringArray("outline_material_holder") instance=ExtResource("7_xsy4a")]
+outline_material_holder = NodePath("../Sketchfab_model/Root/chainsaw/chainsaw_0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013, 0.088, -0.14)

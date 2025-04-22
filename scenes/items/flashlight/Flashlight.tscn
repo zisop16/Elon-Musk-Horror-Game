@@ -1,9 +1,8 @@
-[gd_scene load_steps=16 format=4 uid="uid://cxgiq6bp1fde0"]
+[gd_scene load_steps=15 format=4 uid="uid://cxgiq6bp1fde0"]
 
 [ext_resource type="Script" uid="uid://skl8sc51x30q" path="res://scripts/items/flashlight.gd" id="1_2rhmn"]
-[ext_resource type="Material" uid="uid://hvtvib1ekyxk" path="res://assets/flashlight/flashlight_outline.tres" id="2_oqbcu"]
-[ext_resource type="Material" uid="uid://bd3aqwl66devm" path="res://assets/flashlight/flashlight.tres" id="3_5l1vh"]
-[ext_resource type="Texture2D" uid="uid://0jqcwih6qlik" path="res://assets/flashlight/flashlight_cookie.jpg" id="4_2rpsh"]
+[ext_resource type="Material" uid="uid://bd3aqwl66devm" path="res://assets/items/flashlight/flashlight.tres" id="3_5l1vh"]
+[ext_resource type="Texture2D" uid="uid://0jqcwih6qlik" path="res://assets/items/flashlight/flashlight_cookie.jpg" id="4_2rpsh"]
 [ext_resource type="Script" uid="uid://bgbnsqe0qmhtj" path="res://scripts/audio/poly_audio_player.gd" id="4_77jry"]
 [ext_resource type="Script" uid="uid://bcqs0sjegrs1a" path="res://scripts/audio/sound_effect.gd" id="5_pi1w5"]
 [ext_resource type="AudioStream" uid="uid://dqjiyn0t1530w" path="res://assets/sfx/flashlight/flashlight on.mp3" id="6_77jry"]
@@ -71,7 +70,6 @@ collision_layer = 8
 collision_mask = 15
 continuous_cd = true
 script = ExtResource("1_2rhmn")
-outline_material = ExtResource("2_oqbcu")
 
 [node name="Model" type="MeshInstance3D" parent="."]
 transform = Transform3D(1.31429e-07, -6.57144e-08, 10.9572, -3.66728, 2.18587e-07, 5.43102e-07, -1.09293e-07, -3.66728, 0, 0.0336329, -0.00108612, 0)
@@ -113,6 +111,6 @@ visible = false
 shape = SubResource("CylinderShape3D_emwln")
 debug_color = Color(0, 0.595, 0.7, 1)
 
-[node name="InteractionComponent" parent="." instance=ExtResource("9_oqbcu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
-outline_material = ExtResource("2_oqbcu")
+[node name="InteractionComponent" parent="." node_paths=PackedStringArray("outline_material_holder") instance=ExtResource("9_oqbcu")]
+rotation_edit_mode = 1
+outline_material_holder = NodePath("../Model")

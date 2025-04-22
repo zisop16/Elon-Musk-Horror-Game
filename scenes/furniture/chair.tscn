@@ -179,8 +179,8 @@ size = Vector3(0.9, 1.07, 0.920862)
 
 [node name="Chair" type="RigidBody3D"]
 collision_layer = 4
-collision_mask = 15
-mass = 10.0
+collision_mask = 13
+mass = 2.0
 
 [node name="Sketchfab_model" type="Node3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, -8.74228e-08, 2, 0, -2, -8.74228e-08, 0.7, 0, 1.32)
