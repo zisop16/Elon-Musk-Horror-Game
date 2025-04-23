@@ -1,10 +1,15 @@
-[gd_resource type="Resource" script_class="ItemTextures" load_steps=6 format=3 uid="uid://vlpfuwdwmqc1"]
+[gd_resource type="Resource" script_class="ItemTextures" load_steps=11 format=3 uid="uid://vlpfuwdwmqc1"]
 
 [ext_resource type="Texture2D" uid="uid://bl8ine30ll1p5" path="res://assets/user_interface/item_icons/flashlight.png" id="1_0x3ti"]
 [ext_resource type="Script" uid="uid://3gnt432jm0lc" path="res://scripts/interactions/item_textures.gd" id="1_1ihcu"]
 [ext_resource type="Texture2D" uid="uid://o5bo76usq46k" path="res://assets/user_interface/item_icons/tv_remote.png" id="2_1depk"]
 [ext_resource type="Texture2D" uid="uid://cbrflrrkwn4f5" path="res://assets/user_interface/item_icons/chainsaw.png" id="3_k06u1"]
 [ext_resource type="Texture2D" uid="uid://wf4li1yyfrn1" path="res://assets/user_interface/item_icons/wood_block.png" id="4_1depk"]
+[ext_resource type="Texture2D" uid="uid://3c8vsjbyxwm8" path="res://assets/user_interface/item_icons/pickaxe.png" id="5_k06u1"]
+[ext_resource type="Texture2D" uid="uid://6hsuoilffdxt" path="res://assets/user_interface/item_icons/iron_ingot.png" id="6_qci5i"]
+[ext_resource type="Texture2D" uid="uid://c1jajmf4wfr0e" path="res://assets/user_interface/item_icons/gold_ingot.png" id="7_fxyxo"]
+[ext_resource type="Texture2D" uid="uid://ccqa8kbj6ch6p" path="res://assets/user_interface/item_icons/bucket.png" id="8_cldcf"]
+[ext_resource type="Texture2D" uid="uid://dyhhmro0y7xd" path="res://assets/user_interface/item_icons/gold_chain.png" id="9_vxd52"]
 
 [resource]
 script = ExtResource("1_1ihcu")
@@ -12,6 +17,11 @@ item_textures = Dictionary[int, Texture2D]({
 0: ExtResource("1_0x3ti"),
 1: ExtResource("2_1depk"),
 2: ExtResource("3_k06u1"),
-3: ExtResource("4_1depk")
+3: ExtResource("4_1depk"),
+4: ExtResource("5_k06u1"),
+5: ExtResource("8_cldcf"),
+6: ExtResource("6_qci5i"),
+7: ExtResource("9_vxd52"),
+8: ExtResource("7_fxyxo")
 })
 metadata/_custom_type_script = "uid://3gnt432jm0lc"

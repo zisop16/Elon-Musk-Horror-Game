@@ -1,19 +1,44 @@
-[gd_scene load_steps=18 format=4 uid="uid://c3hsmnwdm1jpv"]
+[gd_scene load_steps=25 format=4 uid="uid://c3hsmnwdm1jpv"]
 
 [ext_resource type="Script" uid="uid://bnlldl3cil48l" path="res://scripts/interactions/workbench.gd" id="1_4wa1c"]
 [ext_resource type="Resource" uid="uid://vlpfuwdwmqc1" path="res://assets/user_interface/item_textures.tres" id="2_fr654"]
 [ext_resource type="Material" uid="uid://gj08p6qpbjr5" path="res://assets/minecraft/workbench/Crafting_Table.tres" id="2_hc8hf"]
 [ext_resource type="Script" uid="uid://c5ycs17o1ls2d" path="res://scripts/items/crafting_recipe.gd" id="2_qrrc1"]
 [ext_resource type="StyleBox" uid="uid://dcxmwxgpbu2xm" path="res://assets/user_interface/crafting_slot.tres" id="3_x1pq0"]
+[ext_resource type="PackedScene" uid="uid://dkpxp372lnw2b" path="res://scenes/minecraft/pickaxe.tscn" id="4_25ggv"]
 [ext_resource type="Texture2D" uid="uid://tfyhr3j5ode3" path="res://assets/user_interface/plus_sign.png" id="4_x1pq0"]
 [ext_resource type="Material" uid="uid://c8muugid5fho1" path="res://assets/user_interface/2d_outline.tres" id="4_xvuwy"]
+[ext_resource type="PackedScene" uid="uid://bdfnvoqbpx6i7" path="res://scenes/items/gold_chain.tscn" id="5_uy7if"]
+[ext_resource type="PackedScene" uid="uid://cxl60mo1c2en2" path="res://scenes/items/chainsaw.tscn" id="6_axqpb"]
+[ext_resource type="PackedScene" uid="uid://bapweteeedve4" path="res://scenes/items/bucket.tscn" id="7_affvf"]
 [ext_resource type="PackedScene" uid="uid://dvrh54jtkocta" path="res://scenes/interaction_component.tscn" id="10_m0625"]
 
 [sub_resource type="Resource" id="Resource_fr654"]
 script = ExtResource("2_qrrc1")
 input1 = 3
 input2 = 3
-output = 0
+output = 4
+metadata/_custom_type_script = "uid://c5ycs17o1ls2d"
+
+[sub_resource type="Resource" id="Resource_gg7wi"]
+script = ExtResource("2_qrrc1")
+input1 = 6
+input2 = 6
+output = 5
+metadata/_custom_type_script = "uid://c5ycs17o1ls2d"
+
+[sub_resource type="Resource" id="Resource_l5j8a"]
+script = ExtResource("2_qrrc1")
+input1 = 8
+input2 = 6
+output = 7
+metadata/_custom_type_script = "uid://c5ycs17o1ls2d"
+
+[sub_resource type="Resource" id="Resource_85a23"]
+script = ExtResource("2_qrrc1")
+input1 = 2
+input2 = 2
+output = 2
 metadata/_custom_type_script = "uid://c5ycs17o1ls2d"
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_mm8yq"]
@@ -93,7 +118,13 @@ corner_radius_bottom_left = 20
 [node name="Workbench" type="StaticBody3D"]
 script = ExtResource("1_4wa1c")
 item_textures = ExtResource("2_fr654")
-recipes = Array[ExtResource("2_qrrc1")]([SubResource("Resource_fr654")])
+recipes = Array[ExtResource("2_qrrc1")]([SubResource("Resource_fr654"), SubResource("Resource_gg7wi"), SubResource("Resource_l5j8a"), SubResource("Resource_85a23")])
+item_scenes = Dictionary[int, PackedScene]({
+2: ExtResource("6_axqpb"),
+4: ExtResource("4_25ggv"),
+5: ExtResource("7_affvf"),
+7: ExtResource("5_uy7if")
+})
 
 [node name="Workbench" type="MeshInstance3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 4.44089e-16, 2, 0, -2, 4.44089e-16, -1, 0, -1)

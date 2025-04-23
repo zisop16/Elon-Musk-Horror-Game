@@ -2,7 +2,7 @@ class_name Item
 extends RigidBody3D
 
 @onready var interaction: InteractionComponent = $InteractionComponent
-enum item_id {flashlight, tv_remote, chainsaw, wood_block, pickaxe, bucket}
+enum item_id {flashlight, tv_remote, chainsaw, wood_block, pickaxe, bucket, iron_ingot, gold_chain, gold_ingot}
 
 ## Whether the item is currently activated
 var active: bool = false

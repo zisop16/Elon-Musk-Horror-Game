@@ -14,7 +14,8 @@ var logging_interval = .5
 func _process(delta: float) -> void:
 	var curr_fps = 1/delta
 	if curr_fps < 100:
-		print(curr_fps)
+		print("fps drop ", curr_fps)
+		pass
 	if Input.is_action_just_pressed("Free Mouse"):
 		capture_mouse = not capture_mouse
 		if capture_mouse:

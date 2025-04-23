@@ -154,4 +154,5 @@ draw_pass_1 = SubResource("SphereMesh_cllgp")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.242853, 1.24896, 0.145953)
 light_color = Color(1, 0.934, 0.78, 1)
 light_energy = 2.5
+light_volumetric_fog_energy = 0.0
 omni_range = 3.0

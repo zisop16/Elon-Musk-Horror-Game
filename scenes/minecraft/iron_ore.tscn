@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=4 uid="uid://bf1776umoesmt"]
+
+[ext_resource type="Texture2D" uid="uid://cxy7wg7qh4ryc" path="res://assets/minecraft/iron/iron_ore_0.png" id="1_gpayk"]
+[ext_resource type="PackedScene" uid="uid://dyvcurcwcrsx0" path="res://scenes/mine_component.tscn" id="2_mv5rl"]
+[ext_resource type="PackedScene" uid="uid://d2wi81rrgtoda" path="res://scenes/particles/iron_explosion.tscn" id="3_12hnx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mv5rl"]
+resource_name = "Iron_Ore"
+cull_mode = 2
+albedo_texture = ExtResource("1_gpayk")
+emission_texture = ExtResource("1_gpayk")
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_kxtaa"]
+_surfaces = [{
+"aabb": AABB(0, -1, 0, 1, 1, 1),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAgABAAMAAAAEAAEABAADAAEAAAACAAUAAgADAAUAAAAGAAQABAAGAAMAAAAHAAYABwADAAYAAAAFAAcABwAFAAMA"),
+"name": "Iron_Ore",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAAAAAAAAAP////8AAAAAAAD//wAA////////AAAAAP//AAAAAP//AAD//wAA/////wAAAAD//wAAAAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_12hnx"]
+resource_name = "Sketchfab_Scene_Object_0"
+_surfaces = [{
+"aabb": AABB(0, -1, 0, 1, 1, 1),
+"attribute_data": PackedByteArray("v5i/+7+Uv/+/mL//v5S/+7+Uv/u/mL//v5S//7+Yv/u/mL/7v5S//7+Yv/+/lL/7v5S/+7+Yv/+/mL/7v5S//7+Uv/u/mL//v5i/+7+Uv/+/lL/7v5i//7+Yv/u/lL//"),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
+"material": SubResource("StandardMaterial3D_mv5rl"),
+"name": "Iron_Ore",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AAAAAAAAqioAAP////+qKgAAAAD//6oqAAD//wAAqioAAAAAAAD///////8AAP//AAD//wAA/////wAAAAD//wAA//8AAAAA////////AAAAAP////8AAP////8AAAAA//8AAAAAqir///////+qKv////8AAKoq//8AAP//qioAAAAA///+f/////////5///8AAP///n8AAP/////+fwAAAAAAAP8///8AAP///z///wAAAAD/PwAAAAD///8/VFWqqlRVqqpUVaqqVFWqqv///3////9/////f////3//f/+//3//v/9//7//f/+/qiqqKqoqqiqqKqoqqiqqKv9/////f////3////9///8AAP9/AAD/fwAA/38AAP9/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_kxtaa")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_12hnx"]
+
+[node name="IronOre" type="StaticBody3D"]
+collision_layer = 17
+
+[node name="Model" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 2.22045e-16, 1, 0, -1, 2.22045e-16, -0.5, 0, -0.5)
+mesh = SubResource("ArrayMesh_12hnx")
+skeleton = NodePath("")
+
+[node name="MineComponent" parent="." instance=ExtResource("2_mv5rl")]
+requires_pickaxe = true
+particle_effect = ExtResource("3_12hnx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+visible = false
+shape = SubResource("BoxShape3D_12hnx")

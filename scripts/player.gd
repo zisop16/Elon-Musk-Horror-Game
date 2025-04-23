@@ -18,7 +18,6 @@ extends CharacterBody3D
 @onready var flashlight_pos: Node3D = $"Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D/Flashlight"
 @onready var remote_pos: Node3D = $"Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D/TvRemote"
 @onready var wood_block_pos: Node3D = $"Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D/WoodBlock"
-@onready var mining_hitbox: Area3D = $"Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D/MiningHitbox"
 
 var inventory: Array[Item]
 var equipped_item := 0
@@ -179,27 +178,14 @@ func mine():
 ## Called by mining animation
 func mine_effect():
 	mining = false
-	var targets := mining_hitbox.get_overlapping_bodies()
-	print(targets)
-	if targets.size() == 0:
+	var mining_target := interaction_ray.get_collider()
+	if mining_target == null:
 		return
+	var mine_component: MineComponent = mining_target.find_child("MineComponent")
 	var holding_pickaxe := self.inventory[equipped_item] is Pickaxe
-	var min_dist: float
-	var closest_valid_target: MineComponent = null
-	for target in targets:
-		var target_component = target.find_child("MineComponent")
-		if not holding_pickaxe and target_component.requires_pickaxe:
-			continue
-		var dist: float = (target.global_position - global_position).length_squared()
-		if closest_valid_target == null:
-			min_dist = dist
-			closest_valid_target = target_component
-		elif dist < min_dist:
-			min_dist = dist
-			closest_valid_target = target_component
-	if closest_valid_target != null:
-		print(min_dist)
-		closest_valid_target.mine()
+	if mine_component == null or mine_component.requires_pickaxe and not holding_pickaxe:
+		return
+	mine_component.mine()
 
 func update_tree():
 	for key in anim_amounts.keys():
@@ -324,3 +310,9 @@ func _physics_process(delta: float) -> void:
 func _process(_delta: float) -> void:
 	handle_interactions()
 	handle_items()
+
+func has(id: Item.item_id) -> bool:
+	for item in inventory:
+		if item.id == id:
+			return true
+	return false

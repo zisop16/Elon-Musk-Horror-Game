@@ -107,7 +107,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_gy4vy")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bmwxp"]
-size = Vector3(3.91719, 2.68618, 0.45)
+size = Vector3(3.91719, 3.81711, 0.45)
 
 [node name="Fence Gate" type="StaticBody3D"]
 
@@ -127,5 +127,5 @@ mesh = SubResource("ArrayMesh_4q750")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0120361, 1.32655, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0120361, 1.89202, 0)
 shape = SubResource("BoxShape3D_bmwxp")

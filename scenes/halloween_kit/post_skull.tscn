@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=4 uid="uid://b7mt7q0nsjjpr"]
+[gd_scene load_steps=10 format=4 uid="uid://b7mt7q0nsjjpr"]
 
 [ext_resource type="Texture2D" uid="uid://dp30lubhf10hm" path="res://assets/KayKit_HalloweenBits_1.0_FREE/halloweenbits_texture.png" id="1_exdx8"]
+[ext_resource type="PackedScene" uid="uid://dno7napwma2ex" path="res://scenes/particles/light_particles.tscn" id="2_lfxug"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1f7gw"]
 resource_name = "HalloweenBits"
@@ -101,7 +102,10 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 3.1
 shape = SubResource("BoxShape3D_2gfyy")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.24754, 1.14793)
 light_color = Color(0.958833, 1, 0.81, 1)
-light_energy = 3.59
-omni_range = 6.0
-omni_attenuation = 0.515
+light_energy = 1.305
+omni_range = 6.9
+omni_attenuation = 0.6
+
+[node name="Light Particles" parent="OmniLight3D" instance=ExtResource("2_lfxug")]
