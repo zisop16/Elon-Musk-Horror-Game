@@ -11,17 +11,27 @@ extends CharacterBody3D
 @onready var crouched_head: Vector3 = $"Crouched Head".position
 @onready var footsteps: FootstepPlayer = $FootstepPlayer
 @onready var sfx_player: PolyAudioPlayer = $SFXPlayer
-@onready var interaction_ray: RayCast3D = $"Camera Pivot/Camera3D/Interaction"
+@onready var interaction_ray: RayCast3D = %InteractionRay
 
-
-@onready var chainsaw_pos: Node3D = $"Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D/Chainsaw"
-@onready var flashlight_pos: Node3D = $"Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D/Flashlight"
-@onready var remote_pos: Node3D = $"Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D/TvRemote"
-@onready var wood_block_pos: Node3D = $"Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D/WoodBlock"
+@onready var item_pos: Dictionary[Item.item_id, Node3D] = {
+	Item.item_id.chainsaw: $"Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D/Chainsaw",
+	Item.item_id.flashlight: $"Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D/Flashlight",
+	Item.item_id.tv_remote: $"Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D/TvRemote",
+	Item.item_id.wood_block: $"Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D/WoodBlock",
+	Item.item_id.pickaxe: $"Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D/Pickaxe",
+	Item.item_id.bucket: $"Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D/Bucket",
+	Item.item_id.gold_chain: $"Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D/GoldChain",
+	Item.item_id.gold_ingot: $"Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D/GoldIngot",
+	Item.item_id.iron_ingot: $"Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D/IronIngot",
+	Item.item_id.saw_movie: $"Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D/SawMovie"
+}
 
 var inventory: Array[Item]
 var equipped_item := 0
 const inventory_size = 3
+const max_stamina: float = 5
+const stamina_regen: float = .5
+var stamina := max_stamina
 
 var standing: bool = true
 func stand(flag: bool) -> void:
@@ -34,6 +44,14 @@ func stand(flag: bool) -> void:
 		crouched_hitbox.disabled = false
 		camera_pivot.target_position = crouched_head
 	standing = flag
+
+func set_light_layer():
+	var skeleton = %Skeleton3D
+	# Flashlight will cull layer 2 so it doesn't hit the player.
+	for obj in skeleton.get_children():
+		if obj is MeshInstance3D:
+			var mesh = obj as MeshInstance3D
+			mesh.layers = 0b10
 
 func _ready():
 	stand(true)
@@ -89,14 +107,8 @@ func select_item(slot: int):
 		inventory[equipped_item].visible = true
 
 func attach_item(item: Item):
-	if item is Flashlight:
-		item.attach(flashlight_pos)
-	elif item is Chainsaw:
-		item.attach(chainsaw_pos)
-	elif item is TvRemote:
-		item.attach(remote_pos)
-	elif item is WoodBlock:
-		item.attach(wood_block_pos)
+	var pos := item_pos[item.id]
+	item.attach(pos)
 
 func handle_interactions():
 	# Disable the outline of the object hovered on previous frame
@@ -163,17 +175,18 @@ func handle_items():
 		equipped.toggle()
 	else:
 		# All items without uses will just mine
-		print("hi")
 		self.mine()
 
-var mining := false
+
 
 func mine():
 	if mining:
 		return
 	self.sfx_player.play_sound_effect("mine")
 	anim_tree["parameters/mine/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+	anim_tree["parameters/jump/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT
 	mining = true
+	mine_time = Global.time()
 
 ## Called by mining animation
 func mine_effect():
@@ -192,7 +205,13 @@ func update_tree():
 		var blend_name = "parameters/%s/blend_amount" % key
 		anim_tree[blend_name] = anim_amounts[key]
 
+var mining := false
 var jumping := false
+var jump_time: float
+var mine_time: float
+@onready var jump_delay: float = .22 / anim_tree["parameters/jump_speed/scale"]
+@onready var mine_delay: float = .56 / anim_tree["parameters/mine_speed/scale"]
+
 
 const WALK_SPEED = 3.5
 const CROUCH_SPEED = 2.0
@@ -214,6 +233,7 @@ func _physics_process(delta: float) -> void:
 			gravity *= fast_fall_multiplier
 		velocity += gravity
 	
+	var running_last_frame = anim_state == "run"
 	if standing:
 		anim_state = "idle"
 	else:
@@ -222,12 +242,21 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("Jump") and is_on_floor() and not jumping:
 		anim_tree["parameters/jump/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+		anim_tree["parameters/mine/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT
 		jumping = true
+		jump_time = Global.time()
+
+	if jumping and (Global.time() - jump_time) > jump_delay:
+		jump_effect()
+	if mining and (Global.time() - mine_time) > mine_delay:
+		mine_effect()
 
 	var input_dir = Input.get_vector("Move Right", "Move Left", "Move Back", "Move Forward")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	var crouching = Input.is_action_pressed("Crouch")
-	var running = not crouching and input_dir.y >= 0 and Input.is_action_pressed("Run")
+	# Prevents the player from staying in permanent run on 0 stamina
+	var stamina_allows_run = ((running_last_frame and stamina > 0) or stamina > 0.5)
+	var running = direction != Vector3.ZERO and not crouching and input_dir.y >= 0 and Input.is_action_pressed("Run") and stamina_allows_run
 
 	var current_horizontal_speed := velocity.slide(Vector3.UP).length()
 	var target_speed: float
@@ -286,16 +315,26 @@ func _physics_process(delta: float) -> void:
 		current_horizontal_speed = move_toward(current_horizontal_speed, 0, friction * delta)
 		velocity = current_horizontal_direction * current_horizontal_speed + velocity.project(Vector3.UP)
 
-	rotation_target = fmod(rotation_target, (2 * PI))
+	rotation_target = fposmod(rotation_target, (2 * PI))
+	model.rotation.y = fposmod(model.rotation.y, (2 * PI))
 	var rotation_diff = model.rotation.y - rotation_target
 	if rotation_diff > PI:
+		# print(rotation_target, model.rotation.y)
 		rotation_target = rotation_target + 2*PI
 	elif rotation_diff < -PI:
+		# print(rotation_target, model.rotation.y)
 		rotation_target = rotation_target - 2*PI
+
+	if running:
+		stamina -= delta
+	else:
+		stamina += stamina_regen * delta
+	stamina = clampf(stamina, 0, max_stamina)
+	Global.stat_interface.set_stamina(stamina / max_stamina)
+	
 
 	var rotate_speed = 10
 	model.rotation.y = lerpf(model.rotation.y, rotation_target, rotate_speed * delta)
-	model.rotation.y = fmod(model.rotation.y, (2 * PI))
 
 	handle_animations(delta)
 	var mass = 1

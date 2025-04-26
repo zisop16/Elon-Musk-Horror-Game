@@ -83,6 +83,7 @@ light_color = Color(0.96, 0.8736, 0.8736, 1)
 light_energy = 100.0
 light_volumetric_fog_energy = 0.1
 light_projector = ExtResource("4_2rpsh")
+light_cull_mask = 4293918721
 shadow_enabled = true
 distance_fade_begin = 0.0
 spot_range = 30.0

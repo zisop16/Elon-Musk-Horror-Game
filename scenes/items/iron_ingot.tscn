@@ -48,7 +48,6 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_mro8v")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mvg8g"]
-resource_local_to_scene = true
 resource_name = "Material.005"
 next_pass = ExtResource("1_175o4")
 cull_mode = 2
@@ -71,7 +70,6 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_h6h18"]
-resource_local_to_scene = true
 resource_name = "Sketchfab_Scene_Plane_002_Material_005_0"
 _surfaces = [{
 "aabb": AABB(-0.884453, -1.68389, -0.19689, 3.42138, 2.80737, 0.393779),
@@ -370,7 +368,7 @@ size = Vector3(1.18066, 0.718079, 0.106674)
 script = ExtResource("1_mff72")
 
 [node name="Model" type="Node3D" parent="."]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, -1.09278e-08, 0, 1.09278e-08, 0.25, 0, 0, 0)
+transform = Transform3D(0.125, 0, 0, 0, 0.125, -5.4639e-09, 0, 5.4639e-09, 0.125, 0, 0, 0)
 
 [node name="Plane_002_Material_002_0" type="MeshInstance3D" parent="Model"]
 mesh = SubResource("ArrayMesh_ej2y5")
@@ -409,7 +407,7 @@ mesh = SubResource("ArrayMesh_7t771")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.951127, -0.308801, 0, 0.308801, 0.951127, 0, 0, 0, 1, 0.011254, 0.044473, -0.000221252)
+transform = Transform3D(0.475563, -0.1544, 0, 0.1544, 0.475563, 0, 0, 0, 0.5, 0.006, 0.022, 0)
 shape = SubResource("BoxShape3D_5v5jv")
 
 [node name="InteractionComponent" parent="." node_paths=PackedStringArray("outline_material_holder") instance=ExtResource("2_ctakt")]

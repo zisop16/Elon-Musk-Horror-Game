@@ -1,11 +1,24 @@
-[gd_scene load_steps=8 format=4 uid="uid://bf1776umoesmt"]
+[gd_scene load_steps=11 format=4 uid="uid://bf1776umoesmt"]
 
 [ext_resource type="Texture2D" uid="uid://cxy7wg7qh4ryc" path="res://assets/minecraft/iron/iron_ore_0.png" id="1_gpayk"]
+[ext_resource type="Shader" uid="uid://biluacepvfae1" path="res://shaders/outline.gdshader" id="2_eafvk"]
 [ext_resource type="PackedScene" uid="uid://dyvcurcwcrsx0" path="res://scenes/mine_component.tscn" id="2_mv5rl"]
 [ext_resource type="PackedScene" uid="uid://d2wi81rrgtoda" path="res://scenes/particles/iron_explosion.tscn" id="3_12hnx"]
+[ext_resource type="PackedScene" uid="uid://caqyrtwkdlmc7" path="res://scenes/items/iron_ingot.tscn" id="3_vlf5q"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wyt3s"]
+render_priority = 0
+shader = ExtResource("2_eafvk")
+shader_parameter/normal_threshold = 0.128
+shader_parameter/depth_threshold = 0.43
+shader_parameter/depth_artifact_correction_coef = 2.095
+shader_parameter/outline_width = 0.885
+shader_parameter/outline_color = Color(1, 0.909333, 0.83, 1)
+shader_parameter/enabled = false
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mv5rl"]
 resource_name = "Iron_Ore"
+next_pass = SubResource("ShaderMaterial_wyt3s")
 cull_mode = 2
 albedo_texture = ExtResource("1_gpayk")
 emission_texture = ExtResource("1_gpayk")
@@ -55,6 +68,7 @@ skeleton = NodePath("")
 
 [node name="MineComponent" parent="." instance=ExtResource("2_mv5rl")]
 requires_pickaxe = true
+dropped_item = ExtResource("3_vlf5q")
 particle_effect = ExtResource("3_12hnx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

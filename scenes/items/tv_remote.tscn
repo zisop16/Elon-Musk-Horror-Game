@@ -65,7 +65,6 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_cfe7a"]
-resource_local_to_scene = true
 resource_name = "Sketchfab_Scene_Body_TVRemote_0"
 _surfaces = [{
 "aabb": AABB(-1.48133, -6.94705, -0.360345, 2.96265, 13.1054, 1.29351),

@@ -1,11 +1,29 @@
-[gd_scene load_steps=8 format=4 uid="uid://6i256qd8h36k"]
+[gd_scene load_steps=21 format=4 uid="uid://6i256qd8h36k"]
 
 [ext_resource type="Texture2D" uid="uid://d2vi1r17rehia" path="res://assets/minecraft/chest/minecraft_chest_0.png" id="1_n66bg"]
+[ext_resource type="Script" uid="uid://dgymp4cyuqc41" path="res://scripts/interactions/chest.gd" id="1_na278"]
+[ext_resource type="PackedScene" uid="uid://bojeqqtmi7awk" path="res://scenes/items/saw_movie.tscn" id="2_eca6b"]
 [ext_resource type="Texture2D" uid="uid://b15ntf7llxbcs" path="res://assets/minecraft/chest/minecraft_chest_1.png" id="2_lft6n"]
-[ext_resource type="AnimationLibrary" uid="uid://c3jx2sj2axvvy" path="res://assets/minecraft/chest/chest_anims.res" id="3_na278"]
+[ext_resource type="Shader" uid="uid://biluacepvfae1" path="res://shaders/outline.gdshader" id="4_drxhj"]
+[ext_resource type="PackedScene" uid="uid://dvrh54jtkocta" path="res://scenes/interaction_component.tscn" id="5_drxhj"]
+[ext_resource type="Script" uid="uid://bgbnsqe0qmhtj" path="res://scripts/audio/poly_audio_player.gd" id="7_eca6b"]
+[ext_resource type="Script" uid="uid://bcqs0sjegrs1a" path="res://scripts/audio/sound_effect.gd" id="8_c6b5m"]
+[ext_resource type="AudioStream" uid="uid://3ug0h2mh2ylv" path="res://assets/sfx/chest_open.mp3" id="9_kwmun"]
+[ext_resource type="AudioStream" uid="uid://dys6m5d7v88hk" path="res://assets/sfx/chest_close.mp3" id="10_bjp1b"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yi1uk"]
+render_priority = 0
+shader = ExtResource("4_drxhj")
+shader_parameter/normal_threshold = 1.222
+shader_parameter/depth_threshold = 0.275
+shader_parameter/depth_artifact_correction_coef = 2.32
+shader_parameter/outline_width = 1.135
+shader_parameter/outline_color = Color(1, 0.916667, 0.75, 1)
+shader_parameter/enabled = false
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dp6ie"]
 resource_name = "Material"
+next_pass = SubResource("ShaderMaterial_yi1uk")
 cull_mode = 2
 albedo_texture = ExtResource("1_n66bg")
 metallic_texture = ExtResource("2_lft6n")
@@ -51,10 +69,54 @@ bind/4/name = &"Bone.001_end_03"
 bind/4/bone = -1
 bind/4/pose = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_n66bg"]
-size = Vector3(1.8, 1.8, 1.8)
+[sub_resource type="Animation" id="Animation_eca6b"]
+resource_name = "close"
+length = 1.2
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton3D:Bone.001_01")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.501386, -0.49861, 0.49861, 0.501386, 0.0333334, 1, 0.503469, -0.496506, 0.496507, 0.503469, 0.0666667, 1, 0.506958, -0.492944, 0.492944, 0.506958, 0.1, 1, 0.511494, -0.488235, 0.488235, 0.511494, 0.133333, 1, 0.517061, -0.482336, 0.482336, 0.517061, 0.166667, 1, 0.52363, -0.475196, 0.475196, 0.52363, 0.2, 1, 0.531162, -0.466762, 0.466762, 0.531162, 0.233333, 1, 0.539951, -0.456566, 0.456566, 0.539951, 0.266667, 1, 0.549554, -0.444962, 0.444962, 0.549554, 0.3, 1, 0.559869, -0.431911, 0.431911, 0.559869, 0.333333, 1, 0.570779, -0.417386, 0.417386, 0.570779, 0.366667, 1, 0.582152, -0.401372, 0.401372, 0.582152, 0.4, 1, 0.594051, -0.383541, 0.383541, 0.594051, 0.433333, 1, 0.606005, -0.36436, 0.36436, 0.606005, 0.466667, 1, 0.617832, -0.343924, 0.343924, 0.617832, 0.5, 1, 0.629353, -0.322359, 0.322359, 0.629352, 0.533333, 1, 0.640397, -0.299818, 0.299819, 0.640397, 0.633333, 1, 0.669003, -0.228988, 0.228988, 0.669003, 0.666667, 1, 0.676646, -0.205306, 0.205306, 0.676646, 0.7, 1, 0.683283, -0.182001, 0.182001, 0.683283, 0.733333, 1, 0.688839, -0.159692, 0.159692, 0.688838, 0.766667, 1, 0.693439, -0.138357, 0.138358, 0.693439, 0.8, 1, 0.697165, -0.118159, 0.118159, 0.697164, 0.833333, 1, 0.700109, -0.0992372, 0.0992372, 0.700109, 0.866667, 1, 0.70237, -0.0817085, 0.0817086, 0.70237, 0.9, 1, 0.704001, -0.0661976, 0.0661976, 0.704001, 0.933333, 1, 0.705174, -0.0522521, 0.0522521, 0.705173, 0.966667, 1, 0.705981, -0.0398942, 0.0398942, 0.70598, 1, 1, 0.706506, -0.0291345, 0.0291345, 0.706506, 1.03333, 1, 0.706825, -0.0199734, 0.0199734, 0.706825, 1.06667, 1, 0.706989, -0.0129194, 0.0129194, 0.706989, 1.1, 1, 0.707068, -0.00741628, 0.00741628, 0.707068, 1.13333, 1, 0.707098, -0.00344304, 0.00344304, 0.707098, 1.16667, 1, 0.707106, -0.0009781, 0.0009781, 0.707106, 1.2, 1, 0.707107, 0, 0, 0.707107)
 
-[node name="chest" type="StaticBody3D"]
+[sub_resource type="Animation" id="Animation_c6b5m"]
+resource_name = "open"
+length = 1.3
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton3D:Bone.001_01")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107, 0.0333333, 1, 0.707106, -0.000978073, 0.000978073, 0.707106, 0.0666667, 1, 0.707098, -0.00344306, 0.00344306, 0.707098, 0.1, 1, 0.707068, -0.00741633, 0.00741633, 0.707068, 0.133333, 1, 0.706989, -0.0129193, 0.0129193, 0.706989, 0.166667, 1, 0.706825, -0.0199734, 0.0199734, 0.706825, 0.2, 1, 0.706506, -0.0291345, 0.0291345, 0.706506, 0.233333, 1, 0.705981, -0.0398941, 0.0398941, 0.70598, 0.266667, 1, 0.705174, -0.0522521, 0.0522521, 0.705173, 0.3, 1, 0.704001, -0.0661977, 0.0661977, 0.704001, 0.333333, 1, 0.70237, -0.0817085, 0.0817085, 0.70237, 0.366667, 1, 0.700109, -0.0992372, 0.0992373, 0.700108, 0.4, 1, 0.697165, -0.118159, 0.118159, 0.697164, 0.433333, 1, 0.693439, -0.138357, 0.138357, 0.693439, 0.466667, 1, 0.688839, -0.159692, 0.159692, 0.688838, 0.5, 1, 0.683283, -0.182001, 0.182001, 0.683283, 0.533333, 1, 0.676646, -0.205306, 0.205306, 0.676646, 0.566667, 1, 0.669003, -0.228988, 0.228988, 0.669003, 0.666667, 1, 0.640397, -0.299818, 0.299818, 0.640397, 0.7, 1, 0.629353, -0.322359, 0.322359, 0.629353, 0.733333, 1, 0.617832, -0.343924, 0.343924, 0.617832, 0.766667, 1, 0.606005, -0.36436, 0.36436, 0.606005, 0.8, 1, 0.594051, -0.383541, 0.383541, 0.594051, 0.833333, 1, 0.582152, -0.401372, 0.401372, 0.582152, 0.866667, 1, 0.570779, -0.417386, 0.417386, 0.570779, 0.9, 1, 0.559869, -0.431911, 0.431911, 0.559869, 0.933333, 1, 0.549554, -0.444962, 0.444962, 0.549553, 0.966667, 1, 0.539951, -0.456567, 0.456567, 0.539951, 1, 1, 0.531162, -0.466762, 0.466762, 0.531162, 1.03333, 1, 0.52363, -0.475196, 0.475196, 0.52363, 1.06667, 1, 0.517061, -0.482336, 0.482336, 0.517061, 1.1, 1, 0.511494, -0.488235, 0.488235, 0.511494, 1.13333, 1, 0.506958, -0.492944, 0.492944, 0.506958, 1.16667, 1, 0.503469, -0.496506, 0.496507, 0.503469, 1.2, 1, 0.501386, -0.49861, 0.49861, 0.501386, 1.23333, 1, 0.500346, -0.499654, 0.499654, 0.500346, 1.26667, 1, 0.500346, -0.499654, 0.499654, 0.500346, 1.3, 1, 0.501386, -0.49861, 0.49861, 0.501386)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kwmun"]
+_data = {
+&"close": SubResource("Animation_eca6b"),
+&"open": SubResource("Animation_c6b5m")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n66bg"]
+size = Vector3(1.8, 1.35472, 1.8)
+
+[sub_resource type="Resource" id="Resource_qjnor"]
+script = ExtResource("8_c6b5m")
+sounds = Array[AudioStream]([ExtResource("10_bjp1b")])
+volume = -15.0
+pitch_variation = 0.0
+metadata/_custom_type_script = "uid://bcqs0sjegrs1a"
+
+[sub_resource type="Resource" id="Resource_ssofm"]
+script = ExtResource("8_c6b5m")
+sounds = Array[AudioStream]([ExtResource("9_kwmun")])
+volume = -15.0
+pitch_variation = 0.0
+metadata/_custom_type_script = "uid://bcqs0sjegrs1a"
+
+[node name="chest" type="AnimatableBody3D"]
+script = ExtResource("1_na278")
+item = ExtResource("2_eca6b")
 
 [node name="Skeleton3D" type="Skeleton3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -1.6292e-07, 1, 0, -1, -1.6292e-07, -0.0636512, -0.379849, -3.19169e-07)
@@ -100,9 +162,22 @@ skin = SubResource("Skin_ggehi")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-&"chest_anims": ExtResource("3_na278")
+&"": SubResource("AnimationLibrary_kwmun")
 }
+speed_scale = 3.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.277362, 0)
 shape = SubResource("BoxShape3D_n66bg")
+
+[node name="InteractionComponent" parent="." node_paths=PackedStringArray("outline_material_holder") instance=ExtResource("5_drxhj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.590261, 0)
+outline_material_holder = NodePath("../Skeleton3D/Object_12")
+
+[node name="PolyAudioPlayer" type="AudioStreamPlayer3D" parent="."]
+script = ExtResource("7_eca6b")
+sound_effects = Dictionary[String, ExtResource("8_c6b5m")]({
+"close": SubResource("Resource_qjnor"),
+"open": SubResource("Resource_ssofm")
+})
+metadata/_custom_type_script = "uid://bgbnsqe0qmhtj"

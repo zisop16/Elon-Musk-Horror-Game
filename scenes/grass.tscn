@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://1p3tqvkul3xo"]
+
+[ext_resource type="PlaneMesh" uid="uid://cb5xx3k11tlam" path="res://assets/grass/grass_mesh.tres" id="1_e1kak"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="GrassMesh" type="MeshInstance3D" parent="."]
+cast_shadow = 0
+mesh = ExtResource("1_e1kak")

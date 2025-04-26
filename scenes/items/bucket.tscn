@@ -1,14 +1,26 @@
-[gd_scene load_steps=10 format=4 uid="uid://bapweteeedve4"]
+[gd_scene load_steps=21 format=4 uid="uid://bapweteeedve4"]
 
 [ext_resource type="Script" uid="uid://bdyx5fpqtsfv4" path="res://scripts/items/bucket.gd" id="1_2r4qr"]
 [ext_resource type="Texture2D" uid="uid://catacn4bkcgw7" path="res://assets/items/bucket/bucket_0.png" id="1_5mvgg"]
 [ext_resource type="Texture2D" uid="uid://cmdhxv0uqku64" path="res://assets/items/bucket/bucket_1.png" id="2_2r4qr"]
 [ext_resource type="Texture2D" uid="uid://cuustt4kwp2so" path="res://assets/items/bucket/bucket_2.png" id="3_1rhp1"]
+[ext_resource type="Shader" uid="uid://biluacepvfae1" path="res://shaders/outline.gdshader" id="4_bquqh"]
 [ext_resource type="PackedScene" uid="uid://dvrh54jtkocta" path="res://scenes/interaction_component.tscn" id="4_o88ga"]
+[ext_resource type="Shader" uid="uid://dv1iu2tq5dji8" path="res://shaders/water_circle.gdshader" id="6_1rhp1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dmvyb"]
+render_priority = 0
+shader = ExtResource("4_bquqh")
+shader_parameter/normal_threshold = 2.269
+shader_parameter/depth_threshold = 0.05
+shader_parameter/depth_artifact_correction_coef = 2.0
+shader_parameter/outline_width = 1.505
+shader_parameter/outline_color = Color(0.82, 0.991, 1, 1)
+shader_parameter/enabled = false
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3l8qd"]
 resource_name = "Material.003"
-cull_mode = 2
+next_pass = SubResource("ShaderMaterial_dmvyb")
 albedo_texture = ExtResource("1_5mvgg")
 metallic = 1.0
 metallic_texture = ExtResource("2_2r4qr")
@@ -53,21 +65,97 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_twle5")
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_2r4qr"]
-height = 0.508759
-radius = 0.296387
+height = 0.300322
+radius = 0.171387
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_o88ga"]
+noise_type = 3
+seed = 2
+frequency = 0.0015
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bquqh"]
+width = 256
+height = 256
+seamless = true
+as_normal_map = true
+bump_strength = 16.0
+noise = SubResource("FastNoiseLite_o88ga")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dmvyb"]
+noise_type = 3
+seed = 2
+frequency = 0.375
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_mq4fj"]
+width = 128
+height = 128
+seamless = true
+as_normal_map = true
+bump_strength = 1.5
+noise = SubResource("FastNoiseLite_dmvyb")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0txru"]
+frequency = 0.0106
+fractal_octaves = 4
+fractal_lacunarity = 2.38
+fractal_gain = 1.355
+fractal_weighted_strength = 0.35
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_66wte"]
+seamless = true
+as_normal_map = true
+bump_strength = 14.0
+normalize = false
+noise = SubResource("FastNoiseLite_0txru")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r2tpi"]
+render_priority = 1
+shader = ExtResource("6_1rhp1")
+shader_parameter/albedo = Color(0.1836, 0.243, 0.54, 1)
+shader_parameter/albedo2 = Color(0.59, 0.877, 1, 1)
+shader_parameter/metallic = 0.625
+shader_parameter/roughness = 0.0
+shader_parameter/wave = SubResource("NoiseTexture2D_66wte")
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_bquqh")
+shader_parameter/texture_normal2 = SubResource("NoiseTexture2D_mq4fj")
+shader_parameter/wave_direction = Vector2(0, 1)
+shader_parameter/wave_direction2 = Vector2(0, 1)
+shader_parameter/time_scale = 0.02
+shader_parameter/noise_scale = 24.915
+shader_parameter/height_scale = 0.02
+shader_parameter/color_deep = Color(0.1056, 0.12056, 0.33, 1)
+shader_parameter/color_shallow = Color(0, 0.411667, 0.65, 1)
+shader_parameter/beers_law = 2.0
+shader_parameter/depth_offset = -0.75
+shader_parameter/edge_scale = 0.1
+shader_parameter/near = 1.0
+shader_parameter/far = 100.0
+shader_parameter/edge_color = Color(0, 0, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_bquqh"]
+material = SubResource("ShaderMaterial_r2tpi")
+size = Vector2(0.25, 0.25)
+subdivide_width = 64
+subdivide_depth = 64
 
 [node name="Bucket" type="RigidBody3D"]
 script = ExtResource("1_2r4qr")
 
 [node name="Bucket_Material_003_0" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.3, 0, 0, 0, -1.31134e-08, 0.3, 0, -0.3, -1.31134e-08, 0, 0.2127, 0)
+transform = Transform3D(0.15, 0, 0, 0, -6.55671e-09, 0.15, 0, -0.15, -6.55671e-09, 0, 0.106, 0)
 mesh = SubResource("ArrayMesh_qwt8m")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.258347, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.151661, 0)
 visible = false
 shape = SubResource("CylinderShape3D_2r4qr")
 
 [node name="InteractionComponent" parent="." node_paths=PackedStringArray("outline_material_holder") instance=ExtResource("4_o88ga")]
 outline_material_holder = NodePath("../Bucket_Material_003_0")
+
+[node name="Water" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.157174, 0)
+mesh = SubResource("PlaneMesh_bquqh")

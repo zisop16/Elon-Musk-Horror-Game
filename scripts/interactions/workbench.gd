@@ -8,10 +8,24 @@ extends StaticBody3D
 @onready var input1: TextureRect = %Input1
 @onready var input2: TextureRect = %Input2
 @onready var output: TextureRect = %Output
+@onready var audio_player: PolyAudioPlayer = $PolyAudioPlayer
 
 func _ready() -> void:
 	set_recipe()
 	interaction.tooltip_text = "Press 'F' to craft"
+
+func spawn_item(item: PackedScene):
+	var spawned_item = item.instantiate()
+	get_tree().root.add_child(spawned_item)
+	spawned_item.global_position = global_position
+	const y_offset = 1.5
+	spawned_item.global_position.y += y_offset
+	spawned_item.global_rotation = Global.generate_random_rotation()
+	var angle: float = randf_range(-PI, PI)
+	var direction_vec := transform.basis.z.rotated(Vector3.UP, angle)
+	var horizontal_speed := 2.5
+	var vertical_speed := 7.
+	spawned_item.linear_velocity = direction_vec * horizontal_speed + Vector3.UP * vertical_speed
 	
 func interact() -> void:
 	var craftable := determine_craftable_recipe()
@@ -26,15 +40,10 @@ func interact() -> void:
 	Global.player.inventory[slots[1]] = null
 	Global.item_interface.set_item(slots[0], null)
 	Global.item_interface.set_item(slots[1], null)
-	var crafted_item: Item = item_scenes[craftable.output].instantiate()
-	get_tree().root.add_child(crafted_item)
-	crafted_item.global_position = global_position
-	const y_offset = 1.5
-	crafted_item.global_position.y += y_offset
-	crafted_item.global_rotation = Global.generate_random_rotation()
-	crafted_item.linear_velocity = Vector3(0, 5, 0)
-	crafted_items[crafted_item.id] = true
+	spawn_item(item_scenes[craftable.output])
+	crafted_items[craftable.output] = true
 	set_recipe()
+	audio_player.play_sound_effect("craft")
 
 func interaction_requirement() -> String:
 	var craftable := determine_craftable_recipe()

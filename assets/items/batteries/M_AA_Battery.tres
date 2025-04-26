@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bf5ile1qcyekq" path="res://assets/items/batteries/batteries_0.png" id="1_1wugd"]
 [ext_resource type="Texture2D" uid="uid://skw3md8s05ti" path="res://assets/items/batteries/batteries_1.png" id="2_llw76"]
-[ext_resource type="Shader" uid="uid://biluacepvfae1" path="res://assets/shaders/outline.gdshader" id="3_llw76"]
+[ext_resource type="Shader" uid="uid://biluacepvfae1" path="res://shaders/outline.gdshader" id="3_llw76"]
 [ext_resource type="Texture2D" uid="uid://w13pul3kbwk" path="res://assets/items/batteries/batteries_2.png" id="3_nv2h8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nv2h8"]
@@ -16,7 +16,6 @@ shader_parameter/outline_color = Color(0.73, 0.946, 1, 1)
 shader_parameter/enabled = false
 
 [resource]
-resource_local_to_scene = true
 resource_name = "M_AA_Battery"
 next_pass = SubResource("ShaderMaterial_nv2h8")
 albedo_texture = ExtResource("1_1wugd")

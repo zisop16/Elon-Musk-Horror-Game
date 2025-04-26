@@ -17,6 +17,7 @@ warnings/check_invalid_track_paths=false
 config/name="ELON MUSK"
 run/main_scene="uid://do2828y10u0ct"
 config/features=PackedStringArray("4.4", "Forward Plus")
+run/max_fps=140
 
 [autoload]
 
@@ -27,7 +28,7 @@ RigidBodyAutoScaler="*res://addons/rigidbody_auto_scaler/RigidBodyAutoScaler.gd"
 [display]
 
 window/size/viewport_width=1000
-window/size/viewport_height=500
+window/size/viewport_height=700
 window/size/initial_position_type=0
 window/size/initial_position=Vector2i(-500, -500)
 window/default_gravity_vector=Vector3(0, -2, 0)
@@ -176,6 +177,7 @@ DropItem={
 
 [physics]
 
+3d/physics_engine="Jolt Physics"
 jolt_physics_3d/simulation/areas_detect_static_bodies=true
 3d/default_gravity_vector=Vector3(0, -2, 0)
 

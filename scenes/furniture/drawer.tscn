@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://68hcfavkdmmt" path="res://assets/furniture/source/home_essentials_2.png" id="1_qc7jt"]
 [ext_resource type="Texture2D" uid="uid://cu7m3tnn2pard" path="res://assets/furniture/source/home_essentials_3.png" id="2_5o3de"]
 [ext_resource type="Script" uid="uid://doan6mawh3p60" path="res://scripts/interactions/openable.gd" id="3_jah34"]
-[ext_resource type="Shader" uid="uid://biluacepvfae1" path="res://assets/shaders/outline.gdshader" id="4_gp8pm"]
+[ext_resource type="Shader" uid="uid://biluacepvfae1" path="res://shaders/outline.gdshader" id="4_gp8pm"]
 [ext_resource type="PackedScene" uid="uid://dvrh54jtkocta" path="res://scenes/interaction_component.tscn" id="5_jah34"]
 [ext_resource type="Script" uid="uid://bgbnsqe0qmhtj" path="res://scripts/audio/poly_audio_player.gd" id="6_gp8pm"]
 [ext_resource type="Script" uid="uid://bcqs0sjegrs1a" path="res://scripts/audio/sound_effect.gd" id="7_48ihg"]
@@ -91,7 +91,6 @@ size = Vector3(1, 0.35008, 0.653)
 size = Vector3(1, 0.129331, 0.653)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_48ihg"]
-resource_local_to_scene = true
 render_priority = -1
 shader = ExtResource("4_gp8pm")
 shader_parameter/normal_threshold = 1.5342
@@ -102,7 +101,6 @@ shader_parameter/outline_color = Color(1, 0.855, 0.71, 1)
 shader_parameter/enabled = false
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wffyq"]
-resource_local_to_scene = true
 resource_name = "Drawer"
 next_pass = SubResource("ShaderMaterial_48ihg")
 cull_mode = 2

@@ -72,7 +72,6 @@ bind/4/bone = -1
 bind/4/pose = Transform3D(0.0374171, -1.24542e-06, 0.999299, -0.9993, 5.98755e-07, 0.0374171, -6.44936e-07, -1, -1.22215e-06, -10.3292, 3.69975, 0.552206)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_otkxx"]
-resource_local_to_scene = true
 _surfaces = [{
 "aabb": AABB(-4.55222, -0.219565, 0.00125216, 9.10444, 0.43913, 20.7697),
 "attribute_data": PackedByteArray("eduUOCBnfj9525Q4IGd+P/nUmD4FnCc/+dSYPgWcJz9PFpU+ywcmP08WlT7LByY/oP3xO1r7fz+g/fE7Wvt/P3ZO2j4dygA/dk7aPh3KAD/Lj9Y+yGv+PsuP1j7Ia/4+u603PySrIT67rTc/JKshPmbONT89Whs+Zs41Pz1aGz55alg/l3DMO3lqWD+XcMw7JItWP8fzlDgki1Y/x/OUODJkWj62seg+MmRaPrax6D5bytI+4Fk1O1vK0j7gWTU7MmRaPuBZNTsyZFo+4Fk1O1vK0j62seg+W8rSPrax6D7HZEw+DFk1O8dkTD4MWTU7piCaOrax6D6mIJo6trHoPsdkTD62seg+x2RMPrax6D7/H5o6r1k1O/8fmjqvWTU7"),

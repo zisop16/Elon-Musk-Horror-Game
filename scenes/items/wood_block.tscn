@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://dvrh54jtkocta" path="res://scenes/interaction_component.tscn" id="5_3y27j"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x7p02"]
-resource_local_to_scene = true
 resource_name = "Material.001"
 next_pass = ExtResource("3_y35kf")
 cull_mode = 2
@@ -29,7 +28,6 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_cq43n"]
-resource_local_to_scene = true
 resource_name = "Sketchfab_Scene_Cube_Material_001_0"
 _surfaces = [{
 "aabb": AABB(-1, -1, -1, 2, 2, 2),
@@ -48,7 +46,6 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_uwgdq")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ovruq"]
-resource_local_to_scene = true
 resource_name = "Material"
 next_pass = ExtResource("3_y35kf")
 cull_mode = 2
@@ -70,7 +67,6 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_vk3hr"]
-resource_local_to_scene = true
 resource_name = "Sketchfab_Scene_Cube_Material_0"
 _surfaces = [{
 "aabb": AABB(-1, -1, -1, 2, 2, 2),

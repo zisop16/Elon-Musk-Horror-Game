@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://dvrh54jtkocta" path="res://scenes/interaction_component.tscn" id="6_bi257"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hsihq"]
-resource_local_to_scene = true
 resource_name = "standardSurface1"
 next_pass = ExtResource("4_w7r1v")
 cull_mode = 2
@@ -39,7 +38,6 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_1jbsr"]
-resource_local_to_scene = true
 resource_name = "Sketchfab_Scene_pCube1_standardSurface1_0"
 _surfaces = [{
 "aabb": AABB(-0.48905, -0.499999, -0.697356, 0.9781, 0.214071, 1.19157),
@@ -59,18 +57,18 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_b4la7")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_beoqo"]
-size = Vector3(0.267349, 0.142483, 0.753265)
+size = Vector3(0.134, 0.071, 0.377)
 
 [node name="GoldIngot" type="RigidBody3D"]
 script = ExtResource("1_ufqub")
 
 [node name="Model" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.307, 0, 0, 0, 0.662, 0, 0, 0, 0.662, 0, 0.333659, 0.0650588)
+transform = Transform3D(0.154, 0, 0, 0, 0.332, 0, 0, 0, 0.332, 0, 0.167, 0.033)
 mesh = SubResource("ArrayMesh_1jbsr")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00037384, 0.0716233, -0.00315857)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.036, -0.001)
 visible = false
 shape = SubResource("BoxShape3D_beoqo")
 

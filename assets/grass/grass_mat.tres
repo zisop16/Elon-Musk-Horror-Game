@@ -1,0 +1,27 @@
+[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://okfwi6wrfyns"]
+
+[ext_resource type="Shader" uid="uid://ckb7pejrv2uxy" path="res://shaders/grass.gdshader" id="1_26els"]
+[ext_resource type="Texture2D" uid="uid://chowi531cswff" path="res://assets/grass/relative_wind_strength.tres" id="2_bha5h"]
+[ext_resource type="Texture2D" uid="uid://c016orm427fwg" path="res://assets/grass/grass_width.tres" id="3_1qa60"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_26els"]
+noise_type = 3
+frequency = 0.0144
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bha5h"]
+seamless = true
+seamless_blend_skirt = 0.094
+noise = SubResource("FastNoiseLite_26els")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_26els")
+shader_parameter/top_color = Color(0.0843, 0.18, 0.0756, 1)
+shader_parameter/bottom_color = Color(0, 0, 0, 1)
+shader_parameter/width_curve = ExtResource("3_1qa60")
+shader_parameter/relative_wind_strength = ExtResource("2_bha5h")
+shader_parameter/wind_noise = SubResource("NoiseTexture2D_bha5h")
+shader_parameter/wind_direction = 1.81
+shader_parameter/wind_strength = 5.69
+shader_parameter/wind_frequency = 0.99
+shader_parameter/wind_turbulence = 0.021

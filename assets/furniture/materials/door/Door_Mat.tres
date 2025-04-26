@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://3epmx0pmjhe6" path="res://assets/furniture/source/door_5.png" id="4_rqivo"]
 
 [resource]
-resource_local_to_scene = true
 resource_name = "Door_Mat"
 next_pass = ExtResource("3_2is6s")
 albedo_texture = ExtResource("1_14e0k")

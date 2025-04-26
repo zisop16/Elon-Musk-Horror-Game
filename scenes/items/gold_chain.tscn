@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://mrxy1xorx5xe" path="res://assets/items/gold_chain/gold_chain_0.png" id="1_0usye"]
 [ext_resource type="Script" uid="uid://h6ivr0l8ynlo" path="res://scripts/items/gold_chain.gd" id="1_3k7td"]
-[ext_resource type="Shader" uid="uid://biluacepvfae1" path="res://assets/shaders/outline.gdshader" id="2_3k7td"]
+[ext_resource type="Shader" uid="uid://biluacepvfae1" path="res://shaders/outline.gdshader" id="2_3k7td"]
 [ext_resource type="PackedScene" uid="uid://dvrh54jtkocta" path="res://scenes/interaction_component.tscn" id="3_r67m8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rxbg4"]
@@ -16,7 +16,6 @@ shader_parameter/outline_color = Color(0.964, 1, 0.73, 1)
 shader_parameter/enabled = false
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qv2c3"]
-resource_local_to_scene = true
 resource_name = "0I_Gold_mqm"
 next_pass = SubResource("ShaderMaterial_rxbg4")
 cull_mode = 2
@@ -43,7 +42,6 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_4wdwf"]
-resource_local_to_scene = true
 resource_name = "Sketchfab_Scene_Object_0"
 _surfaces = [{
 "aabb": AABB(-12.4912, -18.0366, -8.92296, 20.3199, 15.7129, 10.8539),
@@ -84,37 +82,37 @@ points = PackedVector3Array(7.98972, -16.9073, 0.269525, 6.05493, -12.3922, 2.20
 script = ExtResource("1_3k7td")
 
 [node name="Model" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.0876718, 5.38881e-10, 0.0481004, 0.0481004, -2.10254e-09, -0.0876718, 5.38881e-10, 0.1, -2.10254e-09, 0.21, -0.244, 0.774)
+transform = Transform3D(0.0289317, 1.77831e-10, 0.0158731, 0.0158731, -6.93837e-10, -0.0289317, 1.77831e-10, 0.033, -6.93837e-10, 0.07, -0.081, 0.258)
 mesh = SubResource("ArrayMesh_4wdwf")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D6" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.0876718, 5.38881e-10, 0.0481004, 0.0481004, -2.10254e-09, -0.0876718, 5.38881e-10, 0.1, -2.10254e-09, 0.21, -0.244, 0.774)
+transform = Transform3D(0.0289317, 1.77831e-10, 0.0158731, 0.0158731, -6.93837e-10, -0.0289317, 1.77831e-10, 0.033, -6.93837e-10, 0.07, -0.081, 0.258)
 visible = false
 shape = SubResource("ConvexPolygonShape3D_q4hyd")
 
 [node name="CollisionShape3D5" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.0876718, 5.38881e-10, 0.0481004, 0.0481004, -2.10254e-09, -0.0876718, 5.38881e-10, 0.1, -2.10254e-09, 0.21, -0.244, 0.774)
+transform = Transform3D(0.0289317, 1.77831e-10, 0.0158731, 0.0158731, -6.93837e-10, -0.0289317, 1.77831e-10, 0.033, -6.93837e-10, 0.07, -0.081, 0.258)
 visible = false
 shape = SubResource("ConvexPolygonShape3D_t0yfl")
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.0876718, 5.38881e-10, 0.0481004, 0.0481004, -2.10254e-09, -0.0876718, 5.38881e-10, 0.1, -2.10254e-09, 0.21, -0.244, 0.774)
+transform = Transform3D(0.0289317, 1.77831e-10, 0.0158731, 0.0158731, -6.93837e-10, -0.0289317, 1.77831e-10, 0.033, -6.93837e-10, 0.07, -0.081, 0.258)
 visible = false
 shape = SubResource("ConvexPolygonShape3D_h503w")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.0876718, 5.38881e-10, 0.0481004, 0.0481004, -2.10254e-09, -0.0876718, 5.38881e-10, 0.1, -2.10254e-09, 0.21, -0.244, 0.774)
+transform = Transform3D(0.0289317, 1.77831e-10, 0.0158731, 0.0158731, -6.93837e-10, -0.0289317, 1.77831e-10, 0.033, -6.93837e-10, 0.07, -0.081, 0.258)
 visible = false
 shape = SubResource("ConvexPolygonShape3D_ly6m0")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.0876718, 5.38881e-10, 0.0481004, 0.0481004, -2.10254e-09, -0.0876718, 5.38881e-10, 0.1, -2.10254e-09, 0.21, -0.244, 0.774)
+transform = Transform3D(0.0289317, 1.77831e-10, 0.0158731, 0.0158731, -6.93837e-10, -0.0289317, 1.77831e-10, 0.033, -6.93837e-10, 0.07, -0.081, 0.258)
 visible = false
 shape = SubResource("ConvexPolygonShape3D_5v084")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.0876718, 5.38881e-10, 0.0481004, 0.0481004, -2.10254e-09, -0.0876718, 5.38881e-10, 0.1, -2.10254e-09, 0.21, -0.244, 0.774)
+transform = Transform3D(0.0289317, 1.77831e-10, 0.0158731, 0.0158731, -6.93837e-10, -0.0289317, 1.77831e-10, 0.033, -6.93837e-10, 0.07, -0.081, 0.258)
 visible = false
 shape = SubResource("ConvexPolygonShape3D_uvoox")
 

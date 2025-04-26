@@ -1,9 +1,8 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://st3dxj0u0jxh"]
 
-[ext_resource type="Shader" uid="uid://biluacepvfae1" path="res://assets/shaders/outline.gdshader" id="1_ta871"]
+[ext_resource type="Shader" uid="uid://biluacepvfae1" path="res://shaders/outline.gdshader" id="1_ta871"]
 
 [resource]
-resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1_ta871")
 shader_parameter/normal_threshold = 0.1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://c3hsmnwdm1jpv"]
+[gd_scene load_steps=29 format=4 uid="uid://c3hsmnwdm1jpv"]
 
 [ext_resource type="Script" uid="uid://bnlldl3cil48l" path="res://scripts/interactions/workbench.gd" id="1_4wa1c"]
 [ext_resource type="Resource" uid="uid://vlpfuwdwmqc1" path="res://assets/user_interface/item_textures.tres" id="2_fr654"]
@@ -12,6 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://cxl60mo1c2en2" path="res://scenes/items/chainsaw.tscn" id="6_axqpb"]
 [ext_resource type="PackedScene" uid="uid://bapweteeedve4" path="res://scenes/items/bucket.tscn" id="7_affvf"]
 [ext_resource type="PackedScene" uid="uid://dvrh54jtkocta" path="res://scenes/interaction_component.tscn" id="10_m0625"]
+[ext_resource type="Script" uid="uid://bgbnsqe0qmhtj" path="res://scripts/audio/poly_audio_player.gd" id="13_affvf"]
+[ext_resource type="Script" uid="uid://bcqs0sjegrs1a" path="res://scripts/audio/sound_effect.gd" id="14_85a23"]
+[ext_resource type="AudioStream" uid="uid://c4grs0euutngq" path="res://assets/sfx/craft.mp3" id="15_1iweq"]
 
 [sub_resource type="Resource" id="Resource_fr654"]
 script = ExtResource("2_qrrc1")
@@ -115,6 +118,13 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
+[sub_resource type="Resource" id="Resource_4t22q"]
+script = ExtResource("14_85a23")
+sounds = Array[AudioStream]([ExtResource("15_1iweq")])
+volume = -23.0
+pitch_variation = 0.25
+metadata/_custom_type_script = "uid://bcqs0sjegrs1a"
+
 [node name="Workbench" type="StaticBody3D"]
 script = ExtResource("1_4wa1c")
 item_textures = ExtResource("2_fr654")
@@ -130,7 +140,6 @@ item_scenes = Dictionary[int, PackedScene]({
 transform = Transform3D(2, 0, 0, 0, 4.44089e-16, 2, 0, -2, 4.44089e-16, -1, 0, -1)
 mesh = SubResource("ArrayMesh_teyag")
 skeleton = NodePath("")
-surface_material_override/0 = ExtResource("2_hc8hf")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1, 0)
@@ -280,3 +289,10 @@ expand_mode = 1
 [node name="InteractionComponent" parent="." node_paths=PackedStringArray("outline_material_holder") instance=ExtResource("10_m0625")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.37788, 0)
 outline_material_holder = NodePath("../Workbench")
+
+[node name="PolyAudioPlayer" type="AudioStreamPlayer3D" parent="."]
+script = ExtResource("13_affvf")
+sound_effects = Dictionary[String, ExtResource("14_85a23")]({
+"craft": SubResource("Resource_4t22q")
+})
+metadata/_custom_type_script = "uid://bgbnsqe0qmhtj"

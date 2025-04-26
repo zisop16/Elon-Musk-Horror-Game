@@ -4,7 +4,6 @@
 [ext_resource type="Material" uid="uid://baxorwlrjv8r8" path="res://assets/items/tv_remote/remote_outline.tres" id="2_l5xcd"]
 
 [resource]
-resource_local_to_scene = true
 resource_name = "TVRemote"
 next_pass = ExtResource("2_l5xcd")
 albedo_texture = ExtResource("1_ulwnx")

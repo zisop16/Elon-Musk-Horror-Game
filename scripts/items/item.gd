@@ -2,7 +2,7 @@ class_name Item
 extends RigidBody3D
 
 @onready var interaction: InteractionComponent = $InteractionComponent
-enum item_id {flashlight, tv_remote, chainsaw, wood_block, pickaxe, bucket, iron_ingot, gold_chain, gold_ingot}
+enum item_id {flashlight, tv_remote, chainsaw, wood_block, pickaxe, bucket, iron_ingot, gold_chain, gold_ingot, saw_movie}
 
 ## Whether the item is currently activated
 var active: bool = false
@@ -36,8 +36,15 @@ func drop():
 
 func _physics_process(_delta: float) -> void:
 	if attached_node != null:
+		top_level = true
 		global_position = attached_node.global_position
 		global_rotation = attached_node.global_rotation
+	else:
+		top_level = false
+		var terrain_height := Global.terrain.data.get_height(global_position)
+		if global_position.y - terrain_height < -2:
+			global_position.y = terrain_height + 2
+			linear_velocity = Vector3.ZERO
 
 func interaction_requirement() -> String:
 	return ""

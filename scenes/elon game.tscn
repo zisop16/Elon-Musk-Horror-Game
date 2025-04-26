@@ -1,15 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://do2828y10u0ct"]
+[gd_scene load_steps=9 format=3 uid="uid://do2828y10u0ct"]
 
 [ext_resource type="Script" uid="uid://cgxpjs0jsu731" path="res://scripts/game.gd" id="1_7r040"]
 [ext_resource type="PackedScene" uid="uid://66hmaqhutu1b" path="res://scenes/map.tscn" id="2_7r040"]
 [ext_resource type="Environment" uid="uid://bteiggvg166wx" path="res://assets/environment.tres" id="2_1783g"]
-[ext_resource type="Texture2D" uid="uid://bm3til2u5gqqo" path="res://assets/user_interface/crosshair.png" id="4_1783g"]
 [ext_resource type="PackedScene" uid="uid://cbh1n15ueuj4p" path="res://scenes/items/item_tooltip.tscn" id="4_spprr"]
-[ext_resource type="Script" uid="uid://dywjwspc58pp1" path="res://scripts/items/item_interface.gd" id="6_o1lrw"]
-[ext_resource type="Resource" uid="uid://vlpfuwdwmqc1" path="res://assets/user_interface/item_textures.tres" id="7_c5sh7"]
-[ext_resource type="StyleBox" uid="uid://bu7i6de5fb5kq" path="res://assets/user_interface/selected_slot.tres" id="10_c5sh7"]
-[ext_resource type="StyleBox" uid="uid://dcxmwxgpbu2xm" path="res://assets/user_interface/crafting_slot.tres" id="11_0u6gl"]
-[ext_resource type="StyleBox" uid="uid://dinbw5v8q62m6" path="res://assets/user_interface/unselected_slot.tres" id="11_tqv2w"]
+[ext_resource type="PackedScene" uid="uid://md2kq64billi" path="res://scenes/user_interface.tscn" id="5_spprr"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_tqv2w"]
 viewport_path = NodePath("SubViewport")
@@ -45,110 +40,7 @@ shadow_enabled = true
 [node name="Map" parent="." instance=ExtResource("2_7r040")]
 
 [node name="Item Tooltip" parent="." instance=ExtResource("4_spprr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -100, 0)
 mesh = SubResource("QuadMesh_27mel")
 
-[node name="User Interface" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="CenterContainer" type="CenterContainer" parent="User Interface"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 32.0
-offset_bottom = 32.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="User Interface/CenterContainer"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-texture = ExtResource("4_1783g")
-expand_mode = 1
-
-[node name="Item Interface" type="Control" parent="User Interface"]
-layout_mode = 1
-anchor_top = 0.8
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("6_o1lrw")
-item_textures = ExtResource("7_c5sh7")
-selected_style = ExtResource("10_c5sh7")
-unselected_style = ExtResource("11_0u6gl")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="User Interface/Item Interface"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 3
-theme_override_constants/separation = 25
-alignment = 1
-
-[node name="Slot0" type="Panel" parent="User Interface/Item Interface/HBoxContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_vertical = 0
-size_flags_stretch_ratio = 0.0
-theme_override_styles/panel = ExtResource("11_tqv2w")
-
-[node name="TextureRect" type="TextureRect" parent="User Interface/Item Interface/HBoxContainer/Slot0"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.05
-anchor_top = 0.05
-anchor_right = 0.95
-anchor_bottom = 0.95
-grow_horizontal = 2
-grow_vertical = 2
-expand_mode = 1
-
-[node name="Slot1" type="Panel" parent="User Interface/Item Interface/HBoxContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_vertical = 0
-size_flags_stretch_ratio = 0.0
-theme_override_styles/panel = ExtResource("11_tqv2w")
-
-[node name="TextureRect" type="TextureRect" parent="User Interface/Item Interface/HBoxContainer/Slot1"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.05
-anchor_top = 0.05
-anchor_right = 0.95
-anchor_bottom = 0.95
-grow_horizontal = 2
-grow_vertical = 2
-expand_mode = 1
-
-[node name="Slot2" type="Panel" parent="User Interface/Item Interface/HBoxContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_vertical = 0
-size_flags_stretch_ratio = 0.0
-theme_override_styles/panel = ExtResource("11_tqv2w")
-
-[node name="TextureRect" type="TextureRect" parent="User Interface/Item Interface/HBoxContainer/Slot2"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.05
-anchor_top = 0.05
-anchor_right = 0.95
-anchor_bottom = 0.95
-grow_horizontal = 2
-grow_vertical = 2
-expand_mode = 1
+[node name="UserInterface" parent="." instance=ExtResource("5_spprr")]

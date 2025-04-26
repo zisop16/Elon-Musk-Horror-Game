@@ -4,6 +4,7 @@ var logging = true
 var player: Player
 var item_tooltip: ItemTooltip
 var item_interface: ItemInterface
+var stat_interface: StatInterface
 var terrain: Terrain3D
 var watched_tv := false
 

@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://ds8hi024egngt"]
 
-[ext_resource type="Shader" uid="uid://biluacepvfae1" path="res://assets/shaders/outline.gdshader" id="1_lhm04"]
+[ext_resource type="Shader" uid="uid://biluacepvfae1" path="res://shaders/outline.gdshader" id="1_lhm04"]
 
 [resource]
 resource_local_to_scene = true

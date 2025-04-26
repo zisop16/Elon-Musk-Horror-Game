@@ -4,7 +4,6 @@
 [ext_resource type="Material" uid="uid://st3dxj0u0jxh" path="res://assets/minecraft/workbench/workbench_outline.tres" id="2_bkqh6"]
 
 [resource]
-resource_local_to_scene = true
 resource_name = "Crafting_Table"
 next_pass = ExtResource("2_bkqh6")
 cull_mode = 2
