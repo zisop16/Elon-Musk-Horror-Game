@@ -101,11 +101,5 @@ shape = SubResource("BoxShape3D_lfxug")
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 3.17303, 0.688293)
 shape = SubResource("BoxShape3D_2gfyy")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.24754, 1.14793)
-light_color = Color(0.958833, 1, 0.81, 1)
-light_energy = 1.305
-omni_range = 6.9
-omni_attenuation = 0.6
-
-[node name="Light Particles" parent="OmniLight3D" instance=ExtResource("2_lfxug")]
+[node name="Light Particles" parent="." instance=ExtResource("2_lfxug")]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 2.24754, 1.14793)

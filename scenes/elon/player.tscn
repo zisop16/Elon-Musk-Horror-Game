@@ -58,33 +58,33 @@ script = ExtResource("1_hvogv")
 [node name="Elon Model" parent="." instance=ExtResource("2_yboub")]
 
 [node name="Skeleton3D" parent="Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4" index="0"]
-bones/1/position = Vector3(0.00963153, 0.946062, -0.0120544)
-bones/1/rotation = Quaternion(-0.683802, -0.250591, -0.271376, 0.629265)
-bones/2/rotation = Quaternion(0.709644, 0.032193, 0.023865, 0.70342)
-bones/3/rotation = Quaternion(0.0972813, 0.0821307, -0.010494, 0.991807)
-bones/4/rotation = Quaternion(0.0972813, 0.0821308, -0.010494, 0.991807)
-bones/5/rotation = Quaternion(-0.689802, -0.00930506, -0.00623586, 0.723912)
-bones/6/rotation = Quaternion(-0.0362965, 0.00871129, 0.178567, 0.98322)
-bones/8/rotation = Quaternion(-0.561823, -0.438134, 0.5748, -0.402489)
-bones/9/rotation = Quaternion(0.448832, -0.106762, 0.0152942, 0.887084)
-bones/10/rotation = Quaternion(0.0308091, 0.0631248, 0.4122, 0.908382)
-bones/12/rotation = Quaternion(0.618411, -0.38954, 0.539078, 0.418595)
-bones/13/rotation = Quaternion(0.389401, 0.110228, 0.216473, 0.888457)
-bones/14/rotation = Quaternion(0.0913111, 0.0168164, -0.356824, 0.929546)
-bones/16/rotation = Quaternion(0.016923, 0.549078, -0.825232, 0.131222)
-bones/17/rotation = Quaternion(-0.298294, 0.119118, -0.0436743, 0.946004)
-bones/18/rotation = Quaternion(0.569003, -0.0402539, -0.0521387, 0.819693)
-bones/19/rotation = Quaternion(0.286916, -0.0555765, -0.00711875, 0.956316)
-bones/21/rotation = Quaternion(0.00446534, 0.693111, -0.698893, -0.176424)
-bones/22/rotation = Quaternion(-0.286778, 0.0680318, -0.0241163, 0.955274)
-bones/23/rotation = Quaternion(0.664622, 0.0902043, 0.129283, 0.73036)
-bones/24/rotation = Quaternion(0.286491, 0.0728658, -0.0205002, 0.955088)
+bones/1/position = Vector3(0.00827811, 0.948226, -0.00813293)
+bones/1/rotation = Quaternion(-0.685084, -0.249578, -0.271094, 0.628394)
+bones/2/rotation = Quaternion(0.708482, 0.0318786, 0.0237583, 0.704608)
+bones/3/rotation = Quaternion(0.0929271, 0.0809875, -0.00990496, 0.992324)
+bones/4/rotation = Quaternion(0.0929271, 0.0809874, -0.00990495, 0.992324)
+bones/5/rotation = Quaternion(-0.686674, -0.00748042, -0.00821595, 0.726881)
+bones/6/rotation = Quaternion(-0.071006, 0.00351734, 0.175391, 0.981929)
+bones/8/rotation = Quaternion(-0.558487, -0.442414, 0.572677, -0.405466)
+bones/9/rotation = Quaternion(0.455105, -0.102051, 0.0122795, 0.884485)
+bones/10/rotation = Quaternion(0.0346514, 0.0664869, 0.418516, 0.905109)
+bones/12/rotation = Quaternion(0.609066, -0.400736, 0.53671, 0.424725)
+bones/13/rotation = Quaternion(0.396165, 0.103652, 0.211976, 0.887342)
+bones/14/rotation = Quaternion(0.0976772, 0.0112338, -0.357867, 0.928582)
+bones/16/rotation = Quaternion(0.0154597, 0.553961, -0.82199, 0.131231)
+bones/17/rotation = Quaternion(-0.294496, 0.12012, -0.0435877, 0.947071)
+bones/18/rotation = Quaternion(0.568818, -0.0397308, -0.0513027, 0.8199)
+bones/19/rotation = Quaternion(0.287434, -0.0564712, -0.00733622, 0.956106)
+bones/21/rotation = Quaternion(0.00400937, 0.700401, -0.691279, -0.177639)
+bones/22/rotation = Quaternion(-0.273682, 0.0694813, -0.0228887, 0.959034)
+bones/23/rotation = Quaternion(0.66081, 0.0905349, 0.129803, 0.733679)
+bones/24/rotation = Quaternion(0.286885, 0.0729967, -0.0205405, 0.954959)
 
 [node name="BoneAttachment3D" parent="Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D" index="11"]
-transform = Transform3D(-0.43593, -0.392482, 0.809891, 0.209349, -0.919435, -0.332885, 0.875293, 0.0244353, 0.482975, -32.5137, 2.93478, -18.3165)
+transform = Transform3D(-0.42171, -0.401307, 0.813089, 0.233158, -0.914566, -0.330464, 0.876241, 0.0502178, 0.47925, -33.0835, 3.49987, -17.9178)
 
 [node name="Flashlight" parent="Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D" index="0"]
-transform = Transform3D(-93.656, -10.4765, 33.4485, -4.4572, 98.2136, 18.2816, -34.7663, 15.6309, -92.4499, 2.93034, 7.53249, 0.781731)
+transform = Transform3D(-18.8085, -13.7252, 97.2515, -91.3511, -33.9229, -22.4549, 36.0725, -93.0637, -6.15778, 1.60724, 6.0338, 3.65377)
 
 [node name="Chainsaw" parent="Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D" index="1"]
 transform = Transform3D(59.6544, 78.261, -17.7924, 67.9741, -37.48, 63.0457, 42.6716, -49.7038, -75.5557, -21.5935, -6.78769, 61.8683)
@@ -109,6 +109,11 @@ transform = Transform3D(98.2269, 18.4401, -3.38168, -18.4972, 92.3869, -33.504, 
 
 [node name="SawMovie" parent="Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D" index="9"]
 transform = Transform3D(96.0492, -24.2893, -13.5861, 22.4104, 38.5545, 89.506, -16.5023, -89.0145, 42.4746, -5.57117, 21.1966, 8.90442)
+
+[node name="AnimationTree" parent="Elon Model" index="2"]
+parameters/jump/internal_active = 10.0
+parameters/mine/active = false
+parameters/mine/internal_active = false
 
 [node name="Standing Box" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.879, -0.01)
@@ -136,7 +141,9 @@ spring_length = 2.0
 [node name="Camera Target" type="Node3D" parent="Camera Pivot/Camera Spring"]
 
 [node name="Camera3D" type="Camera3D" parent="Camera Pivot" node_paths=PackedStringArray("target")]
-transform = Transform3D(1, -8.88178e-16, 0, 0, 0.990268, -0.139173, 0, 0.139173, 0.990268, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.996195, -0.0871557, 0, 0.0871557, 0.996195, 0, 0, 0)
+fov = 70.0
+far = 40.0
 script = ExtResource("4_7nqbs")
 target = NodePath("../Camera Spring/Camera Target")
 

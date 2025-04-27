@@ -46,7 +46,7 @@ func stand(flag: bool) -> void:
 	standing = flag
 
 func set_light_layer():
-	var skeleton = %Skeleton3D
+	var skeleton = $"Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D"
 	# Flashlight will cull layer 2 so it doesn't hit the player.
 	for obj in skeleton.get_children():
 		if obj is MeshInstance3D:
@@ -58,8 +58,8 @@ func _ready():
 	for item in range(inventory_size):
 		inventory.append(null)
 	Global.player = self
+	set_light_layer()
 
-const BLEND_SPEED = 7
 var anim_state := "idle"
 var anim_amounts: Dictionary = {
 	crouch_idle = 0,
@@ -71,13 +71,20 @@ var anim_amounts: Dictionary = {
 	crouch_walk_back = 0
 }
 
-func handle_animations(delta):
+func handle_animations():
+	const ANIM_BLEND_SPEED = 7
+	var delta = get_process_delta_time()
 	for state in anim_amounts.keys():
 		if anim_state == state:
-			anim_amounts[state] = lerpf(anim_amounts[state], 1, BLEND_SPEED * delta)
+			anim_amounts[state] = lerpf(anim_amounts[state], 1, ANIM_BLEND_SPEED * delta)
 		else:
-			anim_amounts[state] = lerpf(anim_amounts[state], 0, BLEND_SPEED * delta)
-	update_tree()
+			anim_amounts[state] = lerpf(anim_amounts[state], 0, ANIM_BLEND_SPEED * delta)
+			# If the animation is blended to zero, reset it to starting position
+			if anim_amounts[state] < .01:
+				# The standard run seek node is named standard_run_time
+				var time_seek = state + "_time"
+				anim_tree["parameters/" + time_seek + "/seek_request"] = 0.0
+	update_anim_tree()
 
 var hovered_object: CollisionObject3D = null
 func set_item(slot: int, item: Item):
@@ -200,7 +207,7 @@ func mine_effect():
 		return
 	mine_component.mine()
 
-func update_tree():
+func update_anim_tree():
 	for key in anim_amounts.keys():
 		var blend_name = "parameters/%s/blend_amount" % key
 		anim_tree[blend_name] = anim_amounts[key]
@@ -218,10 +225,13 @@ const CROUCH_SPEED = 2.0
 const RUN_SPEED = 8.
 const JUMP_SPEED = 8
 
+
 ## Called by jump animation
 func jump_effect() -> void:
 	jumping = false
 	velocity.y = JUMP_SPEED
+
+var running_last_frame: bool = false
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -232,12 +242,6 @@ func _physics_process(delta: float) -> void:
 			const fast_fall_multiplier = 2.2
 			gravity *= fast_fall_multiplier
 		velocity += gravity
-	
-	var running_last_frame = anim_state == "run"
-	if standing:
-		anim_state = "idle"
-	else:
-		anim_state = "crouch_idle"
 
 	# Handle jump.
 	if Input.is_action_just_pressed("Jump") and is_on_floor() and not jumping:
@@ -256,14 +260,13 @@ func _physics_process(delta: float) -> void:
 	var crouching = Input.is_action_pressed("Crouch")
 	# Prevents the player from staying in permanent run on 0 stamina
 	var stamina_allows_run = ((running_last_frame and stamina > 0) or stamina > 0.5)
-	var running = direction != Vector3.ZERO and not crouching and input_dir.y >= 0 and Input.is_action_pressed("Run") and stamina_allows_run
+	var running = input_dir != Vector2.ZERO and not crouching and input_dir.y >= 0 and Input.is_action_pressed("Run") and stamina_allows_run
 
 	var current_horizontal_speed := velocity.slide(Vector3.UP).length()
 	var target_speed: float
 	if crouching:
 		target_speed = CROUCH_SPEED
 		footsteps.speed_scale = .8
-		stand(false)
 	else:
 		if running:
 			target_speed = RUN_SPEED
@@ -271,39 +274,19 @@ func _physics_process(delta: float) -> void:
 		else:
 			target_speed = WALK_SPEED
 			footsteps.speed_scale = 1
-		stand(true)
 	const speed_control: float = 20
 	current_horizontal_speed = move_toward(current_horizontal_speed, target_speed, speed_control * delta)
-	
 	var rotation_target := camera_pivot.rotation.y + PI
 	
 	if direction:
 		if is_on_floor():
 			footsteps.play_step()
-		if standing:
-			if input_dir.y < 0:
-				anim_state = "walk_back"
-			elif running:
-				anim_state = "run"
-			else:
-				anim_state = "walk"
-		else:
-			if input_dir.y < 0:
-				anim_state = "crouch_walk_back"
-			else:
-				anim_state = "crouch_walk"
-		
-		var movement_angle = 0
-		if (input_dir.x != 0):
-			movement_angle = acos(-input_dir.x)
-			if (input_dir.y < 0):
-				movement_angle = -movement_angle
-		else:
-			movement_angle = asin(input_dir.y)
-		var movement_rotation = movement_angle - PI/2
-		if (input_dir.y < 0):
-			movement_rotation = movement_rotation - PI
-		
+
+		## left is positive and right is negative, so we need negative of this angle
+		var movement_rotation := -Vector2(0, 1).angle_to(input_dir)
+		if (abs(movement_rotation) - PI/2) > Global.epsilon:
+			# If the character is walking backwards, they face forward and play walking back anim
+			movement_rotation -= PI
 		
 		direction = direction.rotated(Vector3.UP, rotation_target)
 		velocity.x = direction.x * current_horizontal_speed
@@ -315,16 +298,49 @@ func _physics_process(delta: float) -> void:
 		current_horizontal_speed = move_toward(current_horizontal_speed, 0, friction * delta)
 		velocity = current_horizontal_direction * current_horizontal_speed + velocity.project(Vector3.UP)
 
+	
+	rotate_model(rotation_target)
+	determine_anim_state(input_dir, running, crouching)
+	move_and_slide()
+	handle_stamina(running)
+	
+	handle_collisions(target_speed * direction)
+	running_last_frame = running
+
+func determine_anim_state(input_dir: Vector2, running: bool, crouching: bool):
+	if crouching:
+		if input_dir.y < 0:
+			anim_state = "crouch_walk_back"
+		elif input_dir != Vector2.ZERO:
+			anim_state = "crouch_walk"
+		else:
+			anim_state = "crouch_idle"
+	elif running:
+		anim_state = "run"
+	else:
+		if input_dir.y < 0:
+			anim_state = "walk_back"
+		elif input_dir != Vector2.ZERO:
+			anim_state = "walk"
+		else:
+			anim_state = "idle"
+	stand(!crouching)
+
+func rotate_model(rotation_target: float):
+	var delta = get_physics_process_delta_time()
 	rotation_target = fposmod(rotation_target, (2 * PI))
 	model.rotation.y = fposmod(model.rotation.y, (2 * PI))
 	var rotation_diff = model.rotation.y - rotation_target
 	if rotation_diff > PI:
-		# print(rotation_target, model.rotation.y)
 		rotation_target = rotation_target + 2*PI
 	elif rotation_diff < -PI:
-		# print(rotation_target, model.rotation.y)
 		rotation_target = rotation_target - 2*PI
 
+	var rotate_speed = 10
+	model.rotation.y = lerpf(model.rotation.y, rotation_target, rotate_speed * delta)
+
+func handle_stamina(running: bool):
+	var delta = get_physics_process_delta_time()
 	if running:
 		stamina -= delta
 	else:
@@ -333,22 +349,21 @@ func _physics_process(delta: float) -> void:
 	Global.stat_interface.set_stamina(stamina / max_stamina)
 	
 
-	var rotate_speed = 10
-	model.rotation.y = lerpf(model.rotation.y, rotation_target, rotate_speed * delta)
-
-	handle_animations(delta)
+func handle_collisions(target_horizontal_velocity: Vector3):
+	## Use our target horizontal velocity + our vertical velocity as basis for collision momentum
+	var target_velocity := target_horizontal_velocity + velocity.project(Vector3.UP)
 	var mass = 1
-	
-	move_and_slide()
+	var target_momentum = mass * target_velocity
 	for i in get_slide_collision_count():
 		var coll = get_slide_collision(i)
-		var push_impulse = (target_speed * mass * direction).project(-coll.get_normal())
+		var push_impulse = (target_momentum).project(-coll.get_normal())
 		if coll.get_collider() is RigidBody3D:
 			coll.get_collider().apply_central_impulse(push_impulse)
 
 func _process(_delta: float) -> void:
 	handle_interactions()
 	handle_items()
+	handle_animations()
 
 func has(id: Item.item_id) -> bool:
 	for item in inventory:

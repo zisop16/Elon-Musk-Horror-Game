@@ -43,3 +43,4 @@ light_volumetric_fog_energy = 0.0
 shadow_enabled = true
 omni_range = 15.0
 omni_attenuation = 0.5
+omni_shadow_mode = 0

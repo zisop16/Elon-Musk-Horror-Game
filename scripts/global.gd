@@ -1,5 +1,6 @@
 extends Node
 
+const epsilon: float = 10.**-5
 var logging = true
 var player: Player
 var item_tooltip: ItemTooltip

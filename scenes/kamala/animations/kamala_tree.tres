@@ -1,0 +1,67 @@
+[gd_resource type="AnimationNodeBlendTree" load_steps=14 format=3 uid="uid://lgcr76tmjvd5"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uld78"]
+animation = &"kamala_anims/idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6gd48"]
+animation = &"kamala_anims/run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r80qo"]
+animation = &"kamala_anims/stab"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kwepi"]
+animation = &"kamala_anims/stumble"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qgvki"]
+animation = &"kamala_anims/walk"
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_ox3gt"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_wjrl4"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_l361r"]
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_tayrh"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_qb7qb"]
+fadein_time = 0.15
+fadeout_time = 0.15
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_fdqoe"]
+fadein_time = 0.15
+fadeout_time = 0.15
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_ehoeb"]
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_qpo64"]
+
+[resource]
+graph_offset = Vector2(-846.569, -84.4305)
+"nodes/Animation Idle/node" = SubResource("AnimationNodeAnimation_uld78")
+"nodes/Animation Idle/position" = Vector2(-1240, -180)
+"nodes/Animation Run/node" = SubResource("AnimationNodeAnimation_6gd48")
+"nodes/Animation Run/position" = Vector2(-1240, 140)
+"nodes/Animation Stab/node" = SubResource("AnimationNodeAnimation_r80qo")
+"nodes/Animation Stab/position" = Vector2(-260, 200)
+"nodes/Animation Stumble/node" = SubResource("AnimationNodeAnimation_kwepi")
+"nodes/Animation Stumble/position" = Vector2(-480, 200)
+"nodes/Animation Walk/node" = SubResource("AnimationNodeAnimation_qgvki")
+"nodes/Animation Walk/position" = Vector2(-1240, -20)
+nodes/idle_time/node = SubResource("AnimationNodeTimeSeek_ox3gt")
+nodes/idle_time/position = Vector2(-960, -200)
+nodes/output/position = Vector2(380, 20)
+nodes/run/node = SubResource("AnimationNodeBlend2_wjrl4")
+nodes/run/position = Vector2(-520, -220)
+nodes/run_speed/node = SubResource("AnimationNodeTimeScale_l361r")
+nodes/run_speed/position = Vector2(-800, 120)
+nodes/run_time/node = SubResource("AnimationNodeTimeSeek_tayrh")
+nodes/run_time/position = Vector2(-960, 120)
+nodes/stab/node = SubResource("AnimationNodeOneShot_qb7qb")
+nodes/stab/position = Vector2(220, 0)
+nodes/stumble/node = SubResource("AnimationNodeOneShot_fdqoe")
+nodes/stumble/position = Vector2(80, 0)
+nodes/walk/node = SubResource("AnimationNodeBlend2_ehoeb")
+nodes/walk/position = Vector2(-660, -220)
+nodes/walk_time/node = SubResource("AnimationNodeTimeSeek_qpo64")
+nodes/walk_time/position = Vector2(-960, -40)
+node_connections = [&"idle_time", 0, &"Animation Idle", &"output", 0, &"stab", &"run", 0, &"walk", &"run", 1, &"run_speed", &"run_speed", 0, &"run_time", &"run_time", 0, &"Animation Run", &"stab", 0, &"stumble", &"stab", 1, &"Animation Stab", &"stumble", 0, &"run", &"stumble", 1, &"Animation Stumble", &"walk", 0, &"idle_time", &"walk", 1, &"walk_time", &"walk_time", 0, &"Animation Walk"]

@@ -1,8 +1,40 @@
-[gd_scene load_steps=4 format=3 uid="uid://bg2ah1m0ryp2v"]
+[gd_scene load_steps=6 format=3 uid="uid://bg2ah1m0ryp2v"]
 
 [ext_resource type="PackedScene" uid="uid://dinhmkbikrbs7" path="res://assets/elon/elon_musk_throw.glb" id="1_bqbl2"]
 [ext_resource type="AnimationLibrary" uid="uid://co5681wybi5dl" path="res://assets/elon/animations/elon_animations.res" id="2_ky3at"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://dcxm6ou4qp23h" path="res://assets/elon/animations/elon_animation_tree.tres" id="3_xuoxp"]
+
+[sub_resource type="Animation" id="Animation_s0yww"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D/Flashlight:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.60724, 6.0338, 3.65377)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D/Flashlight:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.22648, 1.63403, -1.92636)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_prbqp"]
+_data = {
+&"RESET": SubResource("Animation_s0yww")
+}
 
 [node name="Elon Model" instance=ExtResource("1_bqbl2")]
 
@@ -10,36 +42,35 @@
 transform = Transform3D(0.01, 0, 0, 0, -4.37114e-10, 0.01, 0, -0.01, -4.37114e-10, 0, 0.94, 0)
 
 [node name="Skeleton3D" parent="Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4" index="0"]
-unique_name_in_owner = true
-bones/1/position = Vector3(0.00975285, 0.944537, -0.0164185)
-bones/1/rotation = Quaternion(-0.68324, -0.249875, -0.271064, 0.630294)
-bones/2/rotation = Quaternion(0.710609, 0.0322182, 0.0232668, 0.702464)
-bones/3/rotation = Quaternion(0.100112, 0.0814734, -0.011596, 0.991567)
-bones/4/rotation = Quaternion(0.100112, 0.0814733, -0.011596, 0.991567)
-bones/5/rotation = Quaternion(-0.700796, -0.00815796, -0.00750044, 0.713275)
-bones/6/rotation = Quaternion(-0.0538762, 0.0131439, 0.175625, 0.982894)
-bones/8/rotation = Quaternion(-0.577144, -0.420243, 0.577044, -0.396637)
-bones/9/rotation = Quaternion(0.436746, -0.111899, 0.0159724, 0.892455)
-bones/10/rotation = Quaternion(0.0279432, 0.0583606, 0.406516, 0.91135)
-bones/12/rotation = Quaternion(0.62849, -0.377339, 0.539582, 0.414086)
-bones/13/rotation = Quaternion(0.386494, 0.115039, 0.212343, 0.890112)
-bones/14/rotation = Quaternion(0.0808696, 0.0288498, -0.353838, 0.931357)
-bones/16/rotation = Quaternion(0.0186056, 0.544794, -0.827841, 0.132412)
-bones/17/rotation = Quaternion(-0.299571, 0.120186, -0.0444183, 0.945431)
-bones/18/rotation = Quaternion(0.56787, -0.0410591, -0.0532264, 0.820368)
-bones/19/rotation = Quaternion(0.287123, -0.0554591, -0.00759903, 0.956257)
-bones/21/rotation = Quaternion(0.00552581, 0.687875, -0.704489, -0.174619)
-bones/22/rotation = Quaternion(-0.296663, 0.0689636, -0.0245825, 0.952172)
-bones/23/rotation = Quaternion(0.668043, 0.0894788, 0.128294, 0.727498)
-bones/24/rotation = Quaternion(0.28671, 0.073079, -0.0206083, 0.955004)
+bones/1/position = Vector3(0.00504337, 0.946418, -0.0135803)
+bones/1/rotation = Quaternion(-0.684206, -0.250366, -0.269204, 0.629848)
+bones/2/rotation = Quaternion(0.709819, 0.0321994, 0.0234626, 0.703257)
+bones/3/rotation = Quaternion(0.0976414, 0.0819523, -0.0112175, 0.991778)
+bones/4/rotation = Quaternion(0.0976414, 0.0819523, -0.0112175, 0.991778)
+bones/5/rotation = Quaternion(-0.69509, -0.00832413, -0.00691064, 0.718841)
+bones/6/rotation = Quaternion(-0.0625554, 0.00706774, 0.177422, 0.982119)
+bones/8/rotation = Quaternion(-0.568733, -0.430086, 0.576255, -0.399374)
+bones/9/rotation = Quaternion(0.446033, -0.108158, 0.0172334, 0.88829)
+bones/10/rotation = Quaternion(0.0299337, 0.0615697, 0.410871, 0.90912)
+bones/12/rotation = Quaternion(0.623758, -0.383029, 0.53969, 0.415871)
+bones/13/rotation = Quaternion(0.387884, 0.111723, 0.217858, 0.888595)
+bones/14/rotation = Quaternion(0.0866771, 0.0252391, -0.356671, 0.929858)
+bones/16/rotation = Quaternion(0.0172492, 0.550644, -0.824072, 0.131902)
+bones/17/rotation = Quaternion(-0.294743, 0.121864, -0.0441056, 0.946747)
+bones/18/rotation = Quaternion(0.568248, -0.0413661, -0.053673, 0.820063)
+bones/19/rotation = Quaternion(0.287899, -0.0577653, -0.00699871, 0.955891)
+bones/21/rotation = Quaternion(0.00534391, 0.694112, -0.698194, -0.175229)
+bones/22/rotation = Quaternion(-0.287078, 0.0709387, -0.0248521, 0.954954)
+bones/23/rotation = Quaternion(0.666466, 0.0896395, 0.12872, 0.728847)
+bones/24/rotation = Quaternion(0.28617, 0.0717394, -0.0198462, 0.955284)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D" index="11"]
-transform = Transform3D(-0.447674, -0.392966, 0.803222, 0.202469, -0.919478, -0.336997, 0.870973, 0.0117626, 0.49119, -32.1999, 2.36905, -18.1157)
+transform = Transform3D(-0.445558, -0.39273, 0.804513, 0.209892, -0.919421, -0.33258, 0.8703, 0.0206774, 0.492087, -32.3549, 2.62958, -18.2289)
 bone_name = "mixamorig_RightHand_00"
 bone_idx = 15
 
 [node name="Flashlight" type="Node3D" parent="Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D" index="0"]
-transform = Transform3D(-0.936557, -0.104764, 0.334486, -0.0445719, 0.982135, 0.182815, -0.347662, 0.156309, -0.924499, 2.93034, 7.53249, 0.781731)
+transform = Transform3D(-18.8085, -13.7253, 97.2516, -91.3511, -33.923, -22.4549, 36.0725, -93.0639, -6.15778, 1.60724, 6.0338, 3.65377)
 
 [node name="Chainsaw" type="Node3D" parent="Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D" index="1"]
 transform = Transform3D(0.596544, 0.78261, -0.177924, 0.679741, -0.3748, 0.630458, 0.426716, -0.497038, -0.755557, -21.5935, -6.78769, 61.8683)
@@ -70,6 +101,7 @@ transform = Transform3D(0.960492, -0.242892, -0.135861, 0.224104, 0.385545, 0.89
 
 [node name="AnimationPlayer" parent="." index="1"]
 libraries = {
+&"": SubResource("AnimationLibrary_prbqp"),
 &"elon_animations": ExtResource("2_ky3at")
 }
 autoplay = "elon_animations/idle"
@@ -79,9 +111,14 @@ tree_root = ExtResource("3_xuoxp")
 anim_player = NodePath("../AnimationPlayer")
 parameters/TimeScale/scale = 0.5
 parameters/chainsaw_run/blend_amount = 0.0
+parameters/chainsaw_run_time/seek_request = -1.0
 parameters/crouch_idle/blend_amount = 0.0
-parameters/crouch_walk/blend_amount = false
+parameters/crouch_idle_time/seek_request = -1.0
+parameters/crouch_walk/blend_amount = 0.0
 parameters/crouch_walk_back/blend_amount = 0.0
+parameters/crouch_walk_back_time/seek_request = -1.0
+parameters/crouch_walk_time/seek_request = -1.0
+parameters/idle_time/seek_request = -1.0
 parameters/jump/active = 0.0
 parameters/jump/internal_active = -0.00694444
 parameters/jump/request = 0
@@ -91,5 +128,8 @@ parameters/mine/internal_active = -0.00714286
 parameters/mine/request = 0
 parameters/mine_speed/scale = 2.0
 parameters/run/blend_amount = 0.0
+parameters/run_time/seek_request = -1.0
 parameters/walk/blend_amount = 0.0
 parameters/walk_back/blend_amount = 0
+parameters/walk_back_time/seek_request = -1.0
+parameters/walk_time/seek_request = -1.0

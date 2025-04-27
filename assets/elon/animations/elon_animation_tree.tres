@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeBlendTree" load_steps=25 format=3 uid="uid://dcxm6ou4qp23h"]
+[gd_resource type="AnimationNodeBlendTree" load_steps=33 format=3 uid="uid://dcxm6ou4qp23h"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8wyoi"]
 animation = &"elon_animations/chainsaw_run"
@@ -34,11 +34,21 @@ animation = &"elon_animations/idle"
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_prbqp"]
 
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_66w8w"]
+
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_rhkyi"]
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_mxq4o"]
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_s0yww"]
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_elk1u"]
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_emtwc"]
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_avsho"]
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_15b57"]
 
 [sub_resource type="Curve" id="Curve_ky3at"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -64,42 +74,58 @@ fadeout_time = 0.3
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_ky3at"]
 
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_w4tht"]
+
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_eshpv"]
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_jcgps"]
 
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_gvasl"]
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_uwd6o"]
+
 [resource]
-graph_offset = Vector2(60.6099, -127.665)
+graph_offset = Vector2(34.2908, 52.4738)
 "nodes/Anim Chainsaw Run/node" = SubResource("AnimationNodeAnimation_8wyoi")
-"nodes/Anim Chainsaw Run/position" = Vector2(-420, 300)
+"nodes/Anim Chainsaw Run/position" = Vector2(-880, 700)
 "nodes/Anim Crouch Idle/node" = SubResource("AnimationNodeAnimation_elk1u")
-"nodes/Anim Crouch Idle/position" = Vector2(-900, 100)
+"nodes/Anim Crouch Idle/position" = Vector2(-1340, -60)
 "nodes/Anim Crouch Walk/node" = SubResource("AnimationNodeAnimation_jcgps")
-"nodes/Anim Crouch Walk/position" = Vector2(-680, 300)
+"nodes/Anim Crouch Walk/position" = Vector2(-880, 540)
 "nodes/Anim Standard Run/node" = SubResource("AnimationNodeAnimation_n0slc")
-"nodes/Anim Standard Run/position" = Vector2(-420, 120)
+"nodes/Anim Standard Run/position" = Vector2(-880, 380)
 "nodes/Anim Walk/node" = SubResource("AnimationNodeAnimation_6dqby")
-"nodes/Anim Walk/position" = Vector2(-140, 300)
+"nodes/Anim Walk/position" = Vector2(-880, 860)
 "nodes/Animation Crouch Walk Back/node" = SubResource("AnimationNodeAnimation_ky3at")
-"nodes/Animation Crouch Walk Back/position" = Vector2(80, 300)
+"nodes/Animation Crouch Walk Back/position" = Vector2(-880, 1180)
 "nodes/Animation Jump/node" = SubResource("AnimationNodeAnimation_x7odq")
 "nodes/Animation Jump/position" = Vector2(440, 300)
 "nodes/Animation Mine/node" = SubResource("AnimationNodeAnimation_s0yww")
 "nodes/Animation Mine/position" = Vector2(440, 480)
 "nodes/Animation Walk Back/node" = SubResource("AnimationNodeAnimation_xuoxp")
-"nodes/Animation Walk Back/position" = Vector2(-120, 120)
+"nodes/Animation Walk Back/position" = Vector2(-880, 1020)
 nodes/Idle/node = SubResource("AnimationNodeAnimation_nfalm")
-nodes/Idle/position = Vector2(-440, -60)
+nodes/Idle/position = Vector2(-1340, -260)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_s0yww")
-nodes/TimeScale/position = Vector2(-620, 80)
+nodes/TimeScale/position = Vector2(-580, 100)
 nodes/chainsaw_run/node = SubResource("AnimationNodeBlend2_prbqp")
 nodes/chainsaw_run/position = Vector2(260, -140)
+nodes/chainsaw_run_time/node = SubResource("AnimationNodeTimeSeek_66w8w")
+nodes/chainsaw_run_time/position = Vector2(-600, 680)
 nodes/crouch_idle/node = SubResource("AnimationNodeBlend2_rhkyi")
 nodes/crouch_idle/position = Vector2(-160, -140)
+nodes/crouch_idle_time/node = SubResource("AnimationNodeTimeSeek_mxq4o")
+nodes/crouch_idle_time/position = Vector2(-1060, -60)
 nodes/crouch_walk/node = SubResource("AnimationNodeBlend2_s0yww")
 nodes/crouch_walk/position = Vector2(120, -140)
 nodes/crouch_walk_back/node = SubResource("AnimationNodeBlend2_elk1u")
 nodes/crouch_walk_back/position = Vector2(680, -140)
+nodes/crouch_walk_back_time/node = SubResource("AnimationNodeTimeSeek_emtwc")
+nodes/crouch_walk_back_time/position = Vector2(-580, 1160)
+nodes/crouch_walk_time/node = SubResource("AnimationNodeTimeSeek_avsho")
+nodes/crouch_walk_time/position = Vector2(-600, 520)
+nodes/idle_time/node = SubResource("AnimationNodeTimeSeek_15b57")
+nodes/idle_time/position = Vector2(-1060, -260)
 nodes/jump/node = SubResource("AnimationNodeOneShot_ky3at")
 nodes/jump/position = Vector2(860, 280)
 nodes/jump_speed/node = SubResource("AnimationNodeTimeScale_ky3at")
@@ -111,8 +137,14 @@ nodes/mine_speed/position = Vector2(660, 480)
 nodes/output/position = Vector2(1160, 300)
 nodes/run/node = SubResource("AnimationNodeBlend2_ky3at")
 nodes/run/position = Vector2(-20, -140)
+nodes/run_time/node = SubResource("AnimationNodeTimeSeek_w4tht")
+nodes/run_time/position = Vector2(-600, 360)
 nodes/walk/node = SubResource("AnimationNodeBlend2_eshpv")
 nodes/walk/position = Vector2(400, -140)
 nodes/walk_back/node = SubResource("AnimationNodeBlend2_jcgps")
 nodes/walk_back/position = Vector2(540, -140)
-node_connections = [&"TimeScale", 0, &"Anim Crouch Idle", &"chainsaw_run", 0, &"crouch_walk", &"chainsaw_run", 1, &"Anim Chainsaw Run", &"crouch_idle", 0, &"Idle", &"crouch_idle", 1, &"TimeScale", &"crouch_walk", 0, &"run", &"crouch_walk", 1, &"Anim Crouch Walk", &"crouch_walk_back", 0, &"walk_back", &"crouch_walk_back", 1, &"Animation Crouch Walk Back", &"jump", 0, &"crouch_walk_back", &"jump", 1, &"jump_speed", &"jump_speed", 0, &"Animation Jump", &"mine", 0, &"jump", &"mine", 1, &"mine_speed", &"mine_speed", 0, &"Animation Mine", &"output", 0, &"mine", &"run", 0, &"crouch_idle", &"run", 1, &"Anim Standard Run", &"walk", 0, &"chainsaw_run", &"walk", 1, &"Anim Walk", &"walk_back", 0, &"walk", &"walk_back", 1, &"Animation Walk Back"]
+nodes/walk_back_time/node = SubResource("AnimationNodeTimeSeek_gvasl")
+nodes/walk_back_time/position = Vector2(-600, 1000)
+nodes/walk_time/node = SubResource("AnimationNodeTimeSeek_uwd6o")
+nodes/walk_time/position = Vector2(-600, 840)
+node_connections = [&"TimeScale", 0, &"crouch_idle_time", &"chainsaw_run", 0, &"crouch_walk", &"chainsaw_run", 1, &"chainsaw_run_time", &"chainsaw_run_time", 0, &"Anim Chainsaw Run", &"crouch_idle", 0, &"idle_time", &"crouch_idle", 1, &"TimeScale", &"crouch_idle_time", 0, &"Anim Crouch Idle", &"crouch_walk", 0, &"run", &"crouch_walk", 1, &"crouch_walk_time", &"crouch_walk_back", 0, &"walk_back", &"crouch_walk_back", 1, &"crouch_walk_back_time", &"crouch_walk_back_time", 0, &"Animation Crouch Walk Back", &"crouch_walk_time", 0, &"Anim Crouch Walk", &"idle_time", 0, &"Idle", &"jump", 0, &"crouch_walk_back", &"jump", 1, &"jump_speed", &"jump_speed", 0, &"Animation Jump", &"mine", 0, &"jump", &"mine", 1, &"mine_speed", &"mine_speed", 0, &"Animation Mine", &"output", 0, &"mine", &"run", 0, &"crouch_idle", &"run", 1, &"run_time", &"run_time", 0, &"Anim Standard Run", &"walk", 0, &"chainsaw_run", &"walk", 1, &"walk_time", &"walk_back", 0, &"walk", &"walk_back", 1, &"walk_back_time", &"walk_back_time", 0, &"Animation Walk Back", &"walk_time", 0, &"Anim Walk"]

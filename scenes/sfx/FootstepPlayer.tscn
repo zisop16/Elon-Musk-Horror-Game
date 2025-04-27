@@ -26,42 +26,42 @@
 script = ExtResource("2_gj5jv")
 sounds = Array[AudioStream]([ExtResource("7_wmg1f"), ExtResource("8_sh04l"), ExtResource("9_jbkiu")])
 volume = -30.0
-pitch_variation = 0.29
+pitch_variation = 0.05
 metadata/_custom_type_script = "uid://bcqs0sjegrs1a"
 
 [sub_resource type="Resource" id="Resource_0xtna"]
 script = ExtResource("2_gj5jv")
 sounds = Array[AudioStream]([ExtResource("3_al645"), ExtResource("4_035g0"), ExtResource("5_7j2w7"), ExtResource("6_81ppk")])
 volume = -30.0
-pitch_variation = 0.33
+pitch_variation = 0.05
 metadata/_custom_type_script = "uid://bcqs0sjegrs1a"
 
 [sub_resource type="Resource" id="Resource_2ti27"]
 script = ExtResource("2_gj5jv")
 sounds = Array[AudioStream]([ExtResource("19_mootj"), ExtResource("20_0ii3a"), ExtResource("21_xvqfy")])
 volume = -30.0
-pitch_variation = 0.32
+pitch_variation = 0.05
 metadata/_custom_type_script = "uid://bcqs0sjegrs1a"
 
 [sub_resource type="Resource" id="Resource_3wvhs"]
 script = ExtResource("2_gj5jv")
 sounds = Array[AudioStream]([ExtResource("16_38rxi"), ExtResource("17_mtt4u"), ExtResource("18_8q3u1")])
 volume = -30.0
-pitch_variation = 0.29
+pitch_variation = 0.05
 metadata/_custom_type_script = "uid://bcqs0sjegrs1a"
 
 [sub_resource type="Resource" id="Resource_af6o4"]
 script = ExtResource("2_gj5jv")
 sounds = Array[AudioStream]([ExtResource("13_ifsmn"), ExtResource("14_1xu7x"), ExtResource("15_7jq86")])
 volume = -30.0
-pitch_variation = 0.32
+pitch_variation = 0.05
 metadata/_custom_type_script = "uid://bcqs0sjegrs1a"
 
 [sub_resource type="Resource" id="Resource_nsopq"]
 script = ExtResource("2_gj5jv")
 sounds = Array[AudioStream]([ExtResource("10_7kcgc"), ExtResource("11_16nrs"), ExtResource("12_u5vhc")])
 volume = -30.0
-pitch_variation = 0.29
+pitch_variation = 0.05
 metadata/_custom_type_script = "uid://bcqs0sjegrs1a"
 
 [node name="FootstepPlayer" type="AudioStreamPlayer3D"]

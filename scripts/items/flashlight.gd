@@ -36,7 +36,7 @@ func attach(target: Node3D):
 
 func _process(delta: float) -> void:
 	if active:
-		flashlight_battery = move_toward(flashlight_battery, 0, delta)
+		# flashlight_battery = move_toward(flashlight_battery, 0, delta)
 		Global.stat_interface.set_flashlight(flashlight_battery / flashlight_battery_limit)
 	if flashlight_battery == 0 and active:
 		deactivate()
