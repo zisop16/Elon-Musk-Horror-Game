@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://cxgiq6bp1fde0"]
+[gd_scene load_steps=16 format=4 uid="uid://cxgiq6bp1fde0"]
 
 [ext_resource type="Script" uid="uid://skl8sc51x30q" path="res://scripts/items/flashlight.gd" id="1_2rhmn"]
 [ext_resource type="Material" uid="uid://bd3aqwl66devm" path="res://assets/items/flashlight/flashlight.tres" id="3_5l1vh"]
@@ -46,6 +46,7 @@ shadow_mesh = SubResource("ArrayMesh_oqbcu")
 [sub_resource type="Resource" id="Resource_emwln"]
 script = ExtResource("5_pi1w5")
 sounds = Array[AudioStream]([ExtResource("7_pi1w5")])
+delay = 0.0
 volume = 0.0
 pitch_variation = 0.0
 metadata/_custom_type_script = "uid://bcqs0sjegrs1a"
@@ -53,6 +54,7 @@ metadata/_custom_type_script = "uid://bcqs0sjegrs1a"
 [sub_resource type="Resource" id="Resource_pi1w5"]
 script = ExtResource("5_pi1w5")
 sounds = Array[AudioStream]([ExtResource("6_77jry")])
+delay = 0.0
 volume = 0.0
 pitch_variation = 0.0
 metadata/_custom_type_script = "uid://bcqs0sjegrs1a"
@@ -65,6 +67,9 @@ radius = 0.834473
 height = 1.16414
 radius = 1.2627
 
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_xi5uw"]
+points = PackedVector3Array(-2.6862, 5.79516, 6.20132, -1.20872, 5.44242, -6.44481, -1.37886, 4.93172, -6.10796, 6.67079, 5.84329, 1.24979, 0.196436, -5.51547, 0.196436, -6.67079, 5.84329, -1.24979, 4.10367, 5.75238, -5.33528, 3.49793, 5.76896, 5.76068, -5.76012, 5.76711, 3.4968, -4.10367, 5.75239, -5.33529, 6.45453, 5.83669, -2.08063, -0.196436, -5.51547, -0.196436, 1.24979, 5.84329, 6.67079, 1.24979, 5.84329, -6.67079, 5.33528, 5.75238, 4.10367, -6.67079, 5.84329, 1.24979, -5.76012, 5.76711, -3.4968, -0.196436, -5.51547, 0.196436, 0.196436, -5.51547, -0.196436, -4.10367, 5.75238, 5.33528, 5.33529, 5.75239, -4.10367, -1.25103, 5.84296, 6.67042, 6.13984, 4.75983, -0.593138, -3.10793, 5.81115, -6.01195, 2.68707, 5.79422, -6.20033, 6.20033, 5.79422, 2.68707, -6.45371, 5.83595, 2.08167, 2.08167, 5.83595, 6.45371, -4.67276, 5.06967, 4.28357, -4.67275, 5.06967, -4.28356, 4.28281, 5.06771, 4.67193, -5.93084, 5.14706, -2.37209)
+
 [node name="Flashlight" type="RigidBody3D"]
 collision_layer = 8
 collision_mask = 15
@@ -73,6 +78,7 @@ script = ExtResource("1_2rhmn")
 
 [node name="Model" type="MeshInstance3D" parent="."]
 transform = Transform3D(1.31429e-07, -6.57144e-08, 10.9572, -3.66728, 2.18587e-07, 5.43102e-07, -1.09293e-07, -3.66728, 0, 0.0336329, -0.00108612, 0)
+layers = 2
 mesh = SubResource("ArrayMesh_5l1vh")
 skeleton = NodePath("")
 
@@ -88,7 +94,7 @@ shadow_caster_mask = 4293918721
 distance_fade_begin = 0.0
 spot_range = 35.72
 spot_attenuation = 0.59
-spot_angle = 49.19
+spot_angle = 35.0
 spot_angle_attenuation = 0.637278
 
 [node name="AudioPlayer" type="AudioStreamPlayer3D" parent="."]
@@ -116,3 +122,13 @@ debug_color = Color(0, 0.595, 0.7, 1)
 [node name="InteractionComponent" parent="." node_paths=PackedStringArray("outline_material_holder") instance=ExtResource("9_oqbcu")]
 rotation_edit_mode = 1
 outline_material_holder = NodePath("../Model")
+
+[node name="Hitbox" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -5.70624, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_xi5uw")

@@ -1,12 +1,16 @@
+class_name Kamala
 extends CharacterBody3D
 
 @onready var footsteps = $FootstepPlayer
 @onready var navigation: NavigationAgent3D = $NavigationAgent3D
 @onready var anim_tree: AnimationTree = $Model/AnimationTree
-@onready var knife: Area3D = %KamalaKnife
+@onready var knife_hitbox: Area3D = %KamalaKnife
+@onready var sfx_player: PolyAudioPlayer = $SFXPlayer
+@export var blood_effect: PackedScene
+@export var kamala_flee_locations: Node3D
 
-const WALK_SPEED := 1.8
-const RUN_SPEED := 4
+const WALK_SPEED := 4
+const RUN_SPEED := 8
 const JUMP_VELOCITY := 4.5
 
 enum {WALK, IDLE, RUN}
@@ -15,6 +19,9 @@ var anim_amounts: Dictionary = {
 	walk = 0,
 	run = 0
 }
+
+func _ready() -> void:
+	Global.kamala = self
 
 func handle_animations():
 	var delta = get_process_delta_time()
@@ -37,7 +44,6 @@ func update_anim_tree():
 		anim_tree[blend_name] = anim_amounts[key]
 
 var remaining_idle_time: float = 0
-var target_position: Vector3
 ## Ranges from 0 -> 100
 var anger: float = 60
 ## Kamala will chase the player when she reaches this threshold
@@ -51,19 +57,20 @@ func add_anger(increase: float):
 
 ## Informs kamala of a noise, increases her anger in response to loudness
 func handle_noise(pos: Vector3, loudness: float):
-	target_position = pos
+	navigation.target_position = pos
 	add_anger(loudness)
 
 func should_run() -> bool:
-	return anger > run_anger_threshold
+	return fleeing or anger > run_anger_threshold
 
 func following_player() -> bool:
-	return saw_player or anger > follow_player_anger_threshold
+	# Fix later
+	return not fleeing
+	# return not fleeing and saw_player or anger > follow_player_anger_threshold
 
 func get_movement_direction() -> Vector3:
 	if following_player():
-		target_position = Global.player.global_position
-	navigation.target_position = target_position
+		navigation.target_position = Global.player.global_position
 	var direction := navigation.get_next_path_position() - global_position
 	direction = direction.slide(Vector3.UP)
 	direction = direction.normalized()
@@ -91,34 +98,51 @@ func player_visible() -> bool:
 	return coll == Global.player
 
 const attack_range: float = 1.1
-func at_navigation_target() -> bool:
-	var diff := (target_position - global_position).slide(Vector3.UP)
-	return diff.length() < attack_range
 
 func should_attack() -> bool:
 	if not saw_player:
 		return false
-	var diff := (target_position - global_position).slide(Vector3.UP)
+	var player_pos := Global.player.global_position
+	var diff := (player_pos - global_position).slide(Vector3.UP)
 	return diff.length() < attack_range
 
 var attacking := false
-var knife_active := false
 func activate_knife_hitbox():
-	knife_active = true
+	knife_hitbox.monitoring = true
+	sfx_player.play_sound_effect("swing")
 func end_knife_hitbox():
-	knife_active = false
+	knife_hitbox.monitoring = false
 func end_attack():
 	attacking = false
+func cancel_attack():
+	attacking = false
+	knife_hitbox.monitoring = false
+	anim_tree["parameters/stab/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT
 
+func set_flee(flag: bool):
+	fleeing = flag
+	if fleeing:
+		initial_time_fleeing = Global.time()
+		navigation.target_position = find_flee_location()
+		being_flashed = false
+		# Cancel stab animation when kamala breaks from her trance
+		if attacking:
+			cancel_attack()
+		navigation.avoidance_mask = 0b10
+		at_navigation_target = false
+	else:
+		navigation.avoidance_mask = 0b01
+		at_navigation_target = true
 
 var saw_player: bool
 func _physics_process(delta: float) -> void:
+	handle_flash()
 	saw_player = player_visible()
-	if saw_player:
-		const player_visible_angriness: float = 4
+	if not fleeing and saw_player:
+		const player_visible_angriness: float = 2
 		add_anger(player_visible_angriness * delta)
 	else:
-		const anger_falloff: float = -2
+		const anger_falloff: float = -3
 		add_anger(anger_falloff * delta)
 	var direction: Vector3 = get_movement_direction()
 	var current_horizontal_speed: float
@@ -128,8 +152,13 @@ func _physics_process(delta: float) -> void:
 	if remaining_idle_time > 0:
 		remaining_idle_time = move_toward(remaining_idle_time, 0, delta)
 		movement_vector = Vector3.ZERO
-	elif attacking or at_navigation_target():
+	elif attacking or at_navigation_target or being_flashed:
 		movement_vector = Vector3.ZERO
+		if fleeing:
+			set_flee(false)
+		if at_navigation_target:
+			# Decide next navigation target...
+			at_navigation_target = false
 	else:
 		current_horizontal_speed = velocity.slide(Vector3.UP).length()
 		var running := should_run()
@@ -143,8 +172,13 @@ func _physics_process(delta: float) -> void:
 			anim_state = "walk"
 		movement_vector = direction * target_speed
 	if movement_vector != Vector3.ZERO:
-		# footsteps.play_step()
+		footsteps.play_step()
 		velocity = movement_vector + velocity.project(Vector3.UP)
+		if fleeing:
+			var time_spent_fleeing = Global.time() - initial_time_fleeing
+			const max_flee_duration: float = 8
+			if time_spent_fleeing > max_flee_duration:
+				set_flee(false)
 	else:
 		anim_state = "idle"
 		var friction = 30
@@ -159,27 +193,41 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	move_and_slide()
-	handle_attack()
-	handle_collisions()
-
-	
+	navigation.velocity = velocity
 
 func handle_attack():
+	if fleeing or being_flashed:
+		return
 	if attacking:
-		if knife_active:
-			var overlap = knife.get_overlapping_bodies()
-			if overlap.is_empty():
-				return
-			var player: Player = null
-			for hit in overlap:
-				if hit is Player:
-					player = hit
-					break
-			if player == null:
-				return
+		if not knife_hitbox.monitoring:
+			return
+		var overlap = knife_hitbox.get_overlapping_bodies()
+		if overlap.is_empty():
+			return
+		var player: Player = null
+		for hit in overlap:
+			if hit is Player:
+				player = hit
+				break
+		if player == null:
+			return
+		var blood_particles = blood_effect.instantiate()
+		var y_level = knife_hitbox.global_position.y
+		var direction = (knife_hitbox.global_position - player.global_position).slide(Vector3.UP).normalized()
+		var angle = Vector3.MODEL_FRONT.signed_angle_to(direction, Vector3.UP)
+		player.model.add_child(blood_particles)
+		blood_particles.global_position = player.model.global_position
+		blood_particles.global_position += direction * .3
+		blood_particles.global_position.y = y_level
+		blood_particles.global_rotation = Vector3(0, angle, 0)
+		sfx_player.play_sound_effect("stab")
+		const knife_damage = 30
+		Global.player.add_health(-knife_damage)
+		end_knife_hitbox()
+			
 	elif should_attack():
 		anim_tree["parameters/stab/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+		sfx_player.play_sound_effect("grunt")
 		attacking = true
 
 func handle_collisions():
@@ -190,5 +238,63 @@ func handle_collisions():
 		if coll.get_collider() is RigidBody3D:
 			coll.get_collider().apply_central_impulse(push_impulse)
 
+func find_flee_location() -> Vector3:
+	var locations = kamala_flee_locations.get_children() as Array[Node3D]
+	locations.shuffle()
+	var player_direction = Global.player.global_position - global_position
+	for location in locations:
+		var pos: Vector3 = location.global_position
+		var pos_direction := pos - global_position
+		if pos_direction.dot(player_direction) < 0:
+			return pos
+	return locations[0].global_position
+
+## How long the player must flash kamala before she runs
+const flashlight_endurance: float = 2.5
+func handle_flash():
+	if flash_tick_remaining:
+		flash_tick_remaining = false
+		if not being_flashed:
+			being_flashed = true
+			initial_time_flashed = Global.time()
+	else:
+		being_flashed = false
+	var start_flee = being_flashed and ((Global.time() - initial_time_flashed) > flashlight_endurance)
+	if start_flee:
+		set_flee(true)
+	if being_flashed:
+		anim_tree["parameters/total_speed/scale"] = 0
+	else:
+		anim_tree["parameters/total_speed/scale"] = 1
+
+
+var fleeing := false
+var being_flashed := false
+var initial_time_flashed: float
+var initial_time_fleeing: float
+## When kamala is flashed by a flashlight, she is given a flash tick
+## This flash tick is then processed by physics_process, which changes it to false for the next frame
+## If flash_tick_remaining is false on any given physics process, kamala is no longer being flashed
+var flash_tick_remaining := false
+func receive_flashlight():
+	if fleeing:
+		return
+	flash_tick_remaining = true
+
 func _process(_delta: float) -> void:
 	handle_animations()
+
+
+var at_navigation_target := false
+
+## Navigation agent method handles
+
+func on_target_reached() -> void:
+	at_navigation_target = true
+
+
+func on_navigation_velocity_computed(safe_velocity: Vector3) -> void:
+	velocity = safe_velocity
+	move_and_slide()
+	handle_attack()
+	handle_collisions()

@@ -144,18 +144,19 @@ subdivide_depth = 64
 script = ExtResource("1_2r4qr")
 
 [node name="Bucket_Material_003_0" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.15, 0, 0, 0, -6.55671e-09, 0.15, 0, -0.15, -6.55671e-09, 0, 0.106, 0)
+transform = Transform3D(0.195, 0, 0, 0, -8.52372e-09, 0.195, 0, -0.195, -8.52372e-09, 0, 0.1378, 0)
 mesh = SubResource("ArrayMesh_qwt8m")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.151661, 0)
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, 0.197159, 0)
 visible = false
 shape = SubResource("CylinderShape3D_2r4qr")
 
 [node name="InteractionComponent" parent="." node_paths=PackedStringArray("outline_material_holder") instance=ExtResource("4_o88ga")]
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, 0, 0)
 outline_material_holder = NodePath("../Bucket_Material_003_0")
 
 [node name="Water" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.157174, 0)
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, 0.204326, 0)
 mesh = SubResource("PlaneMesh_bquqh")

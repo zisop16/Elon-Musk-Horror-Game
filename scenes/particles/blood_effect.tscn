@@ -1,0 +1,154 @@
+[gd_scene load_steps=16 format=3 uid="uid://cx7swe8xqwxyk"]
+
+[sub_resource type="Curve" id="Curve_4tmpq"]
+_data = [Vector2(0.583333, 1), 0.0, -0.674284, 0, 0, Vector2(1, 0), -4.60095, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_2vdxk"]
+curve = SubResource("Curve_4tmpq")
+
+[sub_resource type="Curve" id="Curve_etby8"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.207792, 1), 0.0, 0.0, 0, 0, Vector2(0.697531, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_2u2ie"]
+curve = SubResource("Curve_etby8")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2vdxk"]
+direction = Vector3(1, 0.4, 0)
+spread = 30.0
+initial_velocity_min = 2.0
+initial_velocity_max = 4.0
+gravity = Vector3(0, -10, 0)
+scale_curve = SubResource("CurveTexture_2u2ie")
+alpha_curve = SubResource("CurveTexture_2vdxk")
+hue_variation_min = -0.1
+hue_variation_max = 0.1
+collision_use_scale = true
+
+[sub_resource type="Curve" id="Curve_34o1r"]
+_data = [Vector2(0, 0.227996), 0.0, 6.05288, 0, 0, Vector2(0.0898876, 0.777839), 3.15871, 3.15871, 0, 0, Vector2(0.424157, 1), -0.918456, -0.918456, 0, 0, Vector2(0.702247, 0.297685), -1.91345, -1.91345, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="Gradient" id="Gradient_etby8"]
+offsets = PackedFloat32Array(0, 0.569536, 1)
+colors = PackedColorArray(1, 0.17, 0.17, 1, 0.55, 0, 0, 1, 0.19, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qe84l"]
+gradient = SubResource("Gradient_etby8")
+fill_from = Vector2(1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pevhg"]
+vertex_color_use_as_albedo = true
+albedo_texture = SubResource("GradientTexture2D_qe84l")
+billboard_keep_scale = true
+use_particle_trails = true
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_mp3xj"]
+material = SubResource("StandardMaterial3D_pevhg")
+radius = 0.06
+radial_steps = 10
+sections = 4
+section_length = 0.06
+cap_top = false
+cap_bottom = false
+curve = SubResource("Curve_34o1r")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_r658t"]
+particle_flag_align_y = true
+direction = Vector3(1, 0.4, 0)
+spread = 35.0
+initial_velocity_min = 2.0
+initial_velocity_max = 6.0
+gravity = Vector3(0, -10, 0)
+scale_curve = SubResource("CurveTexture_2u2ie")
+alpha_curve = SubResource("CurveTexture_2vdxk")
+hue_variation_min = -0.1
+hue_variation_max = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tj6dv"]
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.31, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_318ta"]
+material = SubResource("StandardMaterial3D_tj6dv")
+radius = 0.06
+height = 0.09
+
+[sub_resource type="Animation" id="Animation_etby8"]
+resource_name = "splatter"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BloodTrails:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BloodSpheres:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qe84l"]
+_data = {
+&"splatter": SubResource("Animation_etby8")
+}
+
+[node name="BloodEffect" type="Node3D"]
+
+[node name="BloodTrails" type="GPUParticles3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0.204359, 0.978896, -8.93283e-09, 0.978896, -0.204359, -4.27889e-08, 0, 0, 0)
+amount = 32
+lifetime = 4.0
+explosiveness = 0.35
+randomness = 1.0
+transform_align = 2
+trail_enabled = true
+trail_lifetime = 0.1
+process_material = SubResource("ParticleProcessMaterial_2vdxk")
+draw_pass_1 = SubResource("TubeTrailMesh_mp3xj")
+
+[node name="BloodSpheres" type="GPUParticles3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0.204359, 0.978896, -8.93283e-09, 0.978896, -0.204359, -4.27889e-08, 0, 0, 0)
+amount = 32
+lifetime = 4.0
+explosiveness = 0.35
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_r658t")
+draw_pass_1 = SubResource("SphereMesh_318ta")
+
+[node name="BloodSound" type="AudioStreamPlayer3D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_qe84l")
+}
+autoplay = "splatter"

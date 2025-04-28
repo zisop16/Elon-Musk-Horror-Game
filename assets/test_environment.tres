@@ -1,0 +1,4 @@
+[gd_resource type="Environment" format=3 uid="uid://ht711urhjvcf"]
+
+[resource]
+volumetric_fog_density = 0.0705

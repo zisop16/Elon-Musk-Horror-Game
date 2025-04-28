@@ -121,7 +121,6 @@ amount = 64
 lifetime = 2.5
 explosiveness = 0.9
 randomness = 1.0
-fixed_fps = 60
 collision_base_size = 0.1
 visibility_aabb = AABB(-11.3518, -57.4568, -12.2304, 23.201, 59.3617, 22.8549)
 process_material = SubResource("ParticleProcessMaterial_wk617")

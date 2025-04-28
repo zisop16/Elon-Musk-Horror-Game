@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://md2kq64billi"]
+[gd_scene load_steps=18 format=3 uid="uid://md2kq64billi"]
 
 [ext_resource type="Texture2D" uid="uid://bm3til2u5gqqo" path="res://assets/user_interface/crosshair.png" id="1_lmgon"]
 [ext_resource type="Script" path="res://scripts/user_interface/item_interface.gd" id="2_xsrv6"]
@@ -6,6 +6,15 @@
 [ext_resource type="StyleBox" uid="uid://bu7i6de5fb5kq" path="res://assets/user_interface/selected_slot.tres" id="4_aisij"]
 [ext_resource type="StyleBox" uid="uid://dinbw5v8q62m6" path="res://assets/user_interface/unselected_slot.tres" id="5_prbuy"]
 [ext_resource type="Script" uid="uid://ooncf0yjg5au" path="res://scripts/user_interface/stat_interface.gd" id="6_5kqoc"]
+[ext_resource type="Shader" uid="uid://cyidesd14juan" path="res://shaders/blood_overlay.gdshader" id="7_xsrv6"]
+[ext_resource type="Texture2D" uid="uid://dmctioqbem5du" path="res://assets/user_interface/blood_overlay.png" id="8_sdud1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sdud1"]
+shader = ExtResource("7_xsrv6")
+shader_parameter/bloodiness = 0.0
+shader_parameter/dist_exponent = 2.39
+shader_parameter/alpha_offset = 0.22
+shader_parameter/brightness = 0.3
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wgamn"]
 bg_color = Color(0, 0, 0, 0.470588)
@@ -70,6 +79,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="BloodTex" type="TextureRect" parent="."]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_sdud1")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_sdud1")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -158,6 +178,24 @@ size_flags_stretch_ratio = 0.0
 theme_override_styles/panel = ExtResource("5_prbuy")
 
 [node name="TextureRect" type="TextureRect" parent="ItemInterface/HBoxContainer/Slot2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.05
+anchor_right = 0.95
+anchor_bottom = 0.95
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Slot3" type="Panel" parent="ItemInterface/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.0
+theme_override_styles/panel = ExtResource("5_prbuy")
+
+[node name="TextureRect" type="TextureRect" parent="ItemInterface/HBoxContainer/Slot3"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.05

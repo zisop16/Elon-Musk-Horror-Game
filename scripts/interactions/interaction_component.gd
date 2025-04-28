@@ -12,11 +12,14 @@ func _ready() -> void:
 		outline_material = outline_material_holder.get_active_material(0).next_pass
 	# outline_material_holder.get_active_material(0).next_pass = null
 
-func show_tooltip():
+func show_tooltip(coll_point: Vector3):
 	Global.item_tooltip.global_position = global_position
 	Global.item_tooltip.global_position.y += y_offset
 	if outline_material:
 		outline_material.set_shader_parameter("enabled", true)
+	else:
+		## Currently only defined for the lake
+		interactor.indicate_interaction(true, coll_point)
 	var requirement = interactor.interaction_requirement()
 	if requirement == "":
 		Global.item_tooltip.label.text = tooltip_text
@@ -28,3 +31,5 @@ func show_tooltip():
 func disable_outline():
 	if outline_material:
 		outline_material.set_shader_parameter("enabled", false)
+	else:
+		interactor.indicate_interaction(false)

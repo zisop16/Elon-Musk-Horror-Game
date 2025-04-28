@@ -32,14 +32,8 @@ func interact() -> void:
 	if craftable == null:
 		return
 	var slots = craftable.use_items(Global.player.inventory)
-	var item1 := Global.player.inventory[slots[0]]
-	var item2 := Global.player.inventory[slots[1]]
-	item1.queue_free()
-	item2.queue_free()
-	Global.player.inventory[slots[0]] = null
-	Global.player.inventory[slots[1]] = null
-	Global.item_interface.set_item(slots[0], null)
-	Global.item_interface.set_item(slots[1], null)
+	Global.player.remove_item(slots[0])
+	Global.player.remove_item(slots[1])
 	spawn_item(item_scenes[craftable.output])
 	crafted_items[craftable.output] = true
 	set_recipe()

@@ -1,7 +1,9 @@
 class_name SoundEffect
 extends Resource
 
+
 @export var sounds: Array[AudioStream]
+@export_range(0, 20, .01) var delay: float = 0
 @export_range(-40, 40, 1) var volume: float = 0
 @export_range(0, 4, .01) var pitch_variation: float = 0
 

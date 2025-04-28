@@ -39,8 +39,8 @@ metadata/_custom_type_script = "uid://c5ycs17o1ls2d"
 
 [sub_resource type="Resource" id="Resource_85a23"]
 script = ExtResource("2_qrrc1")
-input1 = 2
-input2 = 2
+input1 = 7
+input2 = 9
 output = 2
 metadata/_custom_type_script = "uid://c5ycs17o1ls2d"
 
@@ -121,6 +121,7 @@ corner_radius_bottom_left = 20
 [sub_resource type="Resource" id="Resource_4t22q"]
 script = ExtResource("14_85a23")
 sounds = Array[AudioStream]([ExtResource("15_1iweq")])
+delay = 0.0
 volume = -23.0
 pitch_variation = 0.25
 metadata/_custom_type_script = "uid://bcqs0sjegrs1a"

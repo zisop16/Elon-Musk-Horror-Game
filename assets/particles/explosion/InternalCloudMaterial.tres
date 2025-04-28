@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://ds76ndhqwv6me"]
 
-[ext_resource type="Shader" uid="uid://csp760hrrvliq" path="res://shaders/SmokeShader.gdshader" id="1_b3lo5"]
+[ext_resource type="Shader" uid="uid://csp760hrrvliq" path="res://Shaders/SmokeShader.gdshader" id="1_b3lo5"]
 [ext_resource type="NoiseTexture3D" uid="uid://dayj7x1vkkic1" path="res://assets/particles/explosion/NoiseResource.tres" id="2_omhud"]
 
 [resource]

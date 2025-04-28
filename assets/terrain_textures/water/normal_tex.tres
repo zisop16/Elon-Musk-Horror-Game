@@ -3,12 +3,12 @@
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_0fbhj"]
 noise_type = 3
 seed = 2
-frequency = 0.0015
+frequency = 0.008
 fractal_type = 2
 
 [resource]
-width = 2048
-height = 2048
+width = 256
+height = 256
 seamless = true
 as_normal_map = true
 bump_strength = 16.0

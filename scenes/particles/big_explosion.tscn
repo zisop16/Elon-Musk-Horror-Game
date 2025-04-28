@@ -6,7 +6,7 @@
 [ext_resource type="Material" uid="uid://ds76ndhqwv6me" path="res://assets/particles/explosion/InternalCloudMaterial.tres" id="4_gfp3m"]
 [ext_resource type="Material" uid="uid://cl44a43r5lejo" path="res://assets/particles/explosion/ShockwaveMaterial.tres" id="5_1arp8"]
 [ext_resource type="Material" uid="uid://gsg2i83s1qg5" path="res://assets/particles/explosion/PrimaryCloudMaterial.tres" id="6_v7rhg"]
-[ext_resource type="Shader" uid="uid://csp760hrrvliq" path="res://shaders/SmokeShader.gdshader" id="7_sdi3l"]
+[ext_resource type="Shader" uid="uid://csp760hrrvliq" path="res://Shaders/SmokeShader.gdshader" id="7_sdi3l"]
 [ext_resource type="NoiseTexture3D" uid="uid://dayj7x1vkkic1" path="res://assets/particles/explosion/NoiseResource.tres" id="8_5a6vl"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1julr"]

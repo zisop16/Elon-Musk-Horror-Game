@@ -14,24 +14,27 @@ extends CharacterBody3D
 @onready var interaction_ray: RayCast3D = %InteractionRay
 
 @onready var item_pos: Dictionary[Item.item_id, Node3D] = {
-	Item.item_id.chainsaw: $"Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D/Chainsaw",
-	Item.item_id.flashlight: $"Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D/Flashlight",
-	Item.item_id.tv_remote: $"Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D/TvRemote",
-	Item.item_id.wood_block: $"Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D/WoodBlock",
-	Item.item_id.pickaxe: $"Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D/Pickaxe",
-	Item.item_id.bucket: $"Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D/Bucket",
-	Item.item_id.gold_chain: $"Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D/GoldChain",
-	Item.item_id.gold_ingot: $"Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D/GoldIngot",
-	Item.item_id.iron_ingot: $"Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D/IronIngot",
-	Item.item_id.saw_movie: $"Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D/BoneAttachment3D/SawMovie"
+	Item.item_id.chainsaw: $"Elon Model/Wrapper/Sketchfab_model/Skeleton3D/BoneAttachment3D/Chainsaw",
+	Item.item_id.flashlight: $"Elon Model/Wrapper/Sketchfab_model/Skeleton3D/BoneAttachment3D/Flashlight",
+	Item.item_id.tv_remote: $"Elon Model/Wrapper/Sketchfab_model/Skeleton3D/BoneAttachment3D/TvRemote",
+	Item.item_id.wood_block: $"Elon Model/Wrapper/Sketchfab_model/Skeleton3D/BoneAttachment3D/WoodBlock",
+	Item.item_id.pickaxe: $"Elon Model/Wrapper/Sketchfab_model/Skeleton3D/BoneAttachment3D/Pickaxe",
+	Item.item_id.bucket: $"Elon Model/Wrapper/Sketchfab_model/Skeleton3D/BoneAttachment3D/Bucket",
+	Item.item_id.gold_chain: $"Elon Model/Wrapper/Sketchfab_model/Skeleton3D/BoneAttachment3D/GoldChain",
+	Item.item_id.gold_ingot: $"Elon Model/Wrapper/Sketchfab_model/Skeleton3D/BoneAttachment3D/GoldIngot",
+	Item.item_id.iron_ingot: $"Elon Model/Wrapper/Sketchfab_model/Skeleton3D/BoneAttachment3D/IronIngot",
+	Item.item_id.saw_movie: $"Elon Model/Wrapper/Sketchfab_model/Skeleton3D/BoneAttachment3D/SawMovie"
 }
 
 var inventory: Array[Item]
 var equipped_item := 0
-const inventory_size = 3
+const inventory_size = 4
 const max_stamina: float = 5
 const stamina_regen: float = .5
 var stamina := max_stamina
+const max_health: float = 100
+var health := max_health
+var health_regen: float = 2
 
 var standing: bool = true
 func stand(flag: bool) -> void:
@@ -45,20 +48,11 @@ func stand(flag: bool) -> void:
 		camera_pivot.target_position = crouched_head
 	standing = flag
 
-func set_light_layer():
-	var skeleton = $"Elon Model/Sketchfab_model/dfcbea39e7554060b41c433e3ce7ab98_fbx/Object_2/RootNode/Object_4/Skeleton3D"
-	# Flashlight will cull layer 2 so it doesn't hit the player.
-	for obj in skeleton.get_children():
-		if obj is MeshInstance3D:
-			var mesh = obj as MeshInstance3D
-			mesh.layers = 0b10
-
 func _ready():
 	stand(true)
 	for item in range(inventory_size):
 		inventory.append(null)
 	Global.player = self
-	set_light_layer()
 
 var anim_state := "idle"
 var anim_amounts: Dictionary = {
@@ -90,7 +84,14 @@ var hovered_object: CollisionObject3D = null
 func set_item(slot: int, item: Item):
 	inventory[slot] = item
 	Global.item_interface.set_item(slot, item)
-	attach_item(item)
+	if item != null:
+		attach_item(item)
+
+func remove_item(slot: int):
+	var item := inventory[slot]
+	set_item(slot, null)
+	if item != null:
+		item.queue_free()
 
 func get_free_slot() -> int:
 	for slot in inventory.size():
@@ -127,7 +128,8 @@ func handle_interactions():
 		Global.item_tooltip.label.text = ""
 		return
 	hovered_object = coll
-	hovered_object.interaction.show_tooltip()
+	var coll_point = interaction_ray.get_collision_point()
+	hovered_object.interaction.show_tooltip(coll_point)
 	var should_interact = Input.is_action_just_pressed("Interact") and hovered_object.interaction_requirement() == ""
 	if not should_interact:
 		return
@@ -180,11 +182,11 @@ func handle_items():
 		equipped.toggle()
 	elif equipped is TvRemote:
 		equipped.toggle()
+	elif equipped is Chainsaw:
+		equipped.toggle()
 	else:
 		# All items without uses will just mine
 		self.mine()
-
-
 
 func mine():
 	if mining:
@@ -302,7 +304,7 @@ func _physics_process(delta: float) -> void:
 	rotate_model(rotation_target)
 	determine_anim_state(input_dir, running, crouching)
 	move_and_slide()
-	handle_stamina(running)
+	handle_stats(running)
 	
 	handle_collisions(target_speed * direction)
 	running_last_frame = running
@@ -339,14 +341,25 @@ func rotate_model(rotation_target: float):
 	var rotate_speed = 10
 	model.rotation.y = lerpf(model.rotation.y, rotation_target, rotate_speed * delta)
 
-func handle_stamina(running: bool):
-	var delta = get_physics_process_delta_time()
-	if running:
-		stamina -= delta
-	else:
-		stamina += stamina_regen * delta
+func add_stamina(increase: float):
+	stamina += increase
 	stamina = clampf(stamina, 0, max_stamina)
 	Global.stat_interface.set_stamina(stamina / max_stamina)
+
+func handle_stats(running: bool):
+	var delta = get_physics_process_delta_time()
+	var stamina_change: float
+	if running:
+		stamina_change = -delta
+	else:
+		stamina_change = stamina_regen * delta
+	add_stamina(stamina_change)
+	add_health(health_regen * delta)
+
+func add_health(increase: float):
+	health += increase
+	health = clampf(health, 0, max_health)
+	Global.stat_interface.set_health(health/max_health)
 	
 
 func handle_collisions(target_horizontal_velocity: Vector3):

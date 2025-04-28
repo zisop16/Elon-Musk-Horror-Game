@@ -1,3 +1,4 @@
+class_name GoldIngot
 extends Item
 
 func _ready() -> void:

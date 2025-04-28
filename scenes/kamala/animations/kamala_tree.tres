@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeBlendTree" load_steps=14 format=3 uid="uid://lgcr76tmjvd5"]
+[gd_resource type="AnimationNodeBlendTree" load_steps=16 format=3 uid="uid://lgcr76tmjvd5"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uld78"]
 animation = &"kamala_anims/idle"
@@ -27,16 +27,20 @@ animation = &"kamala_anims/walk"
 fadein_time = 0.15
 fadeout_time = 0.15
 
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_mhawb"]
+
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_fdqoe"]
 fadein_time = 0.15
 fadeout_time = 0.15
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_ton3o"]
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_ehoeb"]
 
 [sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_qpo64"]
 
 [resource]
-graph_offset = Vector2(-846.569, -84.4305)
+graph_offset = Vector2(-48.9389, -143.588)
 "nodes/Animation Idle/node" = SubResource("AnimationNodeAnimation_uld78")
 "nodes/Animation Idle/position" = Vector2(-1240, -180)
 "nodes/Animation Run/node" = SubResource("AnimationNodeAnimation_6gd48")
@@ -49,7 +53,7 @@ graph_offset = Vector2(-846.569, -84.4305)
 "nodes/Animation Walk/position" = Vector2(-1240, -20)
 nodes/idle_time/node = SubResource("AnimationNodeTimeSeek_ox3gt")
 nodes/idle_time/position = Vector2(-960, -200)
-nodes/output/position = Vector2(380, 20)
+nodes/output/position = Vector2(800, 0)
 nodes/run/node = SubResource("AnimationNodeBlend2_wjrl4")
 nodes/run/position = Vector2(-520, -220)
 nodes/run_speed/node = SubResource("AnimationNodeTimeScale_l361r")
@@ -58,10 +62,14 @@ nodes/run_time/node = SubResource("AnimationNodeTimeSeek_tayrh")
 nodes/run_time/position = Vector2(-960, 120)
 nodes/stab/node = SubResource("AnimationNodeOneShot_qb7qb")
 nodes/stab/position = Vector2(220, 0)
+nodes/stab_speed/node = SubResource("AnimationNodeTimeScale_mhawb")
+nodes/stab_speed/position = Vector2(-60, 200)
 nodes/stumble/node = SubResource("AnimationNodeOneShot_fdqoe")
 nodes/stumble/position = Vector2(80, 0)
+nodes/total_speed/node = SubResource("AnimationNodeTimeScale_ton3o")
+nodes/total_speed/position = Vector2(540, 0)
 nodes/walk/node = SubResource("AnimationNodeBlend2_ehoeb")
 nodes/walk/position = Vector2(-660, -220)
 nodes/walk_time/node = SubResource("AnimationNodeTimeSeek_qpo64")
 nodes/walk_time/position = Vector2(-960, -40)
-node_connections = [&"idle_time", 0, &"Animation Idle", &"output", 0, &"stab", &"run", 0, &"walk", &"run", 1, &"run_speed", &"run_speed", 0, &"run_time", &"run_time", 0, &"Animation Run", &"stab", 0, &"stumble", &"stab", 1, &"Animation Stab", &"stumble", 0, &"run", &"stumble", 1, &"Animation Stumble", &"walk", 0, &"idle_time", &"walk", 1, &"walk_time", &"walk_time", 0, &"Animation Walk"]
+node_connections = [&"idle_time", 0, &"Animation Idle", &"output", 0, &"total_speed", &"run", 0, &"walk", &"run", 1, &"run_speed", &"run_speed", 0, &"run_time", &"run_time", 0, &"Animation Run", &"stab", 0, &"stumble", &"stab", 1, &"stab_speed", &"stab_speed", 0, &"Animation Stab", &"stumble", 0, &"run", &"stumble", 1, &"Animation Stumble", &"total_speed", 0, &"stab", &"walk", 0, &"idle_time", &"walk", 1, &"walk_time", &"walk_time", 0, &"Animation Walk"]

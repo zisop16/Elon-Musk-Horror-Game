@@ -5,5 +5,4 @@ _data = [Vector2(0, 0), 0.0, 0.193193, 0, 0, Vector2(0.6, 0.35681), 1.13201, 1.1
 point_count = 3
 
 [resource]
-texture_mode = 1
 curve = SubResource("Curve_xts8t")

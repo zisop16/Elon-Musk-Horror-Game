@@ -1,7 +1,7 @@
 class_name Bucket
 extends Item
 
-var has_water: bool = true
+var has_water: bool = false
 @onready var water: MeshInstance3D = $Water
 
 func _ready() -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://cxl60mo1c2en2"]
+[gd_scene load_steps=31 format=4 uid="uid://cxl60mo1c2en2"]
 
 [ext_resource type="Script" uid="uid://cgqj044y0l53h" path="res://scripts/items/chainsaw.gd" id="1_cs4vb"]
 [ext_resource type="Texture2D" uid="uid://bqc0ilg02ts7j" path="res://assets/items/chainsaw/chainsaw_0.jpg" id="2_tbktl"]
@@ -7,6 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://cf7a7umblib5v" path="res://assets/items/chainsaw/chainsaw_2.png" id="4_2jfs0"]
 [ext_resource type="Texture2D" uid="uid://dajg4eags76ia" path="res://assets/items/chainsaw/chainsaw_3.jpg" id="5_5xu6v"]
 [ext_resource type="PackedScene" uid="uid://dvrh54jtkocta" path="res://scenes/interaction_component.tscn" id="7_xsy4a"]
+[ext_resource type="Script" uid="uid://bgbnsqe0qmhtj" path="res://scripts/audio/poly_audio_player.gd" id="8_orbnf"]
+[ext_resource type="Script" uid="uid://bcqs0sjegrs1a" path="res://scripts/audio/sound_effect.gd" id="9_b1rht"]
+[ext_resource type="AudioStream" uid="uid://cnab2jvmashby" path="res://assets/sfx/chainsaw/chainsaw_activate.mp3" id="10_p48a7"]
+[ext_resource type="AudioStream" uid="uid://c3jeke62aysjg" path="res://assets/sfx/chainsaw/chainsaw_deactivate.mp3" id="11_6r4ko"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nou5l"]
 resource_name = "chainsaw.001"
@@ -263,6 +267,23 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_cs4vb"]
 size = Vector3(0.469, 0.441, 0.746)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_xsy4a"]
+size = Vector3(0.313232, 0.295471, 1.33627)
+
+[sub_resource type="Resource" id="Resource_wyih8"]
+script = ExtResource("9_b1rht")
+sounds = Array[AudioStream]([ExtResource("10_p48a7")])
+volume = -20.0
+pitch_variation = 0.0
+metadata/_custom_type_script = "uid://bcqs0sjegrs1a"
+
+[sub_resource type="Resource" id="Resource_gbmpb"]
+script = ExtResource("9_b1rht")
+sounds = Array[AudioStream]([ExtResource("11_6r4ko")])
+volume = 0.0
+pitch_variation = 0.0
+metadata/_custom_type_script = "uid://bcqs0sjegrs1a"
+
 [node name="Chainsaw" type="RigidBody3D"]
 collision_layer = 8
 collision_mask = 15
@@ -334,3 +355,23 @@ outline_material_holder = NodePath("../Sketchfab_model/Root/chainsaw/chainsaw_0"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013, 0.088, -0.14)
 visible = false
 shape = SubResource("BoxShape3D_cs4vb")
+
+[node name="Hitbox" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+transform = Transform3D(1, 0, 0, 0, 0.996775, 0.0802511, 0, -0.0802511, 0.996775, -0.14978, 0.0665657, 0.719402)
+shape = SubResource("BoxShape3D_xsy4a")
+
+[node name="PolyAudioPlayer" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.088449, 0.178041)
+script = ExtResource("8_orbnf")
+sound_effects = Dictionary[String, ExtResource("9_b1rht")]({
+"activate": SubResource("Resource_wyih8"),
+"deactivate": SubResource("Resource_gbmpb")
+})
+metadata/_custom_type_script = "uid://bgbnsqe0qmhtj"
+
+[connection signal="body_entered" from="Hitbox" to="." method="on_hitbox_enter"]

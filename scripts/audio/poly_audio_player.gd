@@ -8,12 +8,13 @@ func _ready() -> void:
 	stream = AudioStreamPolyphonic.new()
 	stream.polyphony = 32
 
-@export_range(0, 4, .01) var delay: float = 0
+@export_range(0, 20, .01) var delay: float = 0
 var last_played: float = 0
 var speed_scale: float = 1
 
 func play_sound_effect(tag: String) -> void:
-	var next_play_time = last_played + (delay / speed_scale)
+	var total_delay = sound_effects[tag].delay + delay
+	var next_play_time = last_played + (total_delay / speed_scale)
 	if Global.time() < next_play_time:
 		return
 	last_played = Global.time()
