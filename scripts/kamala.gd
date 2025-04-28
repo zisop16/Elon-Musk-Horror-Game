@@ -294,7 +294,7 @@ func on_target_reached() -> void:
 
 
 func on_navigation_velocity_computed(safe_velocity: Vector3) -> void:
-	velocity = safe_velocity
+	velocity = velocity.project(Vector3.UP) + safe_velocity.slide(Vector3.UP)
 	move_and_slide()
 	handle_attack()
 	handle_collisions()

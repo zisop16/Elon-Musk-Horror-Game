@@ -49,7 +49,7 @@ void vertex() {
     VERTEX.xz = normalize(INV_VIEW_MATRIX[0].xz) * VERTEX.x + normalize(INV_VIEW_MATRIX[2].xz) * VERTEX.z;
 	VERTEX.xz += offset;
     VERTEX.y = VERTEX.y;
-	
+
 }
 
 void fragment() {

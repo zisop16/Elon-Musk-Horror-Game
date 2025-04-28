@@ -108,7 +108,6 @@ height = 0.8
 
 [node name="Ash" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.087997, 0)
-visible = false
 amount = 30
 lifetime = 1.3
 randomness = 1.0
@@ -117,7 +116,6 @@ process_material = SubResource("ParticleProcessMaterial_jbr18")
 draw_pass_1 = SubResource("QuadMesh_jr1qf")
 
 [node name="Flame" type="GPUParticles3D" parent="."]
-visible = false
 amount = 30
 lifetime = 0.3
 randomness = 1.0
@@ -127,7 +125,6 @@ draw_pass_1 = SubResource("QuadMesh_754yn")
 
 [node name="Smoke" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.863614, 0)
-visible = false
 amount = 10
 lifetime = 1.5
 process_material = SubResource("ParticleProcessMaterial_bktqr")
@@ -135,7 +132,6 @@ draw_pass_1 = SubResource("SphereMesh_bl0jh")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.666607, 0)
-visible = false
 light_volumetric_fog_energy = 0.0
 omni_range = 10.0
 omni_shadow_mode = 0

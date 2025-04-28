@@ -17,7 +17,7 @@ warnings/check_invalid_track_paths=false
 config/name="ELON MUSK"
 run/main_scene="uid://do2828y10u0ct"
 config/features=PackedStringArray("4.4", "Forward Plus")
-run/max_fps=140
+run/max_fps=280
 
 [autoload]
 

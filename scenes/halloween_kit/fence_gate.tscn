@@ -129,3 +129,4 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00517608, 1.96826, 0)
 shape = SubResource("BoxShape3D_bmwxp")
+debug_color = Color(0, 0.85, 1, 1)

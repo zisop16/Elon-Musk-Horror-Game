@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://buc6rfker2lit"]
 
-[ext_resource type="Shader" uid="uid://csp760hrrvliq" path="res://Shaders/SmokeShader.gdshader" id="1_pgxj0"]
+[ext_resource type="Shader" uid="uid://csp760hrrvliq" path="res://shaders/SmokeShader.gdshader" id="1_pgxj0"]
 
 [sub_resource type="Gradient" id="Gradient_1sgvr"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
