@@ -9,6 +9,7 @@ var item_interface: ItemInterface
 var stat_interface: StatInterface
 var terrain: Terrain3D
 var watched_tv := false
+var map: Map
 
 var logged_variables = {}
 var alpha = 10
@@ -30,6 +31,7 @@ var logging_interval = .5
 func _process(_delta):
 	if logging:
 		handle_logging()
+	RenderingServer.global_shader_parameter_set("game_time", time())	
 	
 ## Generate uniform random euler rotation
 func generate_random_rotation() -> Vector3:

@@ -39,13 +39,12 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_b27jf")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_byimt"]
-radius = 0.162
+radius = 0.112754
 
 [node name="Batteries" type="RigidBody3D"]
 script = ExtResource("1_nxl8q")
 
 [node name="Model" type="Node3D" parent="."]
-visible = false
 
 [node name="AA_Battery_low_002_M_AA_Battery_0" type="MeshInstance3D" parent="Model"]
 transform = Transform3D(2.14234, -1.92897, 4.08527, 3.34566, 3.71573, -1.22958e-07, -3.03595, 2.73358, 2.8828, -0.0819566, 0.076007, 0.00735842)
@@ -63,7 +62,7 @@ mesh = SubResource("ArrayMesh_ockeh")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0426685, 0.0297761)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0191224, 0.10713, 0.0520371)
 shape = SubResource("SphereShape3D_byimt")
 
 [node name="InteractionComponent" parent="." node_paths=PackedStringArray("outline_material_holder") instance=ExtResource("3_x36gl")]

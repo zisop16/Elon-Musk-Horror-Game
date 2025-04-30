@@ -8,10 +8,13 @@ extends CharacterBody3D
 @onready var sfx_player: PolyAudioPlayer = $SFXPlayer
 @export var blood_effect: PackedScene
 @export var kamala_flee_locations: Node3D
+@export var dissolve_effect: PackedScene
+var activated := false
+var next_activation_time: float = 10 ** 9
 
-const WALK_SPEED := 4
-const RUN_SPEED := 8
-const JUMP_VELOCITY := 4.5
+const WALK_SPEED: float = 3.2
+const RUN_SPEED: float = 6.5
+const JUMP_VELOCITY: float = 5
 
 enum {WALK, IDLE, RUN}
 var anim_state := "idle"
@@ -22,6 +25,8 @@ var anim_amounts: Dictionary = {
 
 func _ready() -> void:
 	Global.kamala = self
+	find_all_materials()
+	Global.map.darkened.connect(self.activate)
 
 func handle_animations():
 	var delta = get_process_delta_time()
@@ -61,12 +66,12 @@ func handle_noise(pos: Vector3, loudness: float):
 	add_anger(loudness)
 
 func should_run() -> bool:
-	return fleeing or anger > run_anger_threshold
+	return dissolving or anger > run_anger_threshold
 
 func following_player() -> bool:
 	# Fix later
-	return not fleeing
-	# return not fleeing and saw_player or anger > follow_player_anger_threshold
+	return not dissolving
+	# return not dissolving and saw_player or anger > follow_player_anger_threshold
 
 func get_movement_direction() -> Vector3:
 	if following_player():
@@ -77,10 +82,12 @@ func get_movement_direction() -> Vector3:
 
 	return direction
 
+
+
 ## Casts a ray from kamala to the player, true if the ray is not obstructed
 ## And the player is within kamala's viewing distance
 func player_visible() -> bool:
-	const viewing_distance: float = 30
+	const viewing_distance: float = 20
 	var diff = Global.player.global_position - global_position
 	## Short circuit if the player is outside of viewing distance
 	if diff.length() > viewing_distance:
@@ -88,8 +95,8 @@ func player_visible() -> bool:
 	var space_state := get_world_3d().direct_space_state
 	var y_offset = Vector3.UP * .5
 	var query := PhysicsRayQueryParameters3D.create(global_position + y_offset, Global.player.global_position + y_offset)
-	## Will collide with terrain, player, and rigidbodies
-	query.collision_mask = 0b111
+	## Will collide with terrain, player
+	query.collision_mask = 0b10
 	var result := space_state.intersect_ray(query)
 	## For some reason, this is actually possible XD?
 	if result.is_empty():
@@ -119,26 +126,57 @@ func cancel_attack():
 	knife_hitbox.monitoring = false
 	anim_tree["parameters/stab/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT
 
-func set_flee(flag: bool):
-	fleeing = flag
-	if fleeing:
-		initial_time_fleeing = Global.time()
-		navigation.target_position = find_flee_location()
-		being_flashed = false
-		# Cancel stab animation when kamala breaks from her trance
+func set_dissolve(flag: bool):
+	dissolving = flag
+	if dissolving:
+		initial_time_dissolving = Global.time()
+		navigation.target_position = find_respawn_location()
+		dissolve_all_materials()
+		var effect = dissolve_effect.instantiate()
+		get_tree().root.add_child(effect)
+		effect.global_position = global_position
+		effect.global_rotation = global_rotation
+	else:
+		undissolve_all_materials()
+		var dormant_duration := randf_range(10, 30)
+		next_activation_time = Global.time() + dormant_duration
+		activated = false
+		visible = false
 		if attacking:
 			cancel_attack()
-		navigation.avoidance_mask = 0b10
+		being_flashed = false
 		at_navigation_target = false
-	else:
-		navigation.avoidance_mask = 0b01
-		at_navigation_target = true
+		anim_tree["parameters/total_speed/scale"] = 1
 
 var saw_player: bool
+var screaming := false
+
+func set_scream(flag: bool):
+	screaming = flag
+	if screaming:
+		sfx_player.play_sound_effect("scream")
+	else:
+		sfx_player.stop_sound_effect("scream")
+
+func handle_scream():
+	if dissolving or being_flashed:
+		return
+	if saw_player and not screaming:
+		set_scream(true)
+	if not saw_player and screaming:
+		set_scream(false)
+
 func _physics_process(delta: float) -> void:
-	handle_flash()
+	if !activated:
+		if Global.time() > next_activation_time:
+			activate()
+		else:
+			return
 	saw_player = player_visible()
-	if not fleeing and saw_player:
+	handle_flash()
+	handle_scream()
+	
+	if not dissolving and saw_player:
 		const player_visible_angriness: float = 2
 		add_anger(player_visible_angriness * delta)
 	else:
@@ -154,11 +192,14 @@ func _physics_process(delta: float) -> void:
 		movement_vector = Vector3.ZERO
 	elif attacking or at_navigation_target or being_flashed:
 		movement_vector = Vector3.ZERO
-		if fleeing:
-			set_flee(false)
 		if at_navigation_target:
 			# Decide next navigation target...
 			at_navigation_target = false
+		if dissolving:
+			var time_spent_dissolving = Global.time() - initial_time_dissolving
+			if time_spent_dissolving > dissolve_duration:
+				set_dissolve(false)
+				
 	else:
 		current_horizontal_speed = velocity.slide(Vector3.UP).length()
 		var running := should_run()
@@ -174,11 +215,6 @@ func _physics_process(delta: float) -> void:
 	if movement_vector != Vector3.ZERO:
 		footsteps.play_step()
 		velocity = movement_vector + velocity.project(Vector3.UP)
-		if fleeing:
-			var time_spent_fleeing = Global.time() - initial_time_fleeing
-			const max_flee_duration: float = 8
-			if time_spent_fleeing > max_flee_duration:
-				set_flee(false)
 	else:
 		anim_state = "idle"
 		var friction = 30
@@ -186,9 +222,10 @@ func _physics_process(delta: float) -> void:
 		current_horizontal_speed = move_toward(current_horizontal_speed, 0, friction * delta)
 		velocity = current_horizontal_direction * current_horizontal_speed + velocity.project(Vector3.UP)
 
-	const rotation_speed: float = 6
-	var target_angle = Vector3.MODEL_FRONT.signed_angle_to(direction, Vector3.UP)
-	global_rotation.y = lerpf(global_rotation.y, target_angle, rotation_speed * delta)
+	if not (dissolving or being_flashed):
+		const rotation_speed: float = 6
+		var target_angle = Vector3.MODEL_FRONT.signed_angle_to(direction, Vector3.UP)
+		global_rotation.y = lerpf(global_rotation.y, target_angle, rotation_speed * delta)
 
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -196,7 +233,7 @@ func _physics_process(delta: float) -> void:
 	navigation.velocity = velocity
 
 func handle_attack():
-	if fleeing or being_flashed:
+	if dissolving or being_flashed:
 		return
 	if attacking:
 		if not knife_hitbox.monitoring:
@@ -221,13 +258,12 @@ func handle_attack():
 		blood_particles.global_position.y = y_level
 		blood_particles.global_rotation = Vector3(0, angle, 0)
 		sfx_player.play_sound_effect("stab")
-		const knife_damage = 30
+		const knife_damage = 40
 		Global.player.add_health(-knife_damage)
 		end_knife_hitbox()
 			
 	elif should_attack():
 		anim_tree["parameters/stab/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
-		sfx_player.play_sound_effect("grunt")
 		attacking = true
 
 func handle_collisions():
@@ -238,46 +274,54 @@ func handle_collisions():
 		if coll.get_collider() is RigidBody3D:
 			coll.get_collider().apply_central_impulse(push_impulse)
 
-func find_flee_location() -> Vector3:
+func activate():
+	global_position = find_respawn_location()
+	activated = true
+	visible = true
+
+func find_respawn_location() -> Vector3:
 	var locations = kamala_flee_locations.get_children() as Array[Node3D]
 	locations.shuffle()
-	var player_direction = Global.player.global_position - global_position
 	for location in locations:
 		var pos: Vector3 = location.global_position
-		var pos_direction := pos - global_position
-		if pos_direction.dot(player_direction) < 0:
+		var horizontal_distance := (pos - Global.player.global_position).slide(Vector3.UP)
+		var min_dist: float = 40
+		if horizontal_distance.length() > min_dist:
 			return pos
 	return locations[0].global_position
 
 ## How long the player must flash kamala before she runs
 const flashlight_endurance: float = 2.5
 func handle_flash():
+	if dissolving:
+		return
 	if flash_tick_remaining:
 		flash_tick_remaining = false
 		if not being_flashed:
 			being_flashed = true
 			initial_time_flashed = Global.time()
+			set_scream(false)
 	else:
 		being_flashed = false
-	var start_flee = being_flashed and ((Global.time() - initial_time_flashed) > flashlight_endurance)
-	if start_flee:
-		set_flee(true)
+	var should_dissolve = being_flashed and ((Global.time() - initial_time_flashed) > flashlight_endurance)
+	if should_dissolve:
+		set_dissolve(true)
 	if being_flashed:
 		anim_tree["parameters/total_speed/scale"] = 0
 	else:
 		anim_tree["parameters/total_speed/scale"] = 1
 
 
-var fleeing := false
+var dissolving := false
 var being_flashed := false
 var initial_time_flashed: float
-var initial_time_fleeing: float
+var initial_time_dissolving: float
 ## When kamala is flashed by a flashlight, she is given a flash tick
 ## This flash tick is then processed by physics_process, which changes it to false for the next frame
 ## If flash_tick_remaining is false on any given physics process, kamala is no longer being flashed
 var flash_tick_remaining := false
 func receive_flashlight():
-	if fleeing:
+	if dissolving:
 		return
 	flash_tick_remaining = true
 
@@ -292,9 +336,40 @@ var at_navigation_target := false
 func on_target_reached() -> void:
 	at_navigation_target = true
 
-
 func on_navigation_velocity_computed(safe_velocity: Vector3) -> void:
 	velocity = velocity.project(Vector3.UP) + safe_velocity.slide(Vector3.UP)
 	move_and_slide()
 	handle_attack()
 	handle_collisions()
+
+var all_materials: Array[ShaderMaterial]
+const dissolve_duration: float = 1.5
+func find_all_materials():
+	var skeleton = $Model/Armature/Skeleton3D
+	find_materials_recursive(skeleton)
+	for material in all_materials:
+		material.set_shader_parameter("dissolve_duration", dissolve_duration)
+
+func find_materials_recursive(root: Node3D):
+	if root == null:
+		return
+	if root is MeshInstance3D:
+		var mesh := root as MeshInstance3D
+		all_materials.append(mesh.get_active_material(0))
+	for child in root.get_children():
+		find_materials_recursive(child)
+
+func dissolve_all_materials():
+	for material in all_materials:
+		start_material_dissolve(material)
+
+func undissolve_all_materials():
+	for material in all_materials:
+		disable_material_dissolve(material)		
+
+func start_material_dissolve(mat: ShaderMaterial):
+	mat.set_shader_parameter("dissolve_start_time", Global.time())
+	mat.set_shader_parameter("enable_dissolve", true)
+
+func disable_material_dissolve(mat: ShaderMaterial):
+	mat.set_shader_parameter("enable_dissolve", false)

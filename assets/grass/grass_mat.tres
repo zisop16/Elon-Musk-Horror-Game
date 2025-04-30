@@ -16,8 +16,8 @@ noise = SubResource("FastNoiseLite_26els")
 [resource]
 render_priority = 0
 shader = ExtResource("1_26els")
-shader_parameter/top_color = Color(0.0843, 0.18, 0.0756, 1)
-shader_parameter/bottom_color = Color(0, 0, 0, 1)
+shader_parameter/top_color = Color(0.185, 0.74, 0.076, 1)
+shader_parameter/bottom_color = Color(0, 0.22, 0, 1)
 shader_parameter/width_curve = ExtResource("3_1qa60")
 shader_parameter/relative_wind_strength = ExtResource("2_bha5h")
 shader_parameter/wind_noise = SubResource("NoiseTexture2D_bha5h")
@@ -25,3 +25,4 @@ shader_parameter/wind_direction = 1.81
 shader_parameter/wind_strength = 5.69
 shader_parameter/wind_frequency = 0.99
 shader_parameter/wind_turbulence = 0.021
+shader_parameter/positional_wind = 0.01

@@ -3,6 +3,7 @@ extends Control
 
 @onready var stamina: ProgressBar = %StaminaBar
 @onready var flashlight: ProgressBar = %FlashlightBar
+@onready var flashlight_panel: Panel = %FlashlightPanel
 var blood_material: ShaderMaterial
 
 func _ready() -> void:
@@ -18,3 +19,6 @@ func set_flashlight(value: float):
 
 func set_health(value: float):
 	blood_material.set_shader_parameter("bloodiness", 1. - value)
+
+func set_flashlight_visibility(flag: bool):
+	flashlight_panel.visible = flag

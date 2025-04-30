@@ -69,34 +69,31 @@ script = ExtResource("1_hvogv")
 
 [node name="Elon Model" parent="." instance=ExtResource("2_yboub")]
 
-[node name="Sketchfab_model" parent="Elon Model/Wrapper" index="0"]
-transform = Transform3D(0.01, 0, 0, 0, -4.37114e-10, 0.01, 0, -0.01, -4.37114e-10, 0, 0.94, 0)
-
 [node name="Skeleton3D" parent="Elon Model/Wrapper/Sketchfab_model" index="0"]
-bones/1/position = Vector3(0.00792221, 0.947191, -0.00657654)
-bones/1/rotation = Quaternion(-0.685061, -0.250185, -0.272911, 0.62739)
-bones/2/rotation = Quaternion(0.708989, 0.0319951, 0.023868, 0.704089)
-bones/3/rotation = Quaternion(0.0952681, 0.0821624, -0.0101945, 0.992003)
-bones/4/rotation = Quaternion(0.0952681, 0.0821623, -0.0101945, 0.992003)
-bones/5/rotation = Quaternion(-0.690406, -0.00896381, -0.00593435, 0.723342)
-bones/6/rotation = Quaternion(-0.0711883, 0.00229366, 0.179322, 0.981209)
-bones/8/rotation = Quaternion(-0.561073, -0.439087, 0.575241, -0.401867)
-bones/9/rotation = Quaternion(0.452041, -0.102745, 0.0181844, 0.885874)
-bones/10/rotation = Quaternion(0.0340216, 0.0663561, 0.415828, 0.906381)
-bones/12/rotation = Quaternion(0.616522, -0.391682, 0.539058, 0.419406)
-bones/13/rotation = Quaternion(0.392762, 0.107378, 0.214788, 0.887736)
-bones/14/rotation = Quaternion(0.0908531, 0.0104439, -0.358005, 0.929231)
-bones/16/rotation = Quaternion(0.0161302, 0.553828, -0.822064, 0.131248)
-bones/17/rotation = Quaternion(-0.299661, 0.118814, -0.0431501, 0.945635)
-bones/18/rotation = Quaternion(0.572441, -0.0393084, -0.0508757, 0.817421)
-bones/19/rotation = Quaternion(0.288276, -0.0563136, -0.00839301, 0.955853)
-bones/21/rotation = Quaternion(0.00418185, 0.700423, -0.691248, -0.177671)
-bones/22/rotation = Quaternion(-0.275897, 0.0670668, -0.0232731, 0.958562)
-bones/23/rotation = Quaternion(0.661682, 0.0909327, 0.130329, 0.73275)
-bones/24/rotation = Quaternion(0.286229, 0.0722605, -0.020158, 0.95522)
+bones/1/position = Vector3(0.00754555, 0.947129, -0.0118332)
+bones/1/rotation = Quaternion(-0.685525, -0.248909, -0.269686, 0.628784)
+bones/2/rotation = Quaternion(0.709217, 0.0318249, 0.0235561, 0.703877)
+bones/3/rotation = Quaternion(0.095939, 0.0812532, -0.010401, 0.992011)
+bones/4/rotation = Quaternion(0.095939, 0.0812532, -0.010401, 0.992011)
+bones/5/rotation = Quaternion(-0.691859, -0.00874407, -0.00718235, 0.721944)
+bones/6/rotation = Quaternion(-0.0674593, 0.00628622, 0.176205, 0.982019)
+bones/8/rotation = Quaternion(-0.565304, -0.434358, 0.574768, -0.401754)
+bones/9/rotation = Quaternion(0.448719, -0.105195, 0.0159305, 0.887317)
+bones/10/rotation = Quaternion(0.0331793, 0.0621952, 0.414101, 0.907497)
+bones/12/rotation = Quaternion(0.618214, -0.389874, 0.538572, 0.419226)
+bones/13/rotation = Quaternion(0.39293, 0.107912, 0.213604, 0.887882)
+bones/14/rotation = Quaternion(0.0886076, 0.0115321, -0.357553, 0.929609)
+bones/16/rotation = Quaternion(0.0162557, 0.552331, -0.822964, 0.131898)
+bones/17/rotation = Quaternion(-0.293835, 0.122252, -0.0447635, 0.946949)
+bones/18/rotation = Quaternion(0.567607, -0.0401878, -0.0518571, 0.820681)
+bones/19/rotation = Quaternion(0.287368, -0.0563397, -0.00756057, 0.956132)
+bones/21/rotation = Quaternion(0.00488579, 0.697084, -0.695049, -0.175946)
+bones/22/rotation = Quaternion(-0.281997, 0.0714128, -0.0245457, 0.956439)
+bones/23/rotation = Quaternion(0.663619, 0.0902405, 0.129542, 0.731222)
+bones/24/rotation = Quaternion(0.286426, 0.0721835, -0.0200909, 0.955168)
 
 [node name="BoneAttachment3D" parent="Elon Model/Wrapper/Sketchfab_model/Skeleton3D" index="11"]
-transform = Transform3D(-0.424505, -0.394379, 0.815022, 0.219728, -0.918117, -0.32982, 0.87836, 0.0390725, 0.476401, -32.4002, 2.992, -18.0737)
+transform = Transform3D(-0.421219, -0.391533, 0.818093, 0.216138, -0.919364, -0.328715, 0.880828, 0.0383601, 0.471879, -32.4451, 2.8236, -17.9143)
 
 [node name="Flashlight" parent="Elon Model/Wrapper/Sketchfab_model/Skeleton3D/BoneAttachment3D" index="0"]
 transform = Transform3D(-58.8396, -62.6192, 51.1541, -67.0728, 73.1312, 12.372, -45.1569, -27.0309, -85.0305, 0.928345, 8.3296, 6.34006)
@@ -160,7 +157,7 @@ sound_effects = Dictionary[String, ExtResource("7_hi6qs")]({
 metadata/_custom_type_script = "uid://bgbnsqe0qmhtj"
 
 [node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
-radius = 0.6
+radius = 0.45
 avoidance_layers = 2
 
 [editable path="Elon Model"]

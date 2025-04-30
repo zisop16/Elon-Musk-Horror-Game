@@ -29,8 +29,8 @@ extends CharacterBody3D
 var inventory: Array[Item]
 var equipped_item := 0
 const inventory_size = 4
-const max_stamina: float = 5
-const stamina_regen: float = .5
+const max_stamina: float = 20
+const stamina_regen: float = .4
 var stamina := max_stamina
 const max_health: float = 100
 var health := max_health
@@ -142,13 +142,14 @@ func handle_interactions():
 			if free_slot == -1:
 				# Must toss away the current item slot
 				drop_item()
-				set_item(free_slot, item)
+				set_item(equipped_item, item)
 			else:
 				set_item(free_slot, item)
 				item.visible = false
 		hovered_object = null
 		Global.item_tooltip.label.text = ""
 		sfx_player.play_sound_effect("item_pickup")
+			
 	else:
 		hovered_object.interact()
 		
@@ -161,16 +162,19 @@ func drop_item():
 	Global.item_interface.set_item(equipped_item, null)
 
 func handle_items():
-	var i0 = Input.is_action_just_pressed("SelectItem0")
 	var i1 = Input.is_action_just_pressed("SelectItem1")
 	var i2 = Input.is_action_just_pressed("SelectItem2")
+	var i3 = Input.is_action_just_pressed("SelectItem3")
+	var i4 = Input.is_action_just_pressed("SelectItem4")
 	var drop = Input.is_action_just_pressed("DropItem")
-	if i0:
+	if i1:
 		select_item(0)
-	elif i1:
-		select_item(1)
 	elif i2:
+		select_item(1)
+	elif i3:
 		select_item(2)
+	elif i4:
+		select_item(3)
 	if drop:
 		drop_item()
 

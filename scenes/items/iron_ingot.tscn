@@ -362,7 +362,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_5gfjf")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5v5jv"]
-size = Vector3(1.18066, 0.718079, 0.106674)
+size = Vector3(1.181, 0.718, 0.547)
 
 [node name="IronIngot" type="RigidBody3D"]
 script = ExtResource("1_mff72")

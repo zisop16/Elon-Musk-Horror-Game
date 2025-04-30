@@ -20,6 +20,7 @@ func attach(node: Node3D):
 	collision_mask = 0
 	collision_layer = 0
 	attached_node = node
+	reparent(get_tree().root)
 	interaction.disable_outline()
 
 ## Drops the item from the player's hand

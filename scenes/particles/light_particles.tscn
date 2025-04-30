@@ -37,10 +37,9 @@ process_material = SubResource("ParticleProcessMaterial_v6stm")
 draw_pass_1 = SubResource("SphereMesh_41j0u")
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="."]
-light_color = Color(1, 1, 0.46, 1)
-light_energy = 4.0
+light_color = Color(1, 1, 0.81, 1)
+light_energy = 8.0
 light_volumetric_fog_energy = 0.0
 shadow_enabled = true
 omni_range = 15.0
 omni_attenuation = 0.5
-omni_shadow_mode = 0

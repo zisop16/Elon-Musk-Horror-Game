@@ -209,6 +209,7 @@ _data = {
 [sub_resource type="Resource" id="Resource_7sbnq"]
 script = ExtResource("7_48ihg")
 sounds = Array[AudioStream]([ExtResource("9_lqw1q")])
+delay = 0.0
 volume = -10.0
 pitch_variation = 0.0
 metadata/_custom_type_script = "uid://bcqs0sjegrs1a"
@@ -216,6 +217,7 @@ metadata/_custom_type_script = "uid://bcqs0sjegrs1a"
 [sub_resource type="Resource" id="Resource_x35pv"]
 script = ExtResource("7_48ihg")
 sounds = Array[AudioStream]([ExtResource("8_kdo1f")])
+delay = 0.0
 volume = -10.0
 pitch_variation = 0.2
 metadata/_custom_type_script = "uid://bcqs0sjegrs1a"

@@ -1,7 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://md2kq64billi"]
+[gd_scene load_steps=15 format=3 uid="uid://md2kq64billi"]
 
 [ext_resource type="Texture2D" uid="uid://bm3til2u5gqqo" path="res://assets/user_interface/crosshair.png" id="1_lmgon"]
-[ext_resource type="Script" path="res://scripts/user_interface/item_interface.gd" id="2_xsrv6"]
+[ext_resource type="Script" uid="uid://ceyad5u7wu3tc" path="res://scripts/user_interface/item_interface.gd" id="2_xsrv6"]
 [ext_resource type="Resource" uid="uid://vlpfuwdwmqc1" path="res://assets/user_interface/item_textures.tres" id="3_sdud1"]
 [ext_resource type="StyleBox" uid="uid://bu7i6de5fb5kq" path="res://assets/user_interface/selected_slot.tres" id="4_aisij"]
 [ext_resource type="StyleBox" uid="uid://dinbw5v8q62m6" path="res://assets/user_interface/unselected_slot.tres" id="5_prbuy"]
@@ -16,25 +16,9 @@ shader_parameter/dist_exponent = 2.39
 shader_parameter/alpha_offset = 0.22
 shader_parameter/brightness = 0.3
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wgamn"]
-bg_color = Color(0, 0, 0, 0.470588)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="SystemFont" id="SystemFont_c5sh7"]
-font_names = PackedStringArray("Comic Sans MS")
-font_italic = true
-font_weight = 999
-subpixel_positioning = 0
-
-[sub_resource type="LabelSettings" id="LabelSettings_tqv2w"]
-font = SubResource("SystemFont_c5sh7")
-font_size = 20
-font_color = Color(0.63, 0.2268, 0.2268, 1)
-outline_size = 6
-outline_color = Color(0, 0, 0, 1)
+[sub_resource type="Curve" id="Curve_sdud1"]
+_data = [Vector2(0, 1), 0.0, 0.140701, 0, 0, Vector2(1, 0), -0.457047, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c5sh7"]
 bg_color = Color(0, 0, 0, 0.490196)
@@ -53,21 +37,14 @@ corner_radius_bottom_left = 5
 anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_27mel"]
-bg_color = Color(0.36, 0.1224, 0.1224, 1)
+bg_color = Color(0.34, 0.34, 1, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="LabelSettings" id="LabelSettings_j17m7"]
-font = SubResource("SystemFont_c5sh7")
-font_size = 20
-font_color = Color(0.47432, 0.49, 0.1764, 1)
-outline_size = 6
-outline_color = Color(0, 0, 0, 1)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tqv2w"]
-bg_color = Color(0.34, 0.309967, 0.1598, 1)
+bg_color = Color(1, 0.911667, 0.47, 1)
 corner_radius_top_left = 5
 corner_radius_bottom_left = 5
 
@@ -87,6 +64,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -4.0
+offset_right = -1.0
+offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("8_sdud1")
@@ -119,6 +100,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_xsrv6")
+fade_curve = SubResource("Curve_sdud1")
 item_textures = ExtResource("3_sdud1")
 selected_style = ExtResource("4_aisij")
 unselected_style = ExtResource("5_prbuy")
@@ -216,15 +198,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("6_5kqoc")
 
-[node name="Panel" type="Panel" parent="StatInterface"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_wgamn")
-
 [node name="MarginContainer" type="MarginContainer" parent="StatInterface"]
 layout_mode = 1
 anchors_preset = 15
@@ -245,16 +218,8 @@ theme_override_constants/separation = 20
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="StatInterface/MarginContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Stamina"
-label_settings = SubResource("LabelSettings_tqv2w")
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Panel" type="Panel" parent="StatInterface/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_c5sh7")
@@ -275,7 +240,7 @@ theme_override_constants/margin_bottom = 3
 [node name="StaminaBar" type="ProgressBar" parent="StatInterface/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_vertical = 4
+size_flags_vertical = 1
 theme_override_colors/font_color = Color(0, 0, 0, 0)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
 theme_override_styles/background = SubResource("StyleBoxFlat_0u6gl")
@@ -286,21 +251,15 @@ value = 62.95
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="StatInterface/MarginContainer/VBoxContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Flashlight"
-label_settings = SubResource("LabelSettings_j17m7")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Panel" type="Panel" parent="StatInterface/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="FlashlightPanel" type="Panel" parent="StatInterface/MarginContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_c5sh7")
 
-[node name="MarginContainer" type="MarginContainer" parent="StatInterface/MarginContainer/VBoxContainer/HBoxContainer2/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="StatInterface/MarginContainer/VBoxContainer/HBoxContainer2/FlashlightPanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -313,10 +272,10 @@ theme_override_constants/margin_top = 3
 theme_override_constants/margin_right = 3
 theme_override_constants/margin_bottom = 3
 
-[node name="FlashlightBar" type="ProgressBar" parent="StatInterface/MarginContainer/VBoxContainer/HBoxContainer2/Panel/MarginContainer"]
+[node name="FlashlightBar" type="ProgressBar" parent="StatInterface/MarginContainer/VBoxContainer/HBoxContainer2/FlashlightPanel/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_vertical = 4
+size_flags_vertical = 1
 theme_override_colors/font_color = Color(0, 0, 0, 0)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
 theme_override_styles/background = SubResource("StyleBoxFlat_0u6gl")

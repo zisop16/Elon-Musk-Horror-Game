@@ -1,16 +1,15 @@
 [gd_scene load_steps=76 format=4 uid="uid://csia6uw5e6xpc"]
 
 [ext_resource type="Material" uid="uid://conswiy5ic50j" path="res://assets/furniture/materials/wood_floor/wood_floor.tres" id="1_3bgk5"]
+[ext_resource type="Script" uid="uid://cny1na11wpwai" path="res://scripts/house.gd" id="1_m31jp"]
 [ext_resource type="Material" uid="uid://dptydu24wqtio" path="res://assets/furniture/materials/wood/wood.tres" id="2_7685u"]
 [ext_resource type="PackedScene" uid="uid://bdyxbcj8afa8p" path="res://scenes/crt_tv.tscn" id="2_f74lx"]
-[ext_resource type="ArrayOccluder3D" uid="uid://bh7k32uo6w2f1" path="res://assets/occlusion/house.occ" id="2_m31jp"]
 [ext_resource type="Material" uid="uid://bmv6g6ndyihx8" path="res://assets/furniture/materials/chipboard/chipboard.tres" id="3_e5ov4"]
 [ext_resource type="PackedScene" uid="uid://c8cvexn0dcbjf" path="res://scenes/halloween_kit/bench.tscn" id="3_ptc3g"]
 [ext_resource type="PackedScene" uid="uid://goh4i24tk7k2" path="res://scenes/furniture/dinner_table.tscn" id="4_80gfe"]
 [ext_resource type="PackedScene" uid="uid://cxgiq6bp1fde0" path="res://scenes/items/flashlight/Flashlight.tscn" id="4_wcu0q"]
 [ext_resource type="PackedScene" uid="uid://c8gjas2vl8m5p" path="res://scenes/items/tv_remote.tscn" id="5_bwc8c"]
 [ext_resource type="PackedScene" uid="uid://cdy7o8rbnvoaq" path="res://scenes/halloween_kit/plaque_candles.tscn" id="5_in3qe"]
-[ext_resource type="PackedScene" uid="uid://bg2ah1m0ryp2v" path="res://scenes/elon/elon_model.tscn" id="6_f74lx"]
 [ext_resource type="PackedScene" uid="uid://byhqqrynpxch0" path="res://scenes/items/steak.tscn" id="6_m31jp"]
 [ext_resource type="PackedScene" uid="uid://bxhpq7qbhiir1" path="res://scenes/furniture/drawer.tscn" id="7_ptc3g"]
 [ext_resource type="Material" uid="uid://bew1cn6jm440e" path="res://assets/furniture/materials/carpet/carpet.tres" id="8_lamap"]
@@ -38,6 +37,7 @@
 [ext_resource type="PackedScene" uid="uid://bh3o6b4g066g2" path="res://scenes/halloween_kit/yellow_pumpkin.tscn" id="29_k27xr"]
 [ext_resource type="PackedScene" uid="uid://byin8hmuw7e83" path="res://scenes/items/batteries.tscn" id="30_4jkga"]
 [ext_resource type="Script" uid="uid://blrnglfl6kh5p" path="res://scripts/interactions/starting_door.gd" id="30_m31jp"]
+[ext_resource type="Script" uid="uid://04xf2pm0cqe3" path="res://scripts/interactions/escape_door.gd" id="39_kn7tx"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_f74lx"]
 top_radius = 20.0
@@ -319,14 +319,9 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [node name="House" type="Node3D"]
-
-[node name="Elon Model" parent="." instance=ExtResource("6_f74lx")]
-transform = Transform3D(0.149225, 0, -0.988803, 0, 1, 0, 0.988803, 0, 0.149225, -3.34196, 0.261362, 2.22066)
+script = ExtResource("1_m31jp")
 
 [node name="StaticProps" type="Node3D" parent="."]
-
-[node name="OccluderInstance3D" type="OccluderInstance3D" parent="StaticProps"]
-occluder = ExtResource("2_m31jp")
 
 [node name="Structure" type="StaticBody3D" parent="StaticProps"]
 
@@ -628,7 +623,7 @@ transform = Transform3D(0.820531, 0, -0.571602, 0, 1, 0, 0.571602, 0, 0.820531, 
 [node name="OtherProps" type="Node3D" parent="."]
 
 [node name="Flashlight" parent="OtherProps" instance=ExtResource("4_wcu0q")]
-transform = Transform3D(-0.998186, 0, -0.0602121, 0, 1, 0, 0.0602121, 0, -0.998186, -7.76533, 1.00859, -2.11143)
+transform = Transform3D(-0.939753, 0, 0.341856, 0, 1, 0, -0.341856, 0, -0.939753, -5.16267, 0.272462, -10.4635)
 
 [node name="Chair" parent="OtherProps" instance=ExtResource("10_3853c")]
 transform = Transform3D(0.40337, 0, -0.915037, 0, 1, 0, 0.915037, 0, 0.40337, -5.81805, 0.105492, -0.290777)
@@ -643,7 +638,7 @@ omni_range = 34.27
 omni_attenuation = 0.73
 
 [node name="Tv Remote" parent="OtherProps" node_paths=PackedStringArray("tv") instance=ExtResource("5_bwc8c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.22599, 0.794464, 1.00787)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.22599, 1.04132, 1.00787)
 tv = NodePath("../../StaticProps/CRT TV")
 
 [node name="Chair2" parent="OtherProps" instance=ExtResource("10_3853c")]
@@ -703,9 +698,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.03391, 0.777996, -14.9916)
 [node name="Door" parent="OtherProps" instance=ExtResource("18_82h1m")]
 transform = Transform3D(1.2127, 0, 0.468356, 0, 1.3, 0, -0.468356, 0, 1.2127, 8.40878, 0.174621, -5.87151)
 
-[node name="Door3" parent="OtherProps" instance=ExtResource("18_82h1m")]
-transform = Transform3D(-5.68248e-08, 0, 1.3, 0, 1.3, 0, -1.3, 0, -5.68248e-08, 16.3319, 0.17462, 3.66353)
-
 [node name="Steak" parent="OtherProps" instance=ExtResource("6_m31jp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.24084, 1.97621, 9.46319)
 
@@ -721,5 +713,15 @@ mesh = SubResource("ArrayMesh_0l2s1")
 [node name="AnimatableBody3D" parent="Starting Door" index="2"]
 script = ExtResource("30_m31jp")
 
+[node name="EscapeDoor" parent="." instance=ExtResource("18_82h1m")]
+transform = Transform3D(-5.68248e-08, 0, 1.3, 0, 1.3, 0, -1.3, 0, -5.68248e-08, 16.3319, 0.17462, 3.66353)
+
+[node name="BoneAttachment3D" parent="EscapeDoor/Skeleton3D" index="0"]
+transform = Transform3D(5.04992e-07, 1, 3.96347e-06, 0.0223707, 4.05312e-06, -0.99975, -0.99975, 6.8347e-07, -0.0223706, -4.29104, -8.34465e-07, 9.97645)
+
+[node name="AnimatableBody3D" parent="EscapeDoor" index="2"]
+script = ExtResource("39_kn7tx")
+
 [editable path="OtherProps/Triple Candle"]
 [editable path="Starting Door"]
+[editable path="EscapeDoor"]

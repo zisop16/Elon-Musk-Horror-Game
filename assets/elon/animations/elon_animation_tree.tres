@@ -85,6 +85,7 @@ fadeout_time = 0.3
 [sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_uwd6o"]
 
 [resource]
+graph_offset = Vector2(469.321, 162.562)
 "nodes/Anim Chainsaw Run/node" = SubResource("AnimationNodeAnimation_8wyoi")
 "nodes/Anim Chainsaw Run/position" = Vector2(-880, 700)
 "nodes/Anim Crouch Idle/node" = SubResource("AnimationNodeAnimation_elk1u")
@@ -133,7 +134,7 @@ nodes/mine/node = SubResource("AnimationNodeOneShot_xuoxp")
 nodes/mine/position = Vector2(1000, 280)
 nodes/mine_speed/node = SubResource("AnimationNodeTimeScale_66w8w")
 nodes/mine_speed/position = Vector2(660, 480)
-nodes/output/position = Vector2(1160, 300)
+nodes/output/position = Vector2(1420, 320)
 nodes/run/node = SubResource("AnimationNodeBlend2_ky3at")
 nodes/run/position = Vector2(-20, -140)
 nodes/run_time/node = SubResource("AnimationNodeTimeSeek_w4tht")

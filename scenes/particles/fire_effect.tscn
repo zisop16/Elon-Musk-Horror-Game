@@ -31,7 +31,7 @@ size = Vector2(0.06, 0.06)
 [sub_resource type="Gradient" id="Gradient_q5uyt"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.24878, 0.302439, 0.365854, 0.736585, 0.829268, 1)
-colors = PackedColorArray(0, 0, 0, 1, 1, 0.5, 0, 1, 0.944, 1, 0.44, 1, 1.01111, 0.488307, 0.161873, 1, 1, 0.233333, 0, 1, 0.66, 0.0594, 0.0594, 1, 0, 0, 0, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 0.68, 0.36, 1, 0.944, 1, 0.44, 1, 1.01111, 0.488307, 0.161873, 1, 1, 0.233333, 0, 1, 0.66, 0.0594, 0.0594, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_jr1qf"]
 gradient = SubResource("Gradient_q5uyt")
@@ -116,7 +116,8 @@ process_material = SubResource("ParticleProcessMaterial_jbr18")
 draw_pass_1 = SubResource("QuadMesh_jr1qf")
 
 [node name="Flame" type="GPUParticles3D" parent="."]
-amount = 30
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.362168, 0)
+amount = 64
 lifetime = 0.3
 randomness = 1.0
 trail_lifetime = 1.0
@@ -125,8 +126,8 @@ draw_pass_1 = SubResource("QuadMesh_754yn")
 
 [node name="Smoke" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.863614, 0)
-amount = 10
-lifetime = 1.5
+amount = 32
+lifetime = 2.5
 process_material = SubResource("ParticleProcessMaterial_bktqr")
 draw_pass_1 = SubResource("SphereMesh_bl0jh")
 

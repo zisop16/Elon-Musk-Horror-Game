@@ -1,46 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://do2828y10u0ct"]
+[gd_scene load_steps=2 format=3 uid="uid://do2828y10u0ct"]
 
-[ext_resource type="Script" uid="uid://cgxpjs0jsu731" path="res://scripts/game.gd" id="1_7r040"]
 [ext_resource type="PackedScene" uid="uid://66hmaqhutu1b" path="res://scenes/map.tscn" id="2_7r040"]
-[ext_resource type="Environment" uid="uid://bteiggvg166wx" path="res://assets/environment.tres" id="2_1783g"]
-[ext_resource type="PackedScene" uid="uid://cbh1n15ueuj4p" path="res://scenes/items/item_tooltip.tscn" id="4_spprr"]
-[ext_resource type="PackedScene" uid="uid://md2kq64billi" path="res://scenes/user_interface.tscn" id="5_spprr"]
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_tqv2w"]
-viewport_path = NodePath("SubViewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0u6gl"]
-resource_local_to_scene = true
-transparency = 1
-no_depth_test = true
-shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_tqv2w")
-billboard_mode = 2
-billboard_keep_scale = true
-
-[sub_resource type="QuadMesh" id="QuadMesh_27mel"]
-resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_0u6gl")
-size = Vector2(4.5, 1.5)
 
 [node name="Node3D" type="Node3D"]
-script = ExtResource("1_7r040")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource("2_1783g")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.320805, 0.506527, -0.800322, 0.577287, 0.565321, 0.589196, 0.750882, -0.651032, -0.111054, 0, 6.6802, 9.93699)
-light_color = Color(0.71, 0.874333, 1, 1)
-light_energy = 0.801
-light_volumetric_fog_energy = 0.0
-light_specular = 4.59
-shadow_enabled = true
 
 [node name="Map" parent="." instance=ExtResource("2_7r040")]
-
-[node name="Item Tooltip" parent="." instance=ExtResource("4_spprr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -100, 0)
-mesh = SubResource("QuadMesh_27mel")
-
-[node name="UserInterface" parent="." instance=ExtResource("5_spprr")]

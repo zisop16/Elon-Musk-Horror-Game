@@ -288,11 +288,10 @@ speed_scale = 5.0
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.994736, 0)
 light_color = Color(0.9935, 1, 0.87, 1)
-light_energy = 5.5
-light_volumetric_fog_energy = 0.02
+light_energy = 8.57
+light_volumetric_fog_energy = 0.0
 omni_range = 15.0
 omni_attenuation = 0.5
-omni_shadow_mode = 0
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.965554, 0)

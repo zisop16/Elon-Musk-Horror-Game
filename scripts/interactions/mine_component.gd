@@ -13,6 +13,8 @@ func mine():
 		get_tree().root.add_child(effect)
 		effect.global_position = global_position
 	get_tree().root.add_child(item)
+	const y_offset := .5
 	item.global_position = global_position
+	item.global_position.y += y_offset
 	item.rotation = Global.generate_random_rotation()
 	get_parent().queue_free()

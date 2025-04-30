@@ -12,13 +12,12 @@ func _ready() -> void:
 ## So it does not carry its own state of active or not_active
 func toggle():
 	Global.watched_tv = true
+	audio_player.play_sound_effect("toggle")
+	if not tv:
+		# TV isn't attached, or it has been freed
+		return
 	if tv.playing_video:
 		tv.play_static()
 	else:
 		tv.play_video()
-	audio_player.play_sound_effect("toggle")
-
-
-func _physics_process(_delta: float) -> void:
-	super._physics_process(_delta)
-	pass
+	

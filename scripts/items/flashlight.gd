@@ -5,7 +5,7 @@ extends Item
 @onready var player: PolyAudioPlayer = $AudioPlayer
 @onready var hitbox: Area3D = $Hitbox
 # Seconds of duration left in battery
-const flashlight_battery_limit: float = 30
+const flashlight_battery_limit: float = 60
 var flashlight_battery := flashlight_battery_limit
 
 func _ready() -> void:
@@ -30,6 +30,8 @@ func drop():
 	super.drop()
 	spotlight.visible = false
 	hitbox.monitoring = false
+	if Global.player.get_flashlight() == null:
+		Global.stat_interface.set_flashlight_visibility(false)
 
 func toggle():
 	if flashlight_battery == 0:
@@ -38,10 +40,11 @@ func toggle():
 
 func attach(target: Node3D):
 	super.attach(target)
+	Global.stat_interface.set_flashlight_visibility(true)
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if active:
-		# flashlight_battery = move_toward(flashlight_battery, 0, delta)
+		flashlight_battery = move_toward(flashlight_battery, 0, delta)
 		Global.stat_interface.set_flashlight(flashlight_battery / flashlight_battery_limit)
 	if flashlight_battery == 0 and active:
 		deactivate()
